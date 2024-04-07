@@ -7,8 +7,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule } from '@angular/router';
 import { TopnavComponent } from './topnav/topnav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -21,8 +19,6 @@ import {MatDividerModule} from '@angular/material/divider';
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
