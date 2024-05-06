@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+.footer {
+  background-color: black;
+}
+.footercontent {
+  display: flex;
+  align-items: center;
+
+  padding: 1em;
+  max-width: 800px;
+  margin: auto;
+  text-align: left; 
+  font-weight: bold; 
+  color: white;
+}

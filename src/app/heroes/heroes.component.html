@@ -1,0 +1,17 @@
+
+<div>
+    <div class="content">
+        <div *ngIf="heroes | async as heros">
+            <h1>Heroes List</h1>
+            <div 
+                *ngFor="let hero of heros" 
+                [routerLink]="['/hero', hero]" 
+                class="hero" 
+                style="background-image: url(/assets/hero/{{hero}}.png);">
+                <div class="hname">{{hero}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

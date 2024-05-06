@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -9,5 +7,5 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomeComponent {
-  public router = inject(Router);
+
 }

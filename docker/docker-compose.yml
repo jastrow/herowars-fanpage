@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/var/www/html
+      - ./logs/nginx:/var/log/nginx/
+    networks:
+      - mynetwork
+
+#php:8.3.7RC1-fpm-bullseye
+  php:
+    image: php:fpm-alpine
+    volumes:
+      - ./html:/var/www/html
+      - ./logs/php.log:/var/log/fpm-php.www.log
+    networks:
+      - mynetwork
+    environment:
+      APACHE_PORT: 8080
+    command: sh -c "docker-php-ext-install pdo pdo_mysql mysqli && docker-php-entrypoint php-fpm"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
+    depends_on: 
+      - db
+    links:
+      - db:db
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:5.7
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: hw123
+      MYSQL_DATABASE: hw
+      MYSQL_USER: hw123
+      MYSQL_PASSWORD: hw123
+      DB_PATH_HOST: /tmp/mysql
+    volumes:
+      - hw_mysql:/var/lib/mysql
+    networks:
+      - mynetwork
+
+
+# Wegen Rechte Problem im Windows Ordner,
+# wurde hier in Docker Desktop ein Volume angelegt.
+# Welches dann oben von mysql genutzt wird.
+volumes:
+  hw_mysql:
+    driver: local
+
+#  postgres:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: mydb
+#      POSTGRES_USER: myuser
+#      POSTGRES_PASSWORD: mypassword
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data
+#    networks:
+#      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

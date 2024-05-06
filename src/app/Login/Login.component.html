@@ -1,0 +1,24 @@
+<div class="content">
+    <div class="protest yellow contentTitle">Login</div>
+    &nbsp;<br>
+    <form class="example-form" [formGroup]="form">
+
+        <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>E-Mail</mat-label>
+          <input matInput placeholder="Benutzer E-Mail" value="" formControlName="email">
+        </mat-form-field>
+        </div>
+      
+        <div>
+            <mat-form-field class="example-full-width">
+            <mat-label>Passwort</mat-label>
+            <input type="password" matInput placeholder="Passwort" value="" formControlName="pass">
+          </mat-form-field>
+        </div>
+
+        <button mat-stroked-button (click)="sendlogin()">Anmelden</button>&nbsp;
+        <button mat-stroked-button>Passwort vergessen?</button>
+
+    </form>
+</div>

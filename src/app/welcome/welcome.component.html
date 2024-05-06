@@ -1,36 +1,38 @@
-
 <div class="bg">
     <div class="landingpage">
-       <div class="top">
-          <div class="logo">
+
+      <div class="top">
+          <div class="logotitle">
              <h1>GLUECKSRITTER</h1>
              <div>Hero Wars Gilde</div>
           </div>
        </div>
+
        <div class="bottom">
           <div style="max-width: 800px; width:90%;">
 
              <div class="grid gridlink">
-                <div>
-                   <h2>Gilde</h2>
-                   Erfahre mehr über unsere Mitglieder und Regeln.
-                </div>
-                <div>
-                   <h2>Helden</h2>
-                   Tipps zu den Helden im Spiel, besten Teamups und Ranking.
-                </div>
-                <div>
+               <div [routerLink]="['/heroes']">
+                  <h2>Helden</h2>
+                  Tipps zu den Helden im Spiel und Rankings.
+               </div>
+               <div>
+                  <h2>Teams</h2>
+                  Welche Teams haben die besten Synergien?
+               </div>
+              <div>
                    <h2>Abenteuer</h2>
                    Karten und Wege die jeder nehmen sollte.
                 </div>
                 <div>
-                   <h2>Abenteuer</h2>
-                   Karten und Wege die jeder nehmen sollte.
+                   <h2>Tipps</h2>
+                   Weitere Tipps zum Spiel.
                 </div>
              </div>
 
           </div>
        </div>
+
     </div>
 </div>
 
@@ -100,12 +102,3 @@
         </div>
     </div>
  </div>
-
-
- <div class="bg">
-    <div class="landingpage" style="text-align: center; font-weight: bold; color: white;">
-        <a [routerLink]="['/imprint']" style="display: inline">Imprint</a> 
-        &middot; 
-        Non commercial Fansite of Hero Wars
-    </div>
-</div>

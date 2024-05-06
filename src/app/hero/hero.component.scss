@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.heroimage {
+  padding: 0.5em;
+  float: right;
+  border-radius: 0.5em;
+}
+.heroimg {
+  max-height: 300px;
+}
+h2 {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #D6AB08;
+}
+.chip {
+  display: inline-block;
+  padding: 0.3em 0.5em;
+  border: 1px solid #D6AB08;
+  border-radius: 0.4em;
+  background-color: black;
+  margin-right: 0.5em;
+}
+.scrollhero {
+  display: flex;
+  justify-content: space-between;
+}

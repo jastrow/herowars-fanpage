@@ -1,0 +1,38 @@
+<div class="content">
+    <ng-container *ngIf="hero$ | async as hero">
+
+        <div class="heroimage">
+            <img class="heroimg" src="{{getSkinUrl()}}">
+            <div class="scrollhero" *ngIf="hero.skins.length">
+                <button mat-mini-fab matTooltip="Primary" color="primary" aria-label="Vorheriger Skin" (click)="prevSkin()">
+                    <mat-icon>arrow_left</mat-icon>
+                </button>
+                <span>{{getSkinName()}}</span>
+                <button mat-mini-fab matTooltip="Primary" color="primary" aria-label="Nächster Skin" (click)="nextSkin()">
+                    <mat-icon>arrow_right</mat-icon>
+                </button>
+            </div>
+            <!-- hero.skins [] -->
+        </div>
+
+        <div class="contentTitle protest yellow mb10">{{hero.name}}</div>
+
+        <p>
+            <strong>Position:</strong> {{hero.position}}<br>
+            <strong>Tier-List:</strong> {{hero.tier}}<br>
+            <strong>Funktion:</strong> {{hero.function}}
+        </p>
+
+        <p>{{hero.text}}</p>
+
+        <h2>Glyphen Priorität</h2>
+        <div class="chip" *ngFor="let glyph of hero.prio_glyphs">{{glyph}}</div>
+        
+        <h2 style="margin-top: 1em;">Artefakte Priorität</h2>
+        <div class="chip" *ngFor="let arte of hero.prio_artifacts">{{arte}}</div>
+
+        <h2 style="margin-top: 1em;">Skin Priorität</h2>
+        <div class="chip" *ngFor="let skin of hero.prio_skins">{{skin}}</div>
+
+    </ng-container>
+</div>

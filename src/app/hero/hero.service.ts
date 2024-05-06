@@ -1,4 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+export interface IHero {
+  name: string;
+  skins: string[];
+  position: string;
+  tier: string;
+  function: string;
+  prio_glyphs: string[];
+  prio_artifacts: string[];
+  prio_skins: string[];
+  text: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +31,21 @@ export class HeroService {
   constructor() { }
 
   public getHeroNames(): string[] {
-    return this.heroNames;
+    return this.heroNames.sort();
+  }
+
+  public getHero(name: string): Observable<IHero> {
+    return of({
+      name: 'Aidan',
+      text: 'Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text.',
+      skins: ['Solar','Cybernetic','Masquerade'],
+      position: 'Hinten',
+      tier: 'S',
+      function: 'Heiler / Magier',
+      prio_glyphs: ['Magischer Angriff', 'Lebenspunkte', 'Intelligenz', 'Magische Abwehr', 'Rüstung'],
+      prio_artifacts: ['Buch','Ring','Waffe'],
+      prio_skins: ['Solar','Standard','Cybernetic','Masquerade'],
+    } as IHero);
   }
 
 }

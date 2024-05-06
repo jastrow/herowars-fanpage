@@ -1,4 +1,52 @@
 @charset "utf-8"; /* Das CMS basiert auf UTF8, bitte immer stehen lassen */
 @import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; }
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-position: top;
+    background-attachment: fixed;
+}
+
+.protest {
+    font-family: "Protest Strike", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.yellow {
+    color: #D6AB08;
+}
+
+
+.content {
+    margin:auto; 
+    padding: 2em;
+    padding-top:6em; 
+    width: 90%; 
+    max-width:800px;
+    background-color: rgba(0,0,0,0.7);
+    min-height: 100vh;
+    color: white;
+}
+.contentTitle {
+    font-size: 3em;
+}
+
+.mb10 { margin-bottom: 1em; }
+.mb20 { margin-bottom: 2em; }
+.mb30 { margin-bottom: 3em; }
+.mb40 { margin-bottom: 4em; }
+.mb50 { margin-bottom: 5em; }
+.mb60 { margin-bottom: 6em; }
+.mb70 { margin-bottom: 7em; }
+.mt10 { margin-top: 1em; }
+.mt20 { margin-top: 2em; }
+.mt30 { margin-top: 3em; }
+.mt40 { margin-top: 4em; }
+.mt50 { margin-top: 5em; }
+.mt60 { margin-top: 6em; }
+.mt70 { margin-top: 7em; }
