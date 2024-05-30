@@ -1,42 +1,58 @@
 <?php
-    if (isset($_SERVER['HTTP_ORIGIN'])) { header("Access-Control-Allow-Origin: ".$_SERVER['HTTP_ORIGIN']); }
-    header("Access-Control-Allow-Methods: GET, POST, PUT");
-    header("Access-Control-Allow-Headers: content-type");
+namespace api;
+use api\DB;
+require_once('DB.php');
 
-    //$pdo = new PDO("mysql:host=localhost;dbname=hw;port=3306", 'hw123', 'hw123');
-    //$pdo = new PDO("mysql:unix_socket=/var/lib/mysql/mysql.sock;dbname=hw;port=3306", 'hw123', 'hw123');
-    // Statt host -> unix_socket=/var/lib/mysql/mysql.sock /var/lib/mysql/mysql.sock -> /var/run/mysqld/mysqld.sock
+// CORS
+header("Access-Control-Allow-Origin: " . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
+header("Access-Control-Allow-Methods: GET, POST, PUT");
+header("Access-Control-Allow-Headers: content-type");
+// JSON Response
+header('Content-Type: application/json; charset=utf-8');
 
-    $conn = mysqli_connect('db', 'hw123', 'hw123', 'hw');
+if (isset($_POST['email']) && isset($_POST['pass'])) {
+    $response = ['sessionId' => null, 'errorMsg' => null];
+    $db = DB::getDB();
+    $result = $db->query('
+        SELECT * FROM user 
+        WHERE email = "'.addslashes($_POST['email']).'" 
+        AND pass = MD5("'.addslashes($_POST['pass']).'")
+    ');
 
-    //var_dump($_POST);
-    //var_dump($_GET);
-
-    if (isset($_POST['email']) && isset($_POST['pass'])) {
-        $sessionId = null;
-        $errorMsg = null;
-
-        $result = mysqli_query($conn, '
-            SELECT * FROM user 
-            WHERE email = "'.addslashes($_POST['email']).'" 
-            AND pass = MD5("'.addslashes($_POST['pass']).'")
+    if($result->num_rows) {
+        session_start();
+        $db->query('
+            UPDATE user SET php_session = "'.session_id().'" 
+            WHERE email = "'.addslashes($_POST['email']).'"
         ');
-        if($result->num_rows) {
-            session_start();
-            mysqli_query($conn, '
-                UPDATE user SET php_session = "'.session_id().'" 
-                WHERE email = "'.addslashes($_POST['email']).'"
-            ');
-            $sessionId = session_id();
-        } else {
-            $errorMsg = 'Email and/or Password incorrect';
-        }
-
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['sessionId' => $sessionId, 'errorMsg' => $errorMsg]);
+        $response['sessionId'] = session_id();
     } else {
-        echo 'test OK';
-        //header("HTTP/1.1 400 Bad Request");
+        $response['errorMsg'] = 'Email and/or Password incorrect';
     }
+
+    echo json_encode($response);
+    exit;
+}
+
+if (isset($_GET['logout'])) {
+    $response = ['sessionId' => null, 'errorMsg' => null];
+    $db = DB::getDB();
+    if ($db->query('
+        UPDATE user SET php_session = NULL WHERE php_session = "'.addslashes($_GET['logout']).'"
+    ')) {
+        $response['sessionId'] = null;
+        $response['errorMsg'] = null;
+    } else {
+        $response['sessionId'] = $_GET['logout'];
+        $response['errorMsg'] = 'Error on Logout';
+    }
+    echo json_encode($response);
+    exit;
+}
+
+//var_dump($_POST);
+//var_dump($_GET);
+echo 'test OK';
+//header("HTTP/1.1 400 Bad Request");
 
 ?>

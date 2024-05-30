@@ -1,24 +1,58 @@
 <div class="content">
-    <div class="protest yellow contentTitle">Login</div>
+  <div></div>
+
+    <h1>Login</h1>
     &nbsp;<br>
-    <form class="example-form" [formGroup]="form">
 
-        <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="Benutzer E-Mail" value="" formControlName="email">
-        </mat-form-field>
-        </div>
+    <div *ngIf="!(auth$ | async)">
+      <form
+      class="b-form"
+      [formGroup]="form">
+      <p>
+          <tui-input
+              formControlName="email"
+              tuiTextfieldSize="s">
+              Deine Email
+              <input
+                  autocomplete="email"
+                  tuiTextfield
+                  type="email">
+          </tui-input>
+      </p>
+      <p>
+        <tui-input
+            formControlName="pass"
+            tuiTextfieldSize="s">
+            Dein Passwort
+            <input
+                autocomplete="pass"
+                tuiTextfield
+                type="password">
+        </tui-input>
+      </p>
+      <button
+      tuiButton
+      type="button"
+      class="tui-space_right-3 tui-space_bottom-3"
+      (click)="sendlogin()">Anmelden</button>
+      </form>
+
+      <tui-notification *ngIf="loginErr()"
+          size="l"
+          status="warning"
+          (close)="(0)">
+          Fehler bei der Anmeldung!
+      </tui-notification>
       
-        <div>
-            <mat-form-field class="example-full-width">
-            <mat-label>Passwort</mat-label>
-            <input type="password" matInput placeholder="Passwort" value="" formControlName="pass">
-          </mat-form-field>
-        </div>
+    </div>
 
-        <button mat-stroked-button (click)="sendlogin()">Anmelden</button>&nbsp;
-        <button mat-stroked-button>Passwort vergessen?</button>
+    <div *ngIf="auth$ | async">
+      <p>Sie sind angemeldet.</p>
+      <button
+      tuiButton
+      type="button"
+      class="tui-space_right-3 tui-space_bottom-3"
+      (click)="logout()">Abmelden</button>
+    </div>
 
-    </form>
 </div>

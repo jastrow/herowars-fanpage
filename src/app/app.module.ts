@@ -1,28 +1,35 @@
+import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule } from '@angular/router';
-import { TopnavComponent } from './topnav/topnav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import { FooterComponent } from './footer/footer.component';
-import { HeroComponent } from './hero/hero.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { LoginComponent } from './Login/Login.component';
-
 import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './Login/auth.state';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { TuiSvgModule} from '@taiga-ui/core';
+import { TuiButtonModule} from '@taiga-ui/core';
+import { TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
+import { TuiDataListModule} from '@taiga-ui/core';
+import { TuiDataListWrapperModule, TuiSelectModule} from '@taiga-ui/kit';
+import { TuiNotificationModule} from '@taiga-ui/core';
+
+import { WelcomeComponent } from './welcome/welcome.component';
+import { TopnavComponent } from './wireframe/topnav/topnav.component';
+import { FooterComponent } from './wireframe/footer/footer.component';
+import { HeroComponent } from './hero/Hero/hero.component';
+import { HeroesComponent } from './hero/Heroes/heroes.component';
+import { HeroEditComponent } from './hero/HeroEdit/HeroEdit.component';
+import { LoginComponent } from './Login/Login.component';
+import { SubnavComponent } from "./wireframe/Subnav/Subnav.component";
+import { HeroteamsComponent } from "./hero/Heroteams/Heroteams.component";
+
+ 
 
 @NgModule({
   declarations: [
@@ -32,23 +39,33 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HeroComponent,
     HeroesComponent,
-    LoginComponent
+    HeroEditComponent,
+    LoginComponent,
+    HeroteamsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
     FormsModule,
     NgxsModule.forRoot([AuthState]),
+    NgxsStoragePluginModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TuiSvgModule,
+    TuiButtonModule,
+    TuiInputModule,
+    TuiTextareaModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule,
+    TuiNotificationModule,
+    SubnavComponent,
+],
   providers: [
     provideAnimationsAsync()
   ],

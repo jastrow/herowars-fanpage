@@ -1,0 +1,52 @@
+<div>
+    <div class="content">
+        <app-subnav [definedRoute]="'hero'"></app-subnav>
+        <h1>Helden Liste</h1>
+        
+        <form class="b-form" [formGroup]="form">
+            <div class="row">
+                <div class="col">
+                    <tui-select tuiTextfieldSize="m" formControlName="filterTier">
+                        Filter Tier
+                        <input tuiTextfield>
+                        <tui-data-list-wrapper
+                            *tuiDataList
+                            [items]="service.tierlist"
+                        ></tui-data-list-wrapper>
+                    </tui-select>
+                </div>
+                <div class="col">
+                    <tui-select tuiTextfieldSize="m" formControlName="filterKlasse">
+                        Filter Klasse
+                        <input tuiTextfield>
+                        <tui-data-list-wrapper
+                            *tuiDataList
+                            [items]="service.classes"
+                        ></tui-data-list-wrapper>
+                    </tui-select>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="filtered$ | async as heros">
+            
+            <div 
+                *ngFor="let hero of heros" 
+                [routerLink]="['/hero', hero]" 
+                class="hero" 
+                style="background-image: url(/assets/hero/{{hero}}.png);">
+                <div class="hname">{{hero}}</div>
+            </div>
+        </div>
+
+        <div *ngIf="auth$ | async">
+            <button
+            tuiButton
+            type="button"
+            [routerLink]="['/hero/edithero/']">Held hinzufügen</button>
+        </div>
+
+    </div>
+
+</div>
+

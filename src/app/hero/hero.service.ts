@@ -1,51 +1,103 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 export interface IHero {
+  hero_id?: number,
   name: string;
-  skins: string[];
   position: string;
-  tier: string;
-  function: string;
-  prio_glyphs: string[];
-  prio_artifacts: string[];
-  prio_skins: string[];
-  text: string;
+  tierlist: string;
+  funktion: string;
+  glyphs: string;
+  artefacts: string;
+  skins: string;
+  description: string;
 }
+
+export type TIERLIST = '-' | 'S+' | 'S' | 'A+' | 'A' |'B' | 'C' | 'D';
+export type KLASSEN = '-' |  'Heiler' | 'Kontrolle' | 'Magier' | 'Schütze' | 'Unterstützer' | 'Panzer' | 'Krieger';
+
+export interface IHerolistFilter {
+  filtertier: TIERLIST | null;
+  filterklasse: KLASSEN | null;
+}
+
+export enum IHeroFilterTyp {
+  KLASSE = 'klasse',
+  TIER = 'tier',
+}
+
+export interface IHeroTeam {
+  id: number;
+  name: string;
+  description: string;
+  heroes: string[];
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-
-  public heroNames = [
-    'Amira', 'Andvari', 'Arachne', 'Artemis', 'Astaroth', 'Astrid-Lucas', 'Aurora', 'Celeste', 
-    'Chabba', 'Cleaver', 'Cornelius', 'Corvus', 'Dante', 'Daredevil', 'Darkstar', 'Dorian', 
-    'Elmir', 'Faceless', 'Fafnir', 'Fox', 'Galahad', 'Ginger', 'Heidi', 'Helios', 'Iris', 
-    'Isaac', 'Ishmael', 'Jet', 'Jhu', 'Jorgen', 'Judge', 'Julius', 'Kai', 'Karkh', 'Kayla', 
-    'Keira', 'Krista', 'Lars', 'Lian', 'Lilith', 'Luther', 'Markus', 'Martha', 'Maya', 'Mojo', 
-    'Morrigan', 'Mushy-Shroom', 'Nebula', 'Orion', 'Peppy', 'Phobos', 'Polaris', 'Qing-Mao', 
-    'Rufus', 'Satori', 'Sebastian', 'Thea', 'Tristan', 'Yasmine', 'Ziri', 'Aidan', 'Alvanor'
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/';
+  public readonly tierlist = ['-', 'S+','S', 'A+', 'A','B', 'C', 'D'];
+  public readonly classes = [
+    '-', 'Heiler','Kontrolle','Magier','Schütze','Unterstützer','Panzer','Krieger'
   ];
+
+  private herolistFilter = new BehaviorSubject<IHerolistFilter>({filtertier: null, filterklasse: null});
 
   constructor() { }
 
-  public getHeroNames(): string[] {
-    return this.heroNames.sort();
+  public setHeroFilter(typ: IHeroFilterTyp, value: string) {
+    if (typ === IHeroFilterTyp.KLASSE && this.classes.includes(value)) {
+      let actualFilter = this.herolistFilter.value;
+      actualFilter.filterklasse = value as KLASSEN;
+      this.herolistFilter.next(actualFilter);
+    }
+    if (typ === IHeroFilterTyp.TIER && this.tierlist.includes(value)) {
+      let actualFilter = this.herolistFilter.value;
+      actualFilter.filtertier = value as TIERLIST;
+      this.herolistFilter.next(actualFilter);
+    }
   }
 
-  public getHero(name: string): Observable<IHero> {
-    return of({
-      name: 'Aidan',
-      text: 'Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text. Hier steht Text.',
-      skins: ['Solar','Cybernetic','Masquerade'],
-      position: 'Hinten',
-      tier: 'S',
-      function: 'Heiler / Magier',
-      prio_glyphs: ['Magischer Angriff', 'Lebenspunkte', 'Intelligenz', 'Magische Abwehr', 'Rüstung'],
-      prio_artifacts: ['Buch','Ring','Waffe'],
-      prio_skins: ['Solar','Standard','Cybernetic','Masquerade'],
-    } as IHero);
+  public setHeroFilters(filter: IHerolistFilter) {
+    this.herolistFilter.next(filter);
+  }
+
+  public getHeroFilter(): BehaviorSubject<IHerolistFilter> {
+    return this.herolistFilter;
+  }
+
+  public getHeroNames() {
+    return this.http.get<string[]>(this.apiUrl + 'heroes.php?heronames=1');
+  }
+
+  public getHeroByName(heroName: number, edit: boolean): Observable<IHero> {
+    let url = this.apiUrl + 'heroes.php?heroByName='+heroName+(edit ? '&edit=1' : '');
+    return this.http.get<IHero>(url);
+  }
+
+  public sendHero(data: any) {
+    return this.http.post(this.apiUrl + 'heroes.php?hero_id='+data.hero_id, data);
+  }
+
+  public deleteHero(name: string) {
+    return this.http.get(this.apiUrl + 'heroes.php?deletehero='+encodeURI(name));
+  }
+
+  public getHeroNamesFiltered(tier: string, klasse: string) {
+    tier = tier === '-' ? '' : tier;
+    klasse = klasse === '-' ? '' : klasse;
+    return this.http.get<string[]>(
+      this.apiUrl + 'heroes.php?filtertier='+encodeURI(tier)+'&filterklasse='+encodeURI(klasse)
+    );
+  }
+
+  public getHeroTeams() {
+    return this.http.get<IHeroTeam[]>(this.apiUrl + 'heroes.php?teams=1');
   }
 
 }

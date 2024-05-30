@@ -1,0 +1,41 @@
+<button
+    tuiIconButton
+    type="button"
+    icon="tuiIconHome"
+    [routerLink]="['/welcome']"
+    size="m"
+    ></button>
+
+<button *ngIf="!(auth$ | async)" 
+    tuiIconButton
+    type="button"
+    icon="tuiIconLock"
+    [routerLink]="['/login']"
+    size="m"
+    ></button>
+
+<button *ngIf="auth$ | async" 
+    tuiIconButton
+    type="button"
+    icon="tuiIconUnlock"
+    (click)="logout()"
+    size="m"
+    ></button>
+
+<div class="topNavLogo" style="display: inline-block;font-size: 2em;">GLUECKSRITTER</div>
+
+<button
+    appearance="primary"
+    tuiButton
+    type="button"
+    size="m"
+    [routerLink]="['/heroes']"
+>Helden</button>
+
+<button
+    appearance="primary"
+    tuiButton
+    type="button"
+    size="m"
+    [routerLink]="['/heroes']"
+>Titanen</button>

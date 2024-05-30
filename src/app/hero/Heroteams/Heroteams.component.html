@@ -1,0 +1,23 @@
+<div class="content">
+    <app-subnav [definedRoute]="'hero'"></app-subnav>
+    <h1>Helden Teams</h1>
+    <p>Hier einige Kompositionen von Helden von unserer Gilde empfohlen.</p>
+    <p>Für Neueinsteiger als Tipp: Sich hier ein Team raussuchen, und nur diese Helden leveln.</p>
+
+    <div *ngIf="(heroes$ |async) as heroes; else loading">
+        <div *ngIf="heroes.length; else noheroes"></div>
+
+        <ng-template #noheroes>Keine Teams vorhanden</ng-template>
+    </div>
+
+    <div *ngIf="auth$ | async">
+        <button
+        tuiButton
+        type="button"
+        [routerLink]="['/hero/heroteamsedit/']">Team hinzufügen</button>
+    </div>
+
+    <ng-template #loading>
+        <p>Teams werden geladen.</p>
+    </ng-template>
+</div>
