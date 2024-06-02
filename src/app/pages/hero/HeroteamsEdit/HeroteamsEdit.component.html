@@ -1,0 +1,31 @@
+<div class="content">
+
+    <h1>Team bearbeiten</h1>
+
+    <form class="b-form" [formGroup]="form">
+        <tui-input formControlName="name">
+            Name des Teams
+            <input tuiTextfield type="text">
+        </tui-input>
+        <tui-textarea formControlName="description" class="tui-space_top-4" [expandable]="true">
+            Beschreibung
+        </tui-textarea>
+
+        <div *ngIf="(heroes$ | async) as heroes">
+            <div
+                (click)="heroClick(hero)"
+                [ngClass]="getHeroClass(hero)"
+                *ngFor="let hero of heroes">
+                {{hero}}
+            </div>
+        </div>
+
+        <button
+            tuiButton
+            type="button"
+            class="tui-space_right-3 tui-space_top-3"
+            (click)="save()">Speichern</button>
+
+    </form>
+
+</div>

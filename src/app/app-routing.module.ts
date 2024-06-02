@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { ImprintComponent } from './imprint/imprint.component';
-import { HeroComponent } from './hero/Hero/hero.component';
-import { HeroesComponent } from './hero/Heroes/heroes.component';
-import { LoginComponent } from './Login/Login.component';
-import { HeroEditComponent } from './hero/HeroEdit/HeroEdit.component';
-import { HeroteamsComponent } from './hero/Heroteams/Heroteams.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { ImprintComponent } from './pages/imprint/imprint.component';
+import { HeroComponent } from './pages/hero/Hero/hero.component';
+import { HeroesComponent } from './pages/hero/Heroes/heroes.component';
+import { LoginComponent } from './pages/Login/Login.component';
+import { HeroEditComponent } from './pages/hero/HeroEdit/HeroEdit.component';
+import { HeroteamsComponent } from './pages/hero/Heroteams/Heroteams.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HeroteamsEditComponent } from './pages/hero/HeroteamsEdit/HeroteamsEdit.component';
+import { HeroteamViewerComponent } from './pages/hero/HeroteamViewer/HeroteamViewer.component';
 
 const routes: Routes = [
   {
@@ -45,14 +48,19 @@ const routes: Routes = [
     data: { title: 'Helden Teams'},
   },
   {
+    path: 'heroteamviewer/:id',
+    component: HeroteamViewerComponent,
+    data: { title: 'Helden Team'},
+  },
+  {
     path: 'heroteamsedit/:id',
-    component: HeroteamsComponent,
-    data: { title: 'Helden Teams'},
+    component: HeroteamsEditComponent,
+    data: { title: 'Helden Team bearbeiten'},
   },
   {
     path: 'heroteamsedit',
-    component: HeroteamsComponent,
-    data: { title: 'Helden Teams'},
+    component: HeroteamsEditComponent,
+    data: { title: 'Helden Team erstellen'},
   },
   {
     path: 'login',
@@ -66,7 +74,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 export class AppRoutingModule { }

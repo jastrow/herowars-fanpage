@@ -9,6 +9,10 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
+      "@libs/uicomponents": [
+        "./dist/libs/uicomponents",
+        "./dist/libs/uicomponents"
+      ],
       "lib": [
         "./dist/lib"
       ]

@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'hw';
+  //title = 'hw';
   private service = inject(GlobalsettingsService);
   public shownav = new BehaviorSubject<boolean>(true);
   private router = inject(Router);
@@ -33,10 +33,14 @@ export class AppComponent implements OnInit {
 
     this.subscription.add(this.service.getBgImage().subscribe(image => {
       let b = document.getElementById('bodybg');
-      console.log(b);
       if(b) b.style.backgroundImage = "url('"+image+"')";
-      console.log(image);
     }));
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   ngOnDestroy(): void {

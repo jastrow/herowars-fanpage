@@ -32,6 +32,10 @@ class DB {
     public function query(string $sql): mysqli_result|bool {
         return mysqli_query($this->conn, $sql);
     }
+
+    public function insertId() {
+        return $this->conn->insert_id;
+    }
     
 }
 

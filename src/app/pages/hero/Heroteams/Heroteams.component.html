@@ -1,0 +1,98 @@
+<div class="content">
+    <app-subnav [definedRoute]="'hero'"></app-subnav>
+    <h1>Helden Teams</h1>
+    <p>Hier einige Kompositionen von Helden von unserer Gilde empfohlen.</p>
+    <p>Für Neueinsteiger als Tipp: Sich hier ein Team raussuchen, und nur diese Helden leveln.</p>
+
+    <div *ngIf="(teams$ |async) as teams; else loading">
+
+        <table tuiTable [columns]="columns">
+            <thead>
+                <tr tuiThGroup>
+                    <th *tuiHead="'name'" tuiTh>Name</th>
+                    <th *tuiHead="'held0'" tuiTh [sorter]="null">Held 1</th>
+                    <th *tuiHead="'held1'" tuiTh [sorter]="null">Held 2</th>
+                    <th *tuiHead="'held2'" tuiTh [sorter]="null">Held 3</th>
+                    <th *tuiHead="'held3'" tuiTh [sorter]="null">Held 4</th>
+                    <th *tuiHead="'held4'" tuiTh [sorter]="null">Held 5</th>
+                    <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+                </tr>
+            </thead>
+            <tbody *tuiLet="teams | tuiTableSort as sortedUsers" tuiTbody [data]="sortedUsers">
+                <tr tuiTr *ngFor="let item of sortedUsers; let index = index">
+                    <td *tuiCell="'name'" tuiTd >{{ item.name }}</td>
+                    <td *tuiCell="'held0'" tuiTd >{{ item.heroes[0] }}</td>
+                    <td *tuiCell="'held1'" tuiTd >{{ item.heroes[1] }}</td>
+                    <td *tuiCell="'held2'" tuiTd >{{ item.heroes[2] }}</td>
+                    <td *tuiCell="'held3'" tuiTd >{{ item.heroes[3] }}</td>
+                    <td *tuiCell="'held4'" tuiTd >{{ item.heroes[4] }}</td>
+                    <td *tuiCell="'actions'" tuiTd>
+                        <button
+                            appearance="flat"
+                            icon="tuiIconTrash"
+                            shape="rounded"
+                            size="s"
+                            title="Remove"
+                            tuiIconButton
+                            type="button"
+                            class="remove"
+                            (click)="deleteTeam(item.id, deleteModal)"></button>
+                        <button
+                            appearance="flat"
+                            icon="tuiIconEye"
+                            shape="rounded"
+                            size="s"
+                            title="Remove"
+                            tuiIconButton
+                            type="button"
+                            class="remove"
+                            (click)="viewTeam(item)"></button>
+                        <button
+                            appearance="flat"
+                            icon="tuiIconEdit"
+                            shape="rounded"
+                            size="s"
+                            title="Remove"
+                            tuiIconButton
+                            type="button"
+                            class="remove"
+                            (click)="editTeam(item)"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <ng-template #loading>
+        <p>Teams werden geladen.</p>
+    </ng-template>
+
+    <div *ngIf="auth$ | async" class="mt10">
+        <button
+        tuiButton
+        type="button"
+        [routerLink]="['/heroteamsedit']">Team hinzufügen</button>
+    </div>
+
+</div>
+
+<ng-template
+    #deleteModal
+    let-observer
+>
+    <p>Wirklich löschen?</p>
+    <button
+        size="m"
+        tuiButton
+        type="button"
+        class="tui-space_right-3"
+        (click)="withdraw()"
+    >Löschen</button>
+    <button
+        size="m"
+        tuiButton
+        type="button"
+        (click)="observer.complete()"
+    >Abbrechen</button>
+</ng-template>

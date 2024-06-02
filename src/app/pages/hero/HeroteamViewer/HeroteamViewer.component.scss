@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.heroes {
+  display: flex;
+  gap: 1em;
+}
+
+.heroes > div {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row;
+  border: 3px solid rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+.heroes > div:hover {
+  border-color: var(--tui-primary-hover);;
+}
+
+.heroes > div > div {
+  background-color: rgba(0,0,0,0.8);
+  width: 100%;
+  text-align: center;
+}
