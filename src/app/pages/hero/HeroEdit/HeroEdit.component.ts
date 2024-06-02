@@ -39,7 +39,7 @@ export class HeroEditComponent implements OnInit {
   public skinNames = [
     '','Standard','Angelic','Barbarian','Beach','Blooming','Celestial','Champion','Champion',
     'Cybernetic', 'Dark_Depths','Demonic','Illusionist','Lunar','Masquerade',
-    'Mechanical','Nordic','Phoenix','Romantic','Rowdy','Solar','Spring','Stellar',
+    'Mechanical','Nordic','Phoenix','Predator','Romantic','Rowdy','Solar','Spring','Stellar',
     'Sweettooth','Thundering','Winter'
   ];
   public glyphNames = [

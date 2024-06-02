@@ -7,6 +7,7 @@ CREATE TABLE user (
     php_session TINYTEXT
 );
 INSERT INTO user (name, email, pass) VALUES ('root', 'mj@mdnetz.de', MD5('god123'));
+INSERT INTO user (name, email, pass) VALUES ('bull', 'bull', MD5('god123'));
 
 DROP TABLE IF EXISTS hero;
 CREATE TABLE hero (
