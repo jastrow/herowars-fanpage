@@ -52,7 +52,7 @@ export class HeroComponent implements OnInit, OnDestroy {
           );
         }),
       ).subscribe(params => {
-        this.service.setBgImage('/assets/poster/'+params['id']+'.png');
+        this.service.backgroundImage = '/assets/poster/'+params['id']+'.png';
     }));
   }
 
@@ -69,7 +69,7 @@ export class HeroComponent implements OnInit, OnDestroy {
         catchError(e => of(e)),
         finalize(() => this.close$.next(false)),
       ).subscribe(d => {
-        this.router.navigate(['/heroes']);
+        this.router.navigate(['/hero/heroes']);
       })
     );
   }
@@ -97,7 +97,7 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.heroService.deleteHero(this.heroName).pipe(
       catchError(e => of(e)),
     ).subscribe(d => {
-      this.router.navigate(['/heroes']);
+      this.router.navigate(['/hero/heroes']);
     });
   }
 

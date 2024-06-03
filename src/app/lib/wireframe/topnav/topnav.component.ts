@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { AuthSelectors } from '../../../pages/Login/auth.selector';
 import { Observable } from 'rxjs';
-import { SaveSessionId } from '../../../pages/Login/auth.actions';
+import { SaveSessionId } from '@lib/states/auth/auth.actions';
 import { Router } from '@angular/router';
 
 @Component({

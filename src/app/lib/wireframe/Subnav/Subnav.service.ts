@@ -1,9 +1,8 @@
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 
 export interface IDefinedMenu {
-  [key: string]: string[];
+  [key: string]: ISubMenuItem[];
 }
 
 export interface ISubMenuItem {
@@ -15,26 +14,18 @@ export interface ISubMenuItem {
   providedIn: 'root'
 })
 export class SubnavService {
-  private router = inject(Router);
 
   public definedMenus: IDefinedMenu = {
-    hero: ['heroes', 'heroteams']
+    hero: [
+      { path: '/hero/heroes', title: 'Helden' },
+      { path: '/hero/heroteams', title: 'Helden Teams' },
+    ]
   };
 
   constructor() { }
 
   public getMenuItems(menuName: string): ISubMenuItem[] {
-    if(!this.definedMenus[menuName]) return [];
-    return this.definedMenus[menuName].map(route => {
-      let routerConfig = this.router.config.find(r => r.path?.includes(route));
-      return routerConfig 
-        ? { 
-            ...{}, 
-            path: (routerConfig.path ? routerConfig.path : ''), 
-            title: (routerConfig.data && routerConfig.data['title'] ? routerConfig.data['title'] : '') 
-          } 
-        : { path: '', title: '' };
-    });
+    return this.definedMenus[menuName] ? this.definedMenus[menuName] : [];
   };
 
 }

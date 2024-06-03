@@ -32,7 +32,7 @@
             
             <div 
                 *ngFor="let hero of heros" 
-                [routerLink]="['/hero', hero]" 
+                [routerLink]="['/hero/hero/', hero]" 
                 class="hero" 
                 style="background-image: url(/assets/hero/{{hero}}.png);">
                 <div class="hname">{{hero}}</div>
@@ -43,7 +43,7 @@
             <button
             tuiButton
             type="button"
-            [routerLink]="['/hero/edithero/']">Held hinzufügen</button>
+            [routerLink]="['/hero/hero/edithero/']">Held hinzufügen</button>
         </div>
 
     </div>

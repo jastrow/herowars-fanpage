@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Injectable, inject } from '@angular/core';
+import { ENVIRONMENT } from '@lib/util/tokens';
 import { Observable, of } from 'rxjs';
-import { SaveSessionId } from './auth.actions';
 
 export interface ILogin {
   sessionId: string;
@@ -13,25 +12,15 @@ export interface ILogin {
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrlLocal: string = 'http://localhost:8080/api/';
-  private apiUrlLive: string = '/api/';
-
-  constructor(
-    private http: HttpClient,
-    private store: Store
-  ) { }
-
-  public getApiUrl(): string {
-    if(window.location.hostname.includes('localhost')) return this.apiUrlLocal;
-    return this.apiUrlLive;
-  }
+  private http = inject(HttpClient);
+  private env = inject(ENVIRONMENT);
 
   public login(email: string | null, pass: string | null): Observable<ILogin> {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     const body = new URLSearchParams();
     body.set('email', email ?? '');
     body.set('pass', pass ?? '');
-    return this.http.post<ILogin>(this.getApiUrl()+'login.php', body.toString(), { headers });
+    return this.http.post<ILogin>(this.env.apiUrl+'/login.php', body.toString(), { headers });
   }
 
 }

@@ -1,36 +1,36 @@
-import { CommonModule } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ISubMenuItem, SubnavService } from './Subnav.service';
 import { Router, RouterModule } from '@angular/router';
 import { TuiSvgModule } from '@taiga-ui/core';
-import { BehaviorSubject } from 'rxjs';
-import { ISubMenuItem, SubnavService } from './Subnav.service';
 
 @Component({
   selector: 'app-subnav',
   standalone: true,
   imports: [
     CommonModule,
-    TuiSvgModule,
     RouterModule,
+    TuiSvgModule,
   ],
   templateUrl: './Subnav.component.html',
   styleUrl: './Subnav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubnavComponent implements OnInit {
-  @Input() customRoutes: string[] = [];
+  @Input() customRoutes: ISubMenuItem[] = [];
   @Input() definedRoute: string = '';
   private service = inject(SubnavService);
   private router = inject(Router);
   public menuItems = new BehaviorSubject<ISubMenuItem[]>([]);
 
   ngOnInit(): void {
-    this.menuItems.next(this.service.getMenuItems(this.definedRoute));
+    this.menuItems.next(
+      this.customRoutes.length ? this.customRoutes : this.service.getMenuItems(this.definedRoute)
+    );
   }
 
   nav(path: string) {
-    if(this.router.config.some(route => route.path?.includes(path))) {
-      this.router.navigate([path]);
-    }
+    this.router.navigate([path]);
   }
 }

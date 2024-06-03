@@ -8,30 +8,28 @@
           </div>
        </div>
 
-       <div class="bottom">
-          <div style="max-width: 800px; width:90%;">
-
-             <div class="grid gridlink">
-               <div [routerLink]="['/heroes']">
+      <div class="bottom">
+         <div style="max-width: 800px; width:90%;">
+            <div class="grid gridlink">
+               <div [routerLink]="['/hero/heroes']">
                   <h2>Helden</h2>
                   Tipps zu den Helden im Spiel und Rankings.
                </div>
-               <div>
+               <div [routerLink]="['/hero/heroteams']">
                   <h2>Teams</h2>
                   Welche Teams haben die besten Synergien?
                </div>
-              <div>
-                   <h2>Abenteuer</h2>
-                   Karten und Wege die jeder nehmen sollte.
-                </div>
-                <div>
-                   <h2>Tipps</h2>
-                   Weitere Tipps zum Spiel.
-                </div>
-             </div>
-
-          </div>
-       </div>
+               <div [routerLink]="['/abenteuer']">
+                  <h2>Abenteuer</h2>
+                  Karten und Wege die jeder nehmen sollte.
+               </div>
+               <div>
+                  <h2>Tipps</h2>
+                  Weitere Tipps zum Spiel.
+               </div>
+            </div>
+         </div>
+      </div>
 
     </div>
 </div>

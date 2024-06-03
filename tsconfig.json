@@ -15,7 +15,9 @@
       ],
       "lib": [
         "./dist/lib"
-      ]
+      ],
+      "@pages/*": ["./src/app/pages/*"],
+      "@lib/*": ["./src/app/lib/*"],
     },
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

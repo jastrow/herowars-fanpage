@@ -155,12 +155,12 @@ export class HeroEditComponent implements OnInit {
     this.service.sendHero(data).pipe(
       catchError(e => of(e)),
     ).subscribe(d => {
-      this.router.navigate(['hero/'+data.name]);
+      this.router.navigate(['hero/hero/'+data.name]);
     });
   }
 
   public abbrechen() {
-    this.router.navigate(['heroes']);
+    this.router.navigate(['/hero/hero/'+this.heroName]);
   }
 
  }

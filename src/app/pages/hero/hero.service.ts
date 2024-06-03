@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit, inject } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginService } from '../Login/login.service';
+import environment from 'src/environment';
+import { ENVIRONMENT } from '@lib/util/tokens';
 
 export interface IHero {
   hero_id?: number,
@@ -41,18 +43,14 @@ export interface IHeroTeam {
 })
 export class HeroService {
   private http = inject(HttpClient);
+  private env = inject(ENVIRONMENT);
   private loginService = inject(LoginService);
   public readonly tierlist = ['-', 'S+','S', 'A+', 'A','B', 'C', 'D'];
   public readonly classes = [
     '-', 'Heiler','Kontrolle','Magier','Schütze','Unterstützer','Panzer','Krieger'
   ];
-  private url: string = '';
 
   private herolistFilter = new BehaviorSubject<IHerolistFilter>({filtertier: null, filterklasse: null});
-
-  constructor() {
-    this.url = this.loginService.getApiUrl();
-   }
 
   public setHeroFilter(typ: IHeroFilterTyp, value: string) {
     if (typ === IHeroFilterTyp.KLASSE && this.classes.includes(value)) {
@@ -76,44 +74,46 @@ export class HeroService {
   }
 
   public getHeroNames() {
-    return this.http.get<string[]>(this.url + 'heroes.php?heronames=1');
+    return this.http.get<string[]>(this.env.apiUrl + '/heroes.php?heronames=1');
   }
 
   public getHeroByName(heroName: number, edit: boolean): Observable<IHero> {
-    let url = this.url + 'heroes.php?heroByName='+heroName+(edit ? '&edit=1' : '');
+    let url = this.env.apiUrl + '/heroes.php?heroByName='+heroName+(edit ? '&edit=1' : '');
     return this.http.get<IHero>(url);
   }
 
   public sendHero(data: any) {
-    return this.http.post(this.url + 'heroes.php?hero_id='+data.hero_id, data);
+    return this.http.post(this.env.apiUrl + '/heroes.php?hero_id='+data.hero_id, data);
   }
 
   public deleteHero(name: string) {
-    return this.http.get(this.url + 'heroes.php?deletehero='+encodeURI(name));
+    return this.http.get(this.env.apiUrl + '/heroes.php?deletehero='+encodeURI(name));
   }
 
   public getHeroNamesFiltered(tier: string, klasse: string) {
     tier = tier === '-' ? '' : tier;
     klasse = klasse === '-' ? '' : klasse;
-    return this.http.get<string[]>(
-      this.url + 'heroes.php?filtertier='+encodeURI(tier)+'&filterklasse='+encodeURI(klasse)
-    );
+    let url = this.env.apiUrl + 
+      '/heroes.php?filtertier=' + encodeURI(tier) + 
+      '&filterklasse=' + encodeURI(klasse);
+    console.log(url);
+    return this.http.get<string[]>(url);
   }
 
   public getHeroTeams() {
-    return this.http.get<IHeroTeam[]>(this.url + 'heroes.php?teams=1');
+    return this.http.get<IHeroTeam[]>(this.env.apiUrl + '/heroes.php?teams=1');
   }
 
   public getHeroTeam(teamId: number) {
-    return this.http.get<IHeroTeam>(this.url + 'heroes.php?team='+teamId);
+    return this.http.get<IHeroTeam>(this.env.apiUrl + '/heroes.php?team='+teamId);
   }
 
   public saveHeroTeam(team: IHeroTeam) {
-    return this.http.post(this.url + 'heroes.php?saveteam=1', team);
+    return this.http.post(this.env.apiUrl + '/heroes.php?saveteam=1', team);
   }
 
   public deleteTeam(teamId: number|null) {
-    return this.http.get(this.url+'heroes.php?deleteteam='+teamId);
+    return this.http.get(this.env.apiUrl+'/heroes.php?deleteteam='+teamId);
   }
 
 }

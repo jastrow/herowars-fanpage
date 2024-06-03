@@ -3,7 +3,7 @@ import { ILogin, LoginService } from './login.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { SaveSessionId } from './auth.actions';
+import { SaveSessionId } from '@lib/states/auth/auth.actions';
 
 @Component({
   selector: 'app-login',

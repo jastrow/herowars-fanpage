@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   private globalSettings = inject(GlobalsettingsService);
 
   ngOnInit(): void {
-    this.service.getShowTopnav().subscribe(d => {
+    this.service.showTopnav.subscribe(d => {
       this.shownav.next(d);
     });
 
@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
         filter(event => event instanceof NavigationEnd),
       ).subscribe(() => {
         this.currentRoute = this.route.snapshot.firstChild?.routeConfig?.path || '';
-        this.globalSettings.setShowTopnav(!['**','/','','welcome'].includes(this.currentRoute));
+        this.globalSettings.showTopnav = !['**','/','','welcome'].includes(this.currentRoute);
       }));
 
-    this.subscription.add(this.service.getBgImage().subscribe(image => {
+    this.subscription.add(this.service.backgroundImage.subscribe(image => {
       let b = document.getElementById('bodybg');
       if(b) b.style.backgroundImage = "url('"+image+"')";
     }));
