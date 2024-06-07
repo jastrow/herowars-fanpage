@@ -5,6 +5,9 @@ import { LoginComponent } from './pages/Login/Login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { RegelnComponent } from '@pages/TextPages/Regeln.component';
+import { MitgliederComponent } from '@pages/TextPages/Mitglieder.component';
+import { TippsComponent } from '@pages/TextPages/Tipps.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,23 @@ const routes: Routes = [
   {
     path: 'abenteuer',
     component: AbenteuerComponent,
+  },
+  {
+    path: 'textseite',
+    children: [
+      {
+        path: 'regeln',
+        component: RegelnComponent,
+      },
+      {
+        path: 'mitglieder',
+        component: MitgliederComponent,
+      },
+      {
+        path: 'tipps',
+        component: TippsComponent,
+      },    
+    ]
   },
   {
     path: '**',

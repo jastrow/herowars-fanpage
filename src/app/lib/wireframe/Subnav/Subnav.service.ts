@@ -19,7 +19,12 @@ export class SubnavService {
     hero: [
       { path: '/hero/heroes', title: 'Helden' },
       { path: '/hero/heroteams', title: 'Helden Teams' },
-    ]
+    ],
+    misc: [
+      { path: '/textseite/tipps', title: 'Tipps' },
+      { path: '/textseite/mitglieder', title: 'Mitglieder' },
+      { path: '/textseite/regeln', title: 'Regeln' },
+    ],
   };
 
   constructor() { }

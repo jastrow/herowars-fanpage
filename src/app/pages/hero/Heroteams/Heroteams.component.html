@@ -32,30 +32,27 @@
                             icon="tuiIconTrash"
                             shape="rounded"
                             size="s"
-                            title="Remove"
+                            title="Löschen"
                             tuiIconButton
                             type="button"
-                            class="remove"
                             (click)="deleteTeam(item.id, deleteModal)"></button>
                         <button
                             appearance="flat"
                             icon="tuiIconEye"
                             shape="rounded"
                             size="s"
-                            title="Remove"
+                            title="Details"
                             tuiIconButton
                             type="button"
-                            class="remove"
                             (click)="viewTeam(item)"></button>
                         <button
                             appearance="flat"
                             icon="tuiIconEdit"
                             shape="rounded"
                             size="s"
-                            title="Remove"
+                            title="Bearbeiten"
                             tuiIconButton
                             type="button"
-                            class="remove"
                             (click)="editTeam(item)"></button>
                     </td>
                 </tr>
@@ -72,7 +69,7 @@
         <button
         tuiButton
         type="button"
-        [routerLink]="['/heroteamsedit']">Team hinzufügen</button>
+        [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</button>
     </div>
 
 </div>

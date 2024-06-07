@@ -9,7 +9,7 @@
         <div class="heroes">
             <div 
                 *ngFor="let hero of team.heroes"
-                [routerLink]="['/hero/'+hero]"
+                [routerLink]="['/hero/hero/'+hero]"
                 style="background-image: url(/assets/hero/{{hero}}.png);">
                 <div>{{hero}}</div>
             </div>
@@ -26,6 +26,6 @@
         tuiButton
         type="button"
         class="tui-space_right-3 tui-space_top-3"
-        [routerLink]="['/heroteams']">Zurück</button>
+        [routerLink]="['/hero/heroteams']">Zurück</button>
 
 </div>

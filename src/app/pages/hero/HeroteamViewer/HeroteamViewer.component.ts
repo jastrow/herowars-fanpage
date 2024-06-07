@@ -42,7 +42,7 @@ export class HeroteamViewerComponent implements OnInit, OnDestroy {
   }
 
   edit() {
-    this.router.navigate(['heroteamsedit/'+this.teamId]);
+    this.router.navigate(['/hero/heroteamsedit/'+this.teamId]);
   }
 
 }

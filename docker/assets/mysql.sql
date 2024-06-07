@@ -36,11 +36,9 @@ CREATE TABLE hero_team_hero (
 );
 
 
-
-DROP TABLE IF EXISTS user_hero;
-CREATE TABLE user_hero (
-    user_id INT,
-    hero_id INT,
-    level INT,
-
+DROP TABLE IF EXISTS page;
+CREATE TABLE page (
+    name TINYTEXT,
+    html LONGTEXT,
+    UNIQUE KEY (name(255))
 );

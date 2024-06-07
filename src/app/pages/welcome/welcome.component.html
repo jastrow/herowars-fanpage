@@ -23,9 +23,9 @@
                   <h2>Abenteuer</h2>
                   Karten und Wege die jeder nehmen sollte.
                </div>
-               <div>
-                  <h2>Tipps</h2>
-                  Weitere Tipps zum Spiel.
+               <div [routerLink]="['/textseite/mitglieder']">
+                  <h2>Weiteres</h2>
+                  Unsere Mitglieder, Regeln und weitere Tipps und Infos.
                </div>
             </div>
          </div>
@@ -37,64 +37,52 @@
 <div class="mitglieder">
     <div class="content" style="padding-top: 1em; height: auto; min-height: 0em; max-width: 800px;">
        <div class="grid g2">
-          <div class="">
-             <h1>Mitglieder</h1>
-             <ul>
-                <li>Sasida - Gildenmeister</li>
-                <li>KueckenONE - Niedlicher Sith Lord</li>
-                <li>Bull - Kriegsmeister GK</li>
-                <li>Stellatro - Geheimwaffe</li>
-             </ul>
+          <div>
+             <h1>Die Gilde</h1>
+             <p class="mt10">
+               Unsere sehr junge Gilde ist am 03.02.2024 von Sasida gegründet worden.
+               Schon 8 Tage später kam eine große Stütze der Gilde dazu KueckenONE.
+               Abgerundet wurde der innere Kern mit Bull und Stellatro.
+               Es dauerte nicht lange, bis einige weitere nette Mitglieder dazu kamen.
+             </p>
           </div>
           <div>
              <h1>Der Rest der Bande</h1>
-             <p style="margin-top: 1em;">Bandit, 
-             Mega, 
-             Panello, 
-             Oigenpuffel, 
-             Freddy56, 
-             Der Wolf, 
-             Team OZONE, 
-             Ich_Binsch, 
-             Der Leitwolf, 
-             Armagedon, 
-             HIEU, 
-             SFINX, 
-             Sir McFly, 
-             activ, 
-             Tiburcio85, 
-             Namay100, 
-             Raferti, 
-             Lilith, 
-             Goku, 
-             MimiA, 
-             Pitt668</p>
+             <p class="mt10">Folgende aktive Mitglieder möchten wir hier erwähnen:</p>
+             <p class="mt10">
+               Armagedon, 
+               Bandit, 
+               Der Leitwolf, 
+               Wolf, 
+               Freddy56, 
+               HIEU, 
+               Ich_Binsch, 
+               Mega, 
+               Oigenpuffel, 
+               Panello, 
+               SFINX, 
+               Sir McFly, 
+               Team OZONE
+            </p>
           </div>
         </div>
         <div class="grid g2 mt10">
             <div>
                 <h1>Regeln</h1>
-                <ol>
-                    <li>Am Gildenkrieg teilnehmen.</li>
-                    <li>Abwesenheiten an Bull melden (GK Geißel).</li>
-                    <li>Keine Mitglieder in Arenen angreifen.</li>
-                    <li>Anderen in Abenteuern helfen.</li>
-                    <li>Sich an Abenteuer-Wege halten.</li>
-                    <li>Auch mal was im Chat sagen, antworten.</li>
-                    <li>Eigenen Namen erstellen (kein Team XXXXX).</li>
-                    <li>Sprache ist hauptsächlich deutsch.</li>
-                </ol>
+                <p class="mt10">
+                  Wie in jeder Gilde gibt es einige wünschenswerte Verhaltensregeln.
+                  Wir bitten jedes Mitglied sich auf der folgenden Seite zu 
+                  informieren und die Wünsche unserer Gilde zu akzeptieren.<br>
+                  <a tuiLink routerLink="/textseite/regeln">Regeln</a>
+                </p>
             </div>
-            <div class="">
-                <h1>Weiteres</h1>
-                <p style="margin-top: 1em;">
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet.
+            <div>
+                <h1>Disclaimer</h1>
+                <p class="mt10">
+                  Fan-Seite zu HERO WARS: DOMINION ERA<br>
+                  Dieser Inhalt ist nicht mit NEXTERS verbunden, 
+                  wird nicht unterstützt, gesponsert oder genehmigt von 
+                  NEXTERS und NEXTERS übernimmt keine Verantwortung dafür.
                 </p>
             </div>
         </div>

@@ -40,7 +40,6 @@ export class HeroComponent implements OnInit, OnDestroy {
               this.heroName = d.name;
             }),
             map(d => {
-              console.log(d);
               let newData = {
                 ...d,
                 skins: d.skins.split(','),

@@ -33,8 +33,10 @@
     "@taiga-ui/kit": "^3.77.1",
     "@taiga-ui/layout": "^3.77.1",
     "@taiga-ui/styles": "^3.77.1",
+    "@tinymce/tinymce-angular": "^8.0.0",
     "bootstrap": "^5.3.3",
     "rxjs": "~7.8.0",
+    "tinymce": "^7.1.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.4"
   },

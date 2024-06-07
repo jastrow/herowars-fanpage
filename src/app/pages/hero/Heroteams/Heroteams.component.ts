@@ -36,11 +36,11 @@ export class HeroteamsComponent implements OnInit {
   }
 
   viewTeam(team: IHeroTeam) {
-    this.router.navigate(['/heroteamviewer/'+team.id]);
+    this.router.navigate(['/hero/heroteamviewer/'+team.id]);
   }
 
   editTeam(team: IHeroTeam) {
-    this.router.navigate(['/heroteamsedit/'+team.id]);
+    this.router.navigate(['/hero/heroteamsedit/'+team.id]);
   }
 
   deleteTeam(itemId: number|null, content: PolymorpheusContent<TuiDialogContext>): void {

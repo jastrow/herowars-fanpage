@@ -69,7 +69,7 @@ export class HeroteamsEditComponent implements OnInit {
       id: this.teamId
     };
     this.service.saveHeroTeam(team).subscribe(d => {
-      this.router.navigate(['/heroteams']);
+      this.router.navigate(['/hero/heroteams']);
     });
   }
 

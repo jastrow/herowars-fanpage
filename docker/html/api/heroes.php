@@ -1,12 +1,5 @@
 <?php
-/**
- * (c) 2024 Mike Jastrow
- * HINWEISE: 
- * Dieses Script dient NUR dem Zweck, dem Angular-Projekt eine rudimentäre API bereitzustellen.
- *
- * Für ein ernsthaftes Projekt müsste die abgebildeten Funktionen in ein sicheres System
- * überführt werden. (User, Auth, Rechte, evt. im symfony Framework)
- */
+
 namespace api;
 use api\DB;
 use Exception;

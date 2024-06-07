@@ -1,35 +1,40 @@
-import { CommonModule } from "@angular/common";
-import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgxsModule } from '@ngxs/store';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthState } from '@lib/states/auth/auth.state';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
+import { ENVIRONMENT } from "@lib/util/tokens";
+import { FooterComponent } from './lib/wireframe/footer/footer.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './pages/Login/Login.component';
+import { NewlineToBrPipe } from "./lib/pipes/newlineToBr.pipe";
+import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
-import { TuiSvgModule} from '@taiga-ui/core';
-import { TuiButtonModule} from '@taiga-ui/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RouterModule } from '@angular/router';
+import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
+import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
+import { TuiButtonModule, TuiLinkModule} from '@taiga-ui/core';
 import { TuiCheckboxBlockModule, TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
 import { TuiDataListModule} from '@taiga-ui/core';
 import { TuiDataListWrapperModule, TuiSelectModule} from '@taiga-ui/kit';
-import { TuiNotificationModule} from '@taiga-ui/core';
-
-import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
-import { FooterComponent } from './lib/wireframe/footer/footer.component';
-import { LoginComponent } from './pages/Login/Login.component';
-import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
-import { NewlineToBrPipe } from "./lib/pipes/newlineToBr.pipe";
-import { TuiTableModule } from "@taiga-ui/addon-table";
 import { TuiLetModule } from "@taiga-ui/cdk";
-import { ENVIRONMENT } from "@lib/util/tokens";
+import { TuiNotificationModule} from '@taiga-ui/core';
+import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
+import { TuiSvgModule} from '@taiga-ui/core';
+import { TuiTableModule } from "@taiga-ui/addon-table";
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
+import { TextPageComponent } from '@lib/util/TextPage/TextPage.component';
+import { AbenteuerComponent } from '@pages/Abenteuer/Abenteuer.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { RegelnComponent } from '@pages/TextPages/Regeln.component';
+import { MitgliederComponent } from '@pages/TextPages/Mitglieder.component';
+import { TippsComponent } from '@pages/TextPages/Tipps.component';
+
 
  
 @NgModule({
@@ -39,6 +44,11 @@ import environment from "../environment";
         TopnavComponent,
         FooterComponent,
         LoginComponent,
+        TextPageComponent,
+        AbenteuerComponent,
+        RegelnComponent,
+        MitgliederComponent,
+        TippsComponent,
     ],
     providers: [
         provideAnimationsAsync(),
@@ -75,6 +85,8 @@ import environment from "../environment";
         TuiLetModule,
         SubnavComponent,
         NewlineToBrPipe,
+        EditorModule,
+        TuiLinkModule,
     ]
 })
 export class AppModule { }
