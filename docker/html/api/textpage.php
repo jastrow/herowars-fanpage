@@ -3,6 +3,7 @@ namespace api;
 use api\DB;
 use Exception;
 
+require_once('apiConfig.php');
 require_once('DB.php');
 require_once('functions.php');
 

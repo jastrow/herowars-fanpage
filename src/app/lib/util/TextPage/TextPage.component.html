@@ -2,7 +2,10 @@
 <ng-container *ngIf="!(editMode$ | async); else showeditor">
     <div *ngIf="page$ | async as page" [innerHTML]="page.html"></div>
 
-    <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
+    <button 
+        *ngIf="auth$ | async"
+        tuiButton type="button" 
+        class="tui-space_right-3 tui-space_top-3"
         (click)="editMode$.next(true)">Bearbeiten</button>
 </ng-container>
 

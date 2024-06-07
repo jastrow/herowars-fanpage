@@ -29,15 +29,6 @@
                     <td *tuiCell="'actions'" tuiTd>
                         <button
                             appearance="flat"
-                            icon="tuiIconTrash"
-                            shape="rounded"
-                            size="s"
-                            title="Löschen"
-                            tuiIconButton
-                            type="button"
-                            (click)="deleteTeam(item.id, deleteModal)"></button>
-                        <button
-                            appearance="flat"
                             icon="tuiIconEye"
                             shape="rounded"
                             size="s"
@@ -46,6 +37,17 @@
                             type="button"
                             (click)="viewTeam(item)"></button>
                         <button
+                            *ngIf="auth$ | async"
+                            appearance="flat"
+                            icon="tuiIconTrash"
+                            shape="rounded"
+                            size="s"
+                            title="Löschen"
+                            tuiIconButton
+                            type="button"
+                            (click)="deleteTeam(item.id, deleteModal)"></button>
+                        <button
+                            *ngIf="auth$ | async"
                             appearance="flat"
                             icon="tuiIconEdit"
                             shape="rounded"
@@ -67,9 +69,9 @@
 
     <div *ngIf="auth$ | async" class="mt10">
         <button
-        tuiButton
-        type="button"
-        [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</button>
+            tuiButton
+            type="button"
+            [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</button>
     </div>
 
 </div>

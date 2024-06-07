@@ -4,28 +4,13 @@ namespace api;
 use api\DB;
 use Exception;
 
+require_once('apiConfig.php');
 require_once('DB.php');
+require_once('functions.php');
 
 $db = DB::getDB();
+setJsonHeader();
 
-function getJsonPayload() {
-    $postData = file_get_contents('php://input');
-    $data = json_decode($postData, true);
-    return array_map(
-        function($v) { 
-            if(is_array($v)) {
-                return array_map(function($v2) { return addslashes($v2??''); }, $v);
-            }
-            if (is_string($v)) { return addslashes($v??''); }
-        }, 
-        $data
-    );
-}
-
-header("Access-Control-Allow-Origin: " . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
-header("Access-Control-Allow-Methods: GET, POST, PUT");
-header("Access-Control-Allow-Headers: content-type");
-header('Content-Type: application/json; charset=utf-8');
 
 // #################################################################################################
 // Heldennamen alle GET
@@ -55,6 +40,7 @@ if(isset($_GET['heronames'])) {
 // Held edit/new POST
 // #################################################################################################
 } else if (isset($_GET['hero_id'])) {
+    if(!checkSession()) { throw new Exception('not authed'); }
     $data = getJsonPayload();
     if ($data['hero_id']) {
         $sql = 'SELECT * FROM hero WHERE hero_id = ' . (int)$data['hero_id'] . ' LIMIT 1';
@@ -96,6 +82,7 @@ if(isset($_GET['heronames'])) {
 // Held löschen GET
 // #################################################################################################
 } else if (isset($_GET['deletehero'])) {
+    if(!checkSession()) { throw new Exception('not authed'); }
     $rs = $db->query('DELETE FROM hero WHERE name = "'.addslashes($_GET['deletehero']).'"');
     $con = $db->getConnection();
     if (!$con->affected_rows || $con->error) {
@@ -185,6 +172,7 @@ if(isset($_GET['heronames'])) {
 // Helden Team edit/new POST
 // #################################################################################################
 } else if (isset($_GET['saveteam'])) {
+    if(!checkSession()) { throw new Exception('not authed'); }
     $data = getJsonPayload();
     $data['id'] = (int)$data['id'];
     if(!is_array($data['heroes']) || !count($data['heroes'])) {
@@ -229,6 +217,7 @@ if(isset($_GET['heronames'])) {
 // Helden Team löschen GET
 // #################################################################################################
 } else if (isset($_GET['deleteteam'])) {
+    if(!checkSession()) { throw new Exception('not authed'); }
     $rs = $db->query('DELETE FROM hero_team WHERE hero_team_id = '.(int)$_GET['deleteteam']);
     $con = $db->getConnection();
     if (!$con->affected_rows || $con->error) {

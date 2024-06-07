@@ -23,4 +23,8 @@ export class LoginService {
     return this.http.post<ILogin>(this.env.apiUrl+'/login.php', body.toString(), { headers });
   }
 
+  public logout(): Observable<any> {
+    return this.http.get<any>(this.env.apiUrl+'/login.php?logout=1');
+  }
+
 }

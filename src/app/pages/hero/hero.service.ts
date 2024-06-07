@@ -94,9 +94,8 @@ export class HeroService {
     tier = tier === '-' ? '' : tier;
     klasse = klasse === '-' ? '' : klasse;
     let url = this.env.apiUrl + 
-      '/heroes.php?filtertier=' + encodeURI(tier) + 
-      '&filterklasse=' + encodeURI(klasse);
-    console.log(url);
+      '/heroes.php?filtertier=' + encodeURIComponent(tier) + 
+      '&filterklasse=' + encodeURIComponent(klasse);
     return this.http.get<string[]>(url);
   }
 

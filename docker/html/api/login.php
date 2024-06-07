@@ -1,6 +1,10 @@
 <?php
 namespace api;
 use api\DB;
+use Exception;
+
+require_once('apiConfig.php');
+require_once('functions.php');
 require_once('DB.php');
 
 // CORS
@@ -9,6 +13,7 @@ header("Access-Control-Allow-Methods: GET, POST, PUT");
 header("Access-Control-Allow-Headers: content-type");
 // JSON Response
 header('Content-Type: application/json; charset=utf-8');
+
 
 if (isset($_POST['email']) && isset($_POST['pass'])) {
     $response = ['sessionId' => null, 'errorMsg' => null];
@@ -35,15 +40,17 @@ if (isset($_POST['email']) && isset($_POST['pass'])) {
 }
 
 if (isset($_GET['logout'])) {
+    $token = getBearerToken();
+    if(!$token) { throw new Exception('no auth'); }
     $response = ['sessionId' => null, 'errorMsg' => null];
     $db = DB::getDB();
     if ($db->query('
-        UPDATE user SET php_session = NULL WHERE php_session = "'.addslashes($_GET['logout']).'"
+        UPDATE user SET php_session = NULL WHERE php_session = "'.addslashes($token).'"
     ')) {
         $response['sessionId'] = null;
         $response['errorMsg'] = null;
     } else {
-        $response['sessionId'] = $_GET['logout'];
+        $response['sessionId'] = $token;
         $response['errorMsg'] = 'Error on Logout';
     }
     echo json_encode($response);

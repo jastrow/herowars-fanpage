@@ -1,34 +1,53 @@
-<button
-    tuiIconButton
-    type="button"
-    icon="tuiIconHome"
-    [routerLink]="['/welcome']"
-    size="m"
-    ></button>
+<div class="flex2">
 
-<button *ngIf="!(auth$ | async)" 
-    tuiIconButton
-    type="button"
-    icon="tuiIconLock"
-    [routerLink]="['/login']"
-    size="m"
-    ></button>
+    <div class="flexFirst">
 
-<button *ngIf="auth$ | async" 
-    tuiIconButton
-    type="button"
-    icon="tuiIconUnlock"
-    (click)="logout()"
-    size="m"
-    ></button>
+        <button
+            tuiIconButton
+            type="button"
+            icon="tuiIconHome"
+            [routerLink]="['/welcome']"
+            size="s"
+            ></button>
 
-<div class="topNavLogo" style="display: inline-block;font-size: 2em;">GLUECKSRITTER</div>
+        <div class="topNavLogo" style="display: inline-block;font-size: 2em;">GLUECKSRITTER</div>
 
-<button
-    appearance="primary"
-    tuiButton
-    type="button"
-    size="m"
-    [routerLink]="['/hero/heroes']"
->Helden</button>
+    </div>
 
+    <div class="flexLast">
+
+        <button
+            appearance="primary"
+            tuiButton
+            type="button"
+            size="s"
+            [routerLink]="['/hero/heroes']"
+        >Helden</button>
+
+        <button
+            appearance="primary"
+            tuiButton
+            type="button"
+            size="s"
+            [routerLink]="['/textseite/mitglieder']"
+        >Weiteres</button>
+
+        <button *ngIf="!(auth$ | async)" 
+            tuiIconButton
+            type="button"
+            icon="tuiIconLock"
+            [routerLink]="['/login']"
+            size="s"
+            ></button>
+
+        <button *ngIf="auth$ | async" 
+            tuiIconButton
+            type="button"
+            icon="tuiIconUnlock"
+            (click)="logout()"
+            size="s"
+            ></button>
+
+    </div>
+
+</div>

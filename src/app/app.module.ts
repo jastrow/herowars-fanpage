@@ -34,7 +34,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { RegelnComponent } from '@pages/TextPages/Regeln.component';
 import { MitgliederComponent } from '@pages/TextPages/Mitglieder.component';
 import { TippsComponent } from '@pages/TextPages/Tipps.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.service';
 
  
 @NgModule({
@@ -55,7 +56,12 @@ import { TippsComponent } from '@pages/TextPages/Tipps.component';
         {
             provide: ENVIRONMENT,
             useValue: environment,
-        }
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+          }
     ],
     bootstrap: [AppComponent],
     imports: [
