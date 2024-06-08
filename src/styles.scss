@@ -52,13 +52,17 @@ body {
     @include yellow;
 }
 
-.content h1 {
+.content h1, .content h2, .content h3, .content h4, .content h5  {
     @include protest;
     @include yellow;
-    font-size: 3em;
     margin: 0.2em 0;
     line-height: normal;
 }
+.content h1 { font-size: 3em; }
+.content h2 { font-size: 2.3em; }
+.content h3 { font-size: 1.8em; }
+.content h4 { font-size: 1.3em; }
+.content h5 { font-size: 1em; }
 
 
 
@@ -102,4 +106,8 @@ html, body { height: 100%; }
 }
 .content ol {
     list-style: decimal;
+}
+
+.content a {
+    text-decoration: none;
 }
