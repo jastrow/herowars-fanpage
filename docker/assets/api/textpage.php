@@ -3,6 +3,7 @@ namespace api;
 use api\DB;
 use Exception;
 
+require_once('apiConfig.php');
 require_once('DB.php');
 require_once('functions.php');
 
@@ -27,7 +28,6 @@ if(isset($_GET['page'])) {
 // Seitendaten speichern POST
 // #################################################################################################
 } else if($_GET['save']) {
-    checkSession();
     $data = getJsonPayload();
     $res = $db->query('SELECT name FROM page WHERE name = "'.$data['name'].'"');
     if(!$res->num_rows) {
