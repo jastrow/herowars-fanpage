@@ -40,7 +40,7 @@ if(isset($_GET['heronames'])) {
 // Held edit/new POST
 // #################################################################################################
 } else if (isset($_GET['hero_id'])) {
-    if(!checkSession()) { throw new Exception('not authed'); }
+    checkSession();
     $data = getJsonPayload();
     if ($data['hero_id']) {
         $sql = 'SELECT * FROM hero WHERE hero_id = ' . (int)$data['hero_id'] . ' LIMIT 1';
@@ -82,7 +82,7 @@ if(isset($_GET['heronames'])) {
 // Held löschen GET
 // #################################################################################################
 } else if (isset($_GET['deletehero'])) {
-    if(!checkSession()) { throw new Exception('not authed'); }
+    checkSession();
     $rs = $db->query('DELETE FROM hero WHERE name = "'.addslashes($_GET['deletehero']).'"');
     $con = $db->getConnection();
     if (!$con->affected_rows || $con->error) {
@@ -172,7 +172,7 @@ if(isset($_GET['heronames'])) {
 // Helden Team edit/new POST
 // #################################################################################################
 } else if (isset($_GET['saveteam'])) {
-    if(!checkSession()) { throw new Exception('not authed'); }
+    checkSession();
     $data = getJsonPayload();
     $data['id'] = (int)$data['id'];
     if(!is_array($data['heroes']) || !count($data['heroes'])) {
@@ -217,7 +217,7 @@ if(isset($_GET['heronames'])) {
 // Helden Team löschen GET
 // #################################################################################################
 } else if (isset($_GET['deleteteam'])) {
-    if(!checkSession()) { throw new Exception('not authed'); }
+    checkSession();
     $rs = $db->query('DELETE FROM hero_team WHERE hero_team_id = '.(int)$_GET['deleteteam']);
     $con = $db->getConnection();
     if (!$con->affected_rows || $con->error) {

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LoginService } from '../Login/login.service';
-import environment from 'src/environment';
+import { LoginService } from '../Auth/login.service';
 import { ENVIRONMENT } from '@lib/util/tokens';
 
 export interface IHero {

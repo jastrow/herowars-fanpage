@@ -3,7 +3,7 @@ import { Store, Select } from '@ngxs/store';
 import { Observable, catchError, of } from 'rxjs';
 import { SaveSessionId } from '@lib/states/auth/auth.actions';
 import { Router } from '@angular/router';
-import { LoginService } from '@pages/Login/login.service';
+import { LoginService } from '@pages/Auth/login.service';
 
 @Component({
   selector: 'app-topnav',

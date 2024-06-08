@@ -1,13 +1,14 @@
 import { AbenteuerComponent } from '@pages/Abenteuer/Abenteuer.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ImprintComponent } from './pages/imprint/imprint.component';
-import { LoginComponent } from './pages/Login/Login.component';
+import { LoginComponent } from './pages/Auth/Login/Login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { RegelnComponent } from '@pages/TextPages/Regeln.component';
 import { MitgliederComponent } from '@pages/TextPages/Mitglieder.component';
 import { TippsComponent } from '@pages/TextPages/Tipps.component';
+import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'passwordrecover',
+    component: PasswordRecoverComponent,
   },
   {
     path: 'abenteuer',

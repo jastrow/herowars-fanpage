@@ -8,7 +8,7 @@ import { ENVIRONMENT } from "@lib/util/tokens";
 import { FooterComponent } from './lib/wireframe/footer/footer.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './pages/Login/Login.component';
+import { LoginComponent } from './pages/Auth/Login/Login.component';
 import { NewlineToBrPipe } from "./lib/pipes/newlineToBr.pipe";
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
 import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
 import { TuiButtonModule, TuiLinkModule} from '@taiga-ui/core';
-import { TuiCheckboxBlockModule, TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
+import { TuiCheckboxBlockModule, TuiInputModule, TuiInputPasswordModule, TuiTextareaModule} from '@taiga-ui/kit';
 import { TuiDataListModule} from '@taiga-ui/core';
 import { TuiDataListWrapperModule, TuiSelectModule} from '@taiga-ui/kit';
 import { TuiLetModule } from "@taiga-ui/cdk";
@@ -36,6 +36,7 @@ import { MitgliederComponent } from '@pages/TextPages/Mitglieder.component';
 import { TippsComponent } from '@pages/TextPages/Tipps.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.service';
+import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 
  
 @NgModule({
@@ -50,6 +51,7 @@ import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.servi
         RegelnComponent,
         MitgliederComponent,
         TippsComponent,
+        PasswordRecoverComponent,
     ],
     providers: [
         provideAnimationsAsync(),
@@ -89,6 +91,7 @@ import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.servi
         TuiCheckboxBlockModule,
         TuiTableModule,
         TuiLetModule,
+        TuiInputPasswordModule,
         SubnavComponent,
         NewlineToBrPipe,
         EditorModule,

@@ -31,11 +31,16 @@
         </tui-input>
       </p>
       <button
-      tuiButton
-      type="button"
-      class="tui-space_right-3 tui-space_bottom-3"
-      (click)="sendlogin()">Anmelden</button>
+        tuiButton
+        type="button"
+        class="tui-space_right-3 tui-space_bottom-3"
+        (click)="sendlogin()">Anmelden</button>
       </form>
+      <button
+        tuiButton
+        type="button"
+        class="tui-space_right-3 tui-space_bottom-3"
+        [routerLink]="['/passwordrecover']">Passwort vergessen?</button>
 
       <tui-notification *ngIf="loginErr()"
           size="l"

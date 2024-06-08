@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
-import { ILogin, LoginService } from './login.service';
+import { ILogin, LoginService } from '../login.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { Select, Store } from '@ngxs/store';

@@ -4,10 +4,12 @@ CREATE TABLE user (
     name TINYTEXT,
     email TINYTEXT,
     pass TINYTEXT,
-    php_session TINYTEXT
+    php_session TINYTEXT DEFAULT NULL,
+    stamp DATETIME DEFAULT NULL,
+    token TINYTEXT DEFAULT NULL
 );
-INSERT INTO user (name, email, pass) VALUES ('root', 'mj@mdnetz.de', MD5('god123'));
-INSERT INTO user (name, email, pass) VALUES ('bull', 'bull', MD5('god123'));
+INSERT INTO user (name, email, pass) VALUES ('root', 'mj@mdnetz.de', MD5('abc123'));
+INSERT INTO user (name, email, pass) VALUES ('bull', 'bull', MD5('abc123'));
 
 DROP TABLE IF EXISTS hero;
 CREATE TABLE hero (

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ENVIRONMENT } from '@lib/util/tokens';
 import { Observable, of } from 'rxjs';
@@ -6,6 +6,10 @@ import { Observable, of } from 'rxjs';
 export interface ILogin {
   sessionId: string;
   errorMsg: string;
+}
+
+export interface IStatus {
+  status: string;
 }
 
 @Injectable({
@@ -25,6 +29,18 @@ export class LoginService {
 
   public logout(): Observable<any> {
     return this.http.get<any>(this.env.apiUrl+'/login.php?logout=1');
+  }
+
+  public passwordRecover(email: string) {
+    return this.http.get<IStatus>(this.env.apiUrl+'/login.php?recover='+encodeURIComponent(email));
+  }
+
+  public changePassword(password: string, token: string) {
+    return this.http.get<IStatus>(
+      this.env.apiUrl+'/login.php?'+
+        'changepassword='+encodeURIComponent(password)+'&'+
+        'token='+encodeURIComponent(token)
+    );
   }
 
 }
