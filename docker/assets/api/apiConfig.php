@@ -12,4 +12,12 @@ const AUTH_TOKEN_VALID_MINUTE = 0;
 const AUTH_TOKEN_VALID_HOUR = 0;
 const AUTH_INVALID_ERROR_MSG = 'Unauthorized';
 
+const TEXTPAGE_WHITELIST = [
+    'Tipps',
+    'Abenteuer',
+    'Mitglieder',
+    'Regeln',
+    'Gildenaktivität',    
+];
+
 ?>

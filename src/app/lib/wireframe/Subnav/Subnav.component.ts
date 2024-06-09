@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ISubMenuItem, SubnavService } from './Subnav.service';
 import { Router, RouterModule } from '@angular/router';
@@ -17,7 +17,7 @@ import { TuiSvgModule } from '@taiga-ui/core';
   styleUrl: './Subnav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubnavComponent implements OnInit {
+export class SubnavComponent implements OnInit, OnChanges {
   @Input() customRoutes: ISubMenuItem[] = [];
   @Input() definedRoute: string = '';
   private service = inject(SubnavService);
@@ -28,6 +28,14 @@ export class SubnavComponent implements OnInit {
     this.menuItems.next(
       this.customRoutes.length ? this.customRoutes : this.service.getMenuItems(this.definedRoute)
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['definedRoute'] || changes['customRoutes']) {
+      this.menuItems.next(
+        this.customRoutes.length ? this.customRoutes : this.service.getMenuItems(this.definedRoute)
+      );
+    }
   }
 
   nav(path: string) {

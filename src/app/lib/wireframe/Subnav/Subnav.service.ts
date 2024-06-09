@@ -21,9 +21,13 @@ export class SubnavService {
       { path: '/hero/heroteams', title: 'Helden Teams' },
     ],
     misc: [
-      { path: '/textseite/tipps', title: 'Tipps' },
-      { path: '/textseite/mitglieder', title: 'Mitglieder' },
-      { path: '/textseite/regeln', title: 'Regeln' },
+      { path: '/page/Tipps', title: 'Tipps' },
+      { path: '/page/Abenteuer', title: 'Abenteuer' },
+    ],
+    gild: [
+      { path: '/page/Mitglieder', title: 'Mitglieder' },
+      { path: '/page/Regeln', title: 'Regeln' },
+      { path: '/page/Gildenaktivität', title: 'Gildenaktivität' },
     ],
   };
 

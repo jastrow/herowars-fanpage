@@ -1,25 +1,28 @@
-<h1>{{pageName}}</h1>
-<ng-container *ngIf="!(editMode$ | async); else showeditor">
-    <div *ngIf="page$ | async as page" [innerHTML]="page.html"></div>
+<div class="content" *ngIf="page$ | async as page">
+    <app-subnav [definedRoute]="(subnav$ | async) ?? ''"></app-subnav>
+    <h1>{{page.name}}</h1>
+    <ng-container *ngIf="!(editMode$ | async); else showeditor">
+        <div [innerHTML]="page.html"></div>
 
-    <button 
-        *ngIf="auth$ | async"
-        tuiButton type="button" 
-        class="tui-space_right-3 tui-space_top-3"
-        (click)="editMode$.next(true)">Bearbeiten</button>
-</ng-container>
+        <button 
+            *ngIf="auth$ | async"
+            tuiButton type="button" 
+            class="tui-space_right-3 tui-space_top-3"
+            (click)="editMode$.next(true)">Bearbeiten</button>
+    </ng-container>
 
-<ng-template #showeditor>
-    <editor
-        apiKey="5n7wi9diu2uu6wc18gadttel3032zjz07c3vmz4l1w6yutwt"
-        [init]="{
-            plugins: 'lists link image table', 
-            toolbar: 'undo redo bold blocks forecolor hr aligncenter alignleft alignright numlist bullist image link unlink table'
-        }"
-        [(ngModel)]="html.value"></editor>
-        
-    <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
-        (click)="save()">Speichern</button>
-    <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
-        (click)="editMode$.next(false)">Abbrechen</button>
-</ng-template>
+    <ng-template #showeditor>
+        <editor
+            apiKey="5n7wi9diu2uu6wc18gadttel3032zjz07c3vmz4l1w6yutwt"
+            [init]="{
+                plugins: 'lists link image table', 
+                toolbar: 'undo redo bold blocks forecolor hr aligncenter alignleft alignright numlist bullist image link unlink table'
+            }"
+            [(ngModel)]="html.value"></editor>
+            
+        <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
+            (click)="save()">Speichern</button>
+        <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
+            (click)="editMode$.next(false)">Abbrechen</button>
+    </ng-template>
+</div>

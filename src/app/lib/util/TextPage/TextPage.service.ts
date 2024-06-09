@@ -18,11 +18,13 @@ export class TextPageService {
   constructor() { }
 
   getPage(pageName: string) {
-    return this.http.get<ITextPage>(this.env.apiUrl+'/textpage.php?page='+encodeURI(pageName));
+    const url = this.env.apiUrl+'/textpage.php?page='+encodeURIComponent(pageName);
+    return this.http.get<ITextPage>(url);
   }
 
   setPage(data: ITextPage) {
-    return this.http.post<ITextPage>(this.env.apiUrl+'/textpage.php?save='+encodeURI(data.name), data);
+    const url = this.env.apiUrl+'/textpage.php?save='+encodeURIComponent(data.name);
+    return this.http.post<ITextPage>(url, data);
   }
 
 }
