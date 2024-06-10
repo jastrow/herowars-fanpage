@@ -6,8 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 import { TextPageComponent } from '@lib/util/TextPage/TextPage.component';
+import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
@@ -33,13 +34,17 @@ const routes: Routes = [
     component: TextPageComponent,
   },
   {
+    path: 'gildenkrieg',
+    component: GildenkriegComponent
+  },
+  {
     path: '**',
     component: WelcomeComponent
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true, bindToComponentInputs: true })],
   exports: [RouterModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })

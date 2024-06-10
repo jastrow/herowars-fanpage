@@ -1,10 +1,10 @@
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.service';
 import { AuthState } from '@lib/states/auth/auth.state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from "@angular/common";
+import { CommonModule, HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ENVIRONMENT } from "@lib/util/tokens";
 import { FooterComponent } from './lib/wireframe/footer/footer.component';
@@ -18,7 +18,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, provideRouter, withComponentInputBinding } from '@angular/router';
 import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
 import { TextPageComponent } from '@lib/util/TextPage/TextPage.component';
 import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
@@ -33,6 +33,7 @@ import { TuiSvgModule} from '@taiga-ui/core';
 import { TuiTableModule } from "@taiga-ui/addon-table";
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
+import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
 
  
 @NgModule({
@@ -44,6 +45,7 @@ import environment from "../environment";
         LoginComponent,
         TextPageComponent,
         PasswordRecoverComponent,
+        GildenkriegComponent,
     ],
     providers: [
         provideAnimationsAsync(),
@@ -55,13 +57,17 @@ import environment from "../environment";
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-          }
+        },
+        provideRouter(routes, withComponentInputBinding()),
+        {
+            provide: LocationStrategy, 
+            useClass: HashLocationStrategy
+        }
     ],
     bootstrap: [AppComponent],
     imports: [
         CommonModule,
         BrowserModule,
-        AppRoutingModule,
         RouterModule,
         BrowserAnimationsModule,
         FormsModule,

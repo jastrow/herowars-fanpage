@@ -44,3 +44,26 @@ CREATE TABLE page (
     html LONGTEXT,
     UNIQUE KEY (name(255))
 );
+
+DROP TABLE IF EXISTS mitglied;
+CREATE TABLE mitglied (
+    mitglied_id SERIAL,
+    name TINYTEXT,
+    info LONGTEXT
+);
+
+
+DROP TABLE IF EXISTS gk;
+CREATE TABLE gk (
+    gk_id SERIAL,
+    mitglied_id INT,
+    year INT,
+    week INT,
+    montag BOOLEAN,
+    dienstag BOOLEAN,
+    mittwoch BOOLEAN,
+    donnerstag BOOLEAN,
+    freitag BOOLEAN,
+    samstag BOOLEAN,
+    sonntag BOOLEAN
+);

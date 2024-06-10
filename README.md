@@ -3,7 +3,7 @@
 Fan-Seite zu HERO WARS: DOMINION ERA
 
 Die Seite entstand durch die Zielsetzung ein kleines 
-Angular Projekt für Bewerbungsprozesse zu erstellen. 
+eigenes Angular Projekt zu erstellen. 
 Damit es einen produktiven Sinn bekommt, wurde inhaltlich
 eine Fan Seite für eine Hero Wars Gilde entwickelt.
 
