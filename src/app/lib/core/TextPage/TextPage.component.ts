@@ -48,6 +48,7 @@ export class TextPageComponent {
         this.html.setValue(page.html, {emitEvent:true});
         this.subnav$.next(this.getSubnavForPageName(page.name));
         this.editMode$.next(false);
+        this.pageName = page.name;
       }),
       catchError(e => of(e)),
     );
@@ -67,7 +68,6 @@ export class TextPageComponent {
     } as ITextPage;
     this.service.setPage(data).pipe(
       catchError(e => {
-        // Anzeige HTML
         return throwError(() => e);
       }),
     ).subscribe(d => {

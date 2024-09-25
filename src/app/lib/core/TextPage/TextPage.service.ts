@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { ENVIRONMENT } from '../tokens';
+import { ENVIRONMENT } from '../../util/tokens';
 
 
 export interface ITextPage {

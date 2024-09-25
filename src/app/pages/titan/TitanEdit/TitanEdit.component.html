@@ -1,0 +1,76 @@
+<div class="content" *ngIf="auth$ | async">
+    <h1>Neuen Titan anlegen</h1>
+
+
+    <form class="b-form" [formGroup]="form">
+        <div class="row">
+            <div class="col">
+                <div class="col">
+                    <tui-input formControlName="name" tuiTextfieldSize="s">
+                        Name des Titan
+                        <input tuiTextfield type="text">
+                    </tui-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <tui-select
+                tuiTextfieldSize="s"
+                formControlName="position">
+                    Kampfposition
+                    <input
+                        placeholder="Wähle die Position"
+                        tuiTextfield
+                    />
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [items]="positions"
+                    ></tui-data-list-wrapper>
+                </tui-select>
+            </div>
+            <div class="col">
+                <tui-select tuiTextfieldSize="s" formControlName="tierlist">
+                    Tier List
+                    <input placeholder="Rang in der Tierlist" tuiTextfield>
+                    <tui-data-list-wrapper *tuiDataList [items]="service.tierlist"></tui-data-list-wrapper>
+                </tui-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <tui-select  tuiTextfieldSize="s" formControlName="funktion" >
+                    Klasse
+                    <input placeholder="Klasse des Titan" tuiTextfield>
+                    <tui-data-list-wrapper *tuiDataList [items]="service.classes"></tui-data-list-wrapper>
+                </tui-select>
+            </div>
+            <div class="col">
+                <tui-select tuiTextfieldSize="s" formControlName="funktion2">
+                    Sekundäre Klasse
+                    <input placeholder="Sekundäre Klasse des Titan" tuiTextfield>
+                    <tui-data-list-wrapper *tuiDataList [items]="service.classes"></tui-data-list-wrapper>
+                </tui-select>
+            </div>
+        </div>
+
+        <p>
+            <tui-textarea formControlName="description" [expandable]="true">
+                Hinweise & Tips
+            </tui-textarea>
+        </p>
+        
+        <p>
+            <button class="mr10"
+                tuiButton
+                type="button"
+                (click)="sendData()">Abschicken</button>
+            <button
+                tuiButton
+                type="button"
+                (click)="abbrechen()">Abbrechen</button>
+        </p>
+    </form>
+</div>

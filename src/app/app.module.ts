@@ -20,10 +20,10 @@ import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRe
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { Router, RouterModule, provideRouter, withComponentInputBinding } from '@angular/router';
 import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
-import { TextPageComponent } from '@lib/util/TextPage/TextPage.component';
+import { TextPageComponent } from '@lib/core/TextPage/TextPage.component';
 import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
 import { TuiButtonModule, TuiLinkModule} from '@taiga-ui/core';
-import { TuiCheckboxBlockModule, TuiInputModule, TuiInputPasswordModule, TuiTextareaModule} from '@taiga-ui/kit';
+import { TuiCheckboxBlockModule, TuiInputModule, TuiInputPasswordModule, TuiTextareaModule, TuiToggleModule} from '@taiga-ui/kit';
 import { TuiDataListModule} from '@taiga-ui/core';
 import { TuiDataListWrapperModule, TuiSelectModule} from '@taiga-ui/kit';
 import { TuiLetModule } from "@taiga-ui/cdk";
@@ -80,6 +80,7 @@ import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
         TuiAlertModule,
         TuiSvgModule,
         TuiButtonModule,
+        TuiToggleModule,
         TuiInputModule,
         TuiTextareaModule,
         TuiDataListModule,

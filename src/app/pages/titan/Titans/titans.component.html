@@ -1,0 +1,51 @@
+<div>
+    <div class="content">
+        <app-subnav [definedRoute]="'titan'"></app-subnav>
+        <h1>Titanen Liste</h1>
+        
+        <form class="b-form" [formGroup]="form">
+            <div class="row">
+                <div class="col">
+                    <tui-select tuiTextfieldSize="m" formControlName="filterTier">
+                        Filter Tier
+                        <input tuiTextfield>
+                        <tui-data-list-wrapper
+                            *tuiDataList
+                            [items]="service.tierlist"
+                        ></tui-data-list-wrapper>
+                    </tui-select>
+                </div>
+                <div class="col">
+                    <tui-select tuiTextfieldSize="m" formControlName="filterKlasse">
+                        Filter Klasse
+                        <input tuiTextfield>
+                        <tui-data-list-wrapper
+                            *tuiDataList
+                            [items]="service.classes"
+                        ></tui-data-list-wrapper>
+                    </tui-select>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="filtered$ | async as titans">
+            <div 
+                *ngFor="let titan of titans" 
+                [routerLink]="['/titan/titan/', titan]" 
+                class="hero" 
+                style="background-image: url(/assets/titans/{{titan}}.png);">
+                <div class="hname">{{titan}}</div>
+            </div>
+        </div>
+
+        <div *ngIf="auth$ | async">
+            <button
+            tuiButton
+            type="button"
+            [routerLink]="['/titan/titanedit/']">Titan hinzufügen</button>
+        </div>
+
+    </div>
+
+</div>
+

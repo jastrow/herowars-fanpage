@@ -9,17 +9,51 @@
     <select name="">
         <option>2024 Woche 21</option>
     </select>
-    <div class="planer">
-        <div>
-            <div>switch</div>
-            <div>Member [D]</div>
-            <div>switch</div>
+
+
+
+    <table *ngIf="members$ | async as data">
+        <tr>
+            <th>Name</th>
+            <th *ngFor="let day of days" class="day">{{day}}</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let member of data">
+            <td title="{{member.info}}">{{member.name}}</td>
+            <td *ngFor="let day of days" (click)="setStatus(day,member.id)">
+                <tui-svg [src]="getIcon(day, member)"></tui-svg>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+    <h2>Mitglied hinzufügen</h2>
+    <form class="b-form" [formGroup]="memberForm">
+        <div class="row">
+            <div class="col">
+                <tui-input formControlName="name" tuiTextfieldSize="m">
+                    Name Mitglied
+                    <input tuiTextfield type="text">
+                </tui-input>
+            </div>
+            <div class="col">
+                <tui-input formControlName="info" tuiTextfieldSize="m">
+                    Notizen
+                    <input tuiTextfield type="text">
+                </tui-input>
+            </div>
+            <div class="col">
+                <button
+                    tuiButton
+                    type="button"
+                    class="tui-space_right-3 tui-space_bottom-3"
+                    (click)="addMember()">
+                    Hinzufügen
+                </button>
+            </div>
         </div>
-        <div class="deactivated">
-            <div>switch</div>
-            <div>Member [D]</div>
-            <div>switch</div>
-        </div>
-    </div>
+    </form>
 
 </div>

@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.titanimage {
+  padding: 0.5em;
+  float: right;
+  max-width: 50%;
+}
+.titanimg {
+  max-height: 300px;
+  max-width: 100%;
+  border-radius:  0.8em 0.8em 0 0;
+  border: 2px solid black;
+}
+h2 {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #D6AB08;
+}
+.chip {
+  display: inline-block;
+  padding: 0.3em 0.5em;
+  border: 1px solid #D6AB08;
+  border-radius: 0.4em;
+  background-color: black;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+.scrolltitan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em;
+  background-color: black;
+  border-radius: 0 0 0.8em 0.8em;
+}
+
+.skinchip {
+  cursor: pointer;
+}
+
+@media (max-width: 575.98px) {
+  .titanimage {
+    float: none;
+    padding: 0.5em;
+    width: auto;
+    max-width: 100%;
+    display: block;
+  }
+  .titanimg {
+    max-height: 100%;
+  }
+}

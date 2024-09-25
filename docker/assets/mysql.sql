@@ -38,6 +38,29 @@ CREATE TABLE hero_team_hero (
 );
 
 
+DROP TABLE IF EXISTS titan;
+CREATE TABLE titan (
+    titan_id SERIAL,
+    name TEXT,
+    position TEXT,
+    tierlist TEXT,
+    funktion TEXT,
+    description TEXT
+);
+
+DROP TABLE IF EXISTS titan_team;
+CREATE TABLE titan_team (
+    titan_team_id SERIAL,
+    name TEXT,
+    description TEXT
+);
+
+DROP TABLE IF EXISTS titan_team_titan;
+CREATE TABLE titan_team_titan (
+    titan_team_id INT,
+    titan_id INT
+);
+
 DROP TABLE IF EXISTS page;
 CREATE TABLE page (
     name TINYTEXT,
@@ -59,11 +82,11 @@ CREATE TABLE gk (
     mitglied_id INT,
     year INT,
     week INT,
-    montag BOOLEAN,
-    dienstag BOOLEAN,
-    mittwoch BOOLEAN,
-    donnerstag BOOLEAN,
-    freitag BOOLEAN,
-    samstag BOOLEAN,
-    sonntag BOOLEAN
+    montag ENUM('a','w','i'),
+    dienstag ENUM('a','w','i'),
+    mittwoch ENUM('a','w','i'),
+    donnerstag ENUM('a','w','i'),
+    freitag ENUM('a','w','i'),
+    samstag ENUM('a','w','i'),
+    sonntag ENUM('a','w','i')
 );

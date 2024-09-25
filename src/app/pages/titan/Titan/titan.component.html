@@ -1,0 +1,74 @@
+<div class="content">
+    <!--<app-subnav [definedRoute]="'titan'"></app-subnav>-->
+    <ng-container *ngIf="titan$ | async as titan">
+
+        <div class="titanimage">
+            <img class="titanimg" src="{{getSkinUrl()}}">
+            <div class="scrolltitan" *ngIf="titan.skins.length">
+                <button
+                    tuiIconButton
+                    type="button"
+                    icon="tuiIconChevronsLeft"
+                    (click)="prevSkin()"
+                    size="s"
+                ></button>
+                <span>{{getSkinName()}}</span>
+                <button
+                    tuiIconButton
+                    type="button"
+                    icon="tuiIconChevronsRight"
+                    (click)="nextSkin()"
+                    size="s"
+                ></button>
+            </div>
+        </div>
+
+        <h1>{{titan.name}}</h1>
+
+        <p>
+            <strong>Position:</strong> {{titan.position}}<br>
+            <strong>Tier-List:</strong> {{titan.tierlist}}<br>
+            <strong>Funktion:</strong> {{titan.funktion}}
+        </p>
+
+        <p [innerHTML]="titan.description"></p>
+
+        <p style="margin-top:2em" *ngIf="auth$ | async">
+            <button
+                appearance="primary"
+                tuiButton
+                type="button"
+                size="m"
+                (click)="navEdit()"
+                style="margin-right: 1em;"
+            >Bearbeiten</button>
+            <button
+                appearance="primary"
+                tuiButton
+                type="button"
+                size="m"
+                (click)="deleteTitan(deleteModal)"
+            >Löschen</button>
+        </p>
+
+    </ng-container>
+</div>
+
+
+
+<ng-template #deleteModal let-observer>
+    <p>Wirklich löschen?</p>
+    <button
+        size="m"
+        tuiButton
+        type="button"
+        class="tui-space_right-3"
+        (click)="withdraw()"
+    >Löschen</button>
+    <button
+        size="m"
+        tuiButton
+        type="button"
+        (click)="observer.complete()"
+    >Abbrechen</button>
+</ng-template>
