@@ -13,7 +13,7 @@ setJsonHeader();
 
 
 // #################################################################################################
-// Heldennamen alle GET
+// Titanennamen alle GET
 // #################################################################################################
 if(isset($_GET['titannames'])) {
     $res = $db->query('SELECT name FROM titan ORDER BY name ASC');
@@ -24,7 +24,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode($response);
 
 // #################################################################################################
-// Held per Name GET
+// Titan per Name GET
 // #################################################################################################
 } else if (isset($_GET['titanByName'])) {
     $sql = 'SELECT * FROM titan WHERE name = "' . addslashes($_GET['titanByName']) . '" LIMIT 1';
@@ -37,7 +37,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode($data);
 
 // #################################################################################################
-// Held edit/new POST
+// Titan edit/new POST
 // #################################################################################################
 } else if (isset($_GET['titan_id'])) {
     checkSession();
@@ -51,10 +51,7 @@ if(isset($_GET['titannames'])) {
                 position = "'.$data['position'].'",
                 tierlist = "'.$data['tierlist'].'",
                 funktion = "'.$data['funktion'].'",
-                description = "'.$data['description'].'",
-                artefacts = "'.$data['artefacts'].'",
-                glyphs = "'.$data['glyphs'].'",
-                skins = "'.$data['skins'].'"
+                description = "'.$data['description'].'"
                 WHERE titan_id = '.(int)$data['titan_id'].'
             ');
         }
@@ -64,22 +61,19 @@ if(isset($_GET['titannames'])) {
             throw new Exception('no name');
         }
         $db->query('INSERT INTO titan (
-            name,position,tierlist,funktion,description,artefacts,glyphs,skins
+            name, position, tierlist, funktion, description
         ) VALUES (
             "'.$data['name'].'",
             "'.$data['position'].'",
             "'.$data['tierlist'].'",
             "'.$data['funktion'].'",
-            "'.$data['description'].'",
-            "'.$data['artefacts'].'",
-            "'.$data['glyphs'].'",
-            "'.$data['skins'].'"
+            "'.$data['description'].'"
         )');
         echo json_encode(['result' => 'ok']);
     }
 
 // #################################################################################################
-// Held löschen GET
+// Titan löschen GET
 // #################################################################################################
 } else if (isset($_GET['deletetitan'])) {
     checkSession();
@@ -91,7 +85,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode(['result' => 'ok']);
 
 // #################################################################################################
-// Helden Liste Filter GET
+// Titanen Liste Filter GET
 // #################################################################################################
 } else if (isset($_GET['filtertier'])) {
     $filter = [];
@@ -110,7 +104,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode($data);
 
 // #################################################################################################
-// Helden Team Liste GET
+// Titanen Team Liste GET
 // #################################################################################################
 } else if (isset($_GET['teams'])) {
     $rs = $db->query('
@@ -140,7 +134,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode(array_values($data));
 
 // #################################################################################################
-// Helden Team GET
+// Titanen Team GET
 // #################################################################################################
 } else if (isset($_GET['team'])) {
     $rs = $db->query('
@@ -169,7 +163,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode($data);
 
 // #################################################################################################
-// Helden Team edit/new POST
+// Titanen Team edit/new POST
 // #################################################################################################
 } else if (isset($_GET['saveteam'])) {
     checkSession();
@@ -214,7 +208,7 @@ if(isset($_GET['titannames'])) {
     echo json_encode($data);
 
 // #################################################################################################
-// Helden Team löschen GET
+// Titanen Team löschen GET
 // #################################################################################################
 } else if (isset($_GET['deleteteam'])) {
     checkSession();

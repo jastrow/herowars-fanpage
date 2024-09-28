@@ -4,7 +4,7 @@ import { AuthInterceptor } from '@lib/states/interceptors/auth-interceptor.servi
 import { AuthState } from '@lib/states/auth/auth.state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { CommonModule, HashLocationStrategy, LocationStrategy, KeyValuePipe, NgForOf } from "@angular/common";
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ENVIRONMENT } from "@lib/util/tokens";
 import { FooterComponent } from './lib/wireframe/footer/footer.component';
@@ -13,7 +13,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/Auth/Login/Login.component';
 import { NewlineToBrPipe } from "./lib/pipes/newlineToBr.pipe";
-import { NgModule } from '@angular/core';
+import { NgModule, ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
@@ -22,18 +22,19 @@ import { Router, RouterModule, provideRouter, withComponentInputBinding } from '
 import { SubnavComponent } from "./lib/wireframe/Subnav/Subnav.component";
 import { TextPageComponent } from '@lib/core/TextPage/TextPage.component';
 import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
-import { TuiButtonModule, TuiLinkModule} from '@taiga-ui/core';
-import { TuiCheckboxBlockModule, TuiInputModule, TuiInputPasswordModule, TuiTextareaModule, TuiToggleModule} from '@taiga-ui/kit';
-import { TuiDataListModule} from '@taiga-ui/core';
-import { TuiDataListWrapperModule, TuiSelectModule} from '@taiga-ui/kit';
-import { TuiLetModule } from "@taiga-ui/cdk";
-import { TuiNotificationModule} from '@taiga-ui/core';
-import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
-import { TuiSvgModule} from '@taiga-ui/core';
-import { TuiTableModule } from "@taiga-ui/addon-table";
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
 import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
+import {RouterLink, RouterLinkActive} from '@angular/router';
+
+import {
+    TuiButtonModule, 
+    TuiNotificationModule,
+    TuiRootModule, 
+    TuiSvgModule,
+} from '@taiga-ui/core';
+
+ 
 
  
 @NgModule({
@@ -66,35 +67,31 @@ import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
     ],
     bootstrap: [AppComponent],
     imports: [
-        CommonModule,
-        BrowserModule,
-        RouterModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        EditorModule,
         FormsModule,
+        FormsModule,
+        HttpClientModule,
+        KeyValuePipe,
+        NewlineToBrPipe,
+        NgForOf,
         NgxsModule.forRoot([AuthState]),
         NgxsStoragePluginModule.forRoot(),
         ReactiveFormsModule,
-        HttpClientModule,
-        TuiRootModule,
-        TuiDialogModule,
-        TuiAlertModule,
-        TuiSvgModule,
-        TuiButtonModule,
-        TuiToggleModule,
-        TuiInputModule,
-        TuiTextareaModule,
-        TuiDataListModule,
-        TuiDataListWrapperModule,
-        TuiSelectModule,
-        TuiNotificationModule,
-        TuiCheckboxBlockModule,
-        TuiTableModule,
-        TuiLetModule,
-        TuiInputPasswordModule,
+        RouterLink,
+        RouterLinkActive,
+        RouterModule,
         SubnavComponent,
-        NewlineToBrPipe,
-        EditorModule,
-        TuiLinkModule,
+        
+        TuiButtonModule,
+        TuiNotificationModule,
+        TuiRootModule,
+        TuiSvgModule,
     ]
 })
 export class AppModule { }
+
+
+
