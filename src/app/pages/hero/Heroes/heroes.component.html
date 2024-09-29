@@ -6,24 +6,16 @@
         <form class="b-form" [formGroup]="form">
             <div class="row">
                 <div class="col">
-                    <tui-select tuiTextfieldSize="m" formControlName="filterTier">
                         Filter Tier
-                        <input tuiTextfield>
-                        <tui-data-list-wrapper
-                            *tuiDataList
-                            [items]="service.tierlist"
-                        ></tui-data-list-wrapper>
-                    </tui-select>
+                        <select formControlName="filterTier">
+                        <option *ngFor="let t of service.tierlist"
+                        ></option></select>
                 </div>
                 <div class="col">
-                    <tui-select tuiTextfieldSize="m" formControlName="filterKlasse">
                         Filter Klasse
-                        <input tuiTextfield>
-                        <tui-data-list-wrapper
-                            *tuiDataList
-                            [items]="service.classes"
-                        ></tui-data-list-wrapper>
-                    </tui-select>
+                        <select formControlName="filterKlasse">
+                        <option *ngFor="let c of service.classes"
+                        ></option></select>
                 </div>
             </div>
         </form>
@@ -41,7 +33,6 @@
 
         <div *ngIf="auth$ | async">
             <button
-            tuiButton
             type="button"
             [routerLink]="['/hero/hero/edithero/']">Held hinzufügen</button>
         </div>

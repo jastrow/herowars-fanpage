@@ -3,14 +3,12 @@
     <h1>Team bearbeiten</h1>
 
     <form class="b-form" [formGroup]="form">
-        <tui-input formControlName="name">
             Name des Teams
-            <input tuiTextfield type="text">
-        </tui-input>
-        <tui-textarea 
-            formControlName="description" class="tui-space_top-4" [expandable]="true">
+            <input formControlName="name" type="text">
+        <textarea 
+            formControlName="description">
             Beschreibung
-        </tui-textarea>
+        </textarea>
 
         <div *ngIf="(heroes$ | async) as heroes">
             <div
@@ -22,9 +20,7 @@
         </div>
 
         <button
-            tuiButton
             type="button"
-            class="tui-space_right-3 tui-space_top-3"
             (click)="save()">Speichern</button>
 
     </form>

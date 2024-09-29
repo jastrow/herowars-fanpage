@@ -6,56 +6,38 @@
 
     <div *ngIf="(teams$ |async) as teams; else loading">
 
-        <table tuiTable [columns]="columns">
+        <table>
             <thead>
-                <tr tuiThGroup>
-                    <th *tuiHead="'name'" tuiTh>Name</th>
-                    <th *tuiHead="'held0'" tuiTh [sorter]="null">Held 1</th>
-                    <th *tuiHead="'held1'" tuiTh [sorter]="null">Held 2</th>
-                    <th *tuiHead="'held2'" tuiTh [sorter]="null">Held 3</th>
-                    <th *tuiHead="'held3'" tuiTh [sorter]="null">Held 4</th>
-                    <th *tuiHead="'held4'" tuiTh [sorter]="null">Held 5</th>
-                    <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+                <tr >
+                    <th>Name</th>
+                    <th>Held 1</th>
+                    <th>Held 2</th>
+                    <th>Held 3</th>
+                    <th>Held 4</th>
+                    <th>Held 5</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody *tuiLet="teams | tuiTableSort as sortedUsers" tuiTbody [data]="sortedUsers">
-                <tr tuiTr *ngFor="let item of sortedUsers; let index = index">
-                    <td *tuiCell="'name'" tuiTd >{{ item.name }}</td>
-                    <td *tuiCell="'held0'" tuiTd >{{ item.heroes[0] }}</td>
-                    <td *tuiCell="'held1'" tuiTd >{{ item.heroes[1] }}</td>
-                    <td *tuiCell="'held2'" tuiTd >{{ item.heroes[2] }}</td>
-                    <td *tuiCell="'held3'" tuiTd >{{ item.heroes[3] }}</td>
-                    <td *tuiCell="'held4'" tuiTd >{{ item.heroes[4] }}</td>
-                    <td *tuiCell="'actions'" tuiTd>
+            <tbody>
+                <tr *ngFor="let item of teams; let index = index">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.heroes[0] }}</td>
+                    <td>{{ item.heroes[1] }}</td>
+                    <td>{{ item.heroes[2] }}</td>
+                    <td>{{ item.heroes[3] }}</td>
+                    <td>{{ item.heroes[4] }}</td>
+                    <td>
                         <button
-                            appearance="flat"
-                            icon="tuiIconEye"
-                            shape="rounded"
-                            size="s"
-                            title="Details"
-                            tuiIconButton
                             type="button"
-                            (click)="viewTeam(item)"></button>
+                            (click)="viewTeam()">Details</button>
                         <button
                             *ngIf="auth$ | async"
-                            appearance="flat"
-                            icon="tuiIconTrash"
-                            shape="rounded"
-                            size="s"
-                            title="Löschen"
-                            tuiIconButton
                             type="button"
-                            (click)="deleteTeam(item.id, deleteModal)"></button>
+                            (click)="deleteTeam()">Löschen</button>
                         <button
                             *ngIf="auth$ | async"
-                            appearance="flat"
-                            icon="tuiIconEdit"
-                            shape="rounded"
-                            size="s"
-                            title="Bearbeiten"
-                            tuiIconButton
                             type="button"
-                            (click)="editTeam(item)"></button>
+                            (click)="editTeam()">Bearbeiten</button>
                     </td>
                 </tr>
             </tbody>
@@ -69,7 +51,6 @@
 
     <div *ngIf="auth$ | async" class="mt10">
         <button
-            tuiButton
             type="button"
             [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</button>
     </div>
@@ -82,15 +63,10 @@
 >
     <p>Wirklich löschen?</p>
     <button
-        size="m"
-        tuiButton
         type="button"
-        class="tui-space_right-3"
         (click)="withdraw()"
     >Löschen</button>
     <button
-        size="m"
-        tuiButton
         type="button"
         (click)="observer.complete()"
     >Abbrechen</button>

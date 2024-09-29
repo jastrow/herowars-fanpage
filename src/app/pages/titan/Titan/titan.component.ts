@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription, catchError, finalize, map, of, takeUntil, tap } from 'rxjs';
 import { GlobalsettingsService } from '../../../globalsettings.service';
 import { Select, Store } from '@ngxs/store';
-import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import { TitanService } from '../titan.service';
 
 @Component({
@@ -28,7 +26,7 @@ export class TitanComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
 
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {}
+  constructor() {}
  
   ngOnInit(): void {
     this.subscription.add(
@@ -57,8 +55,7 @@ export class TitanComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  deleteTitan(content: PolymorpheusContent<TuiDialogContext>): void {
-    this.dialogs.open(content).pipe(takeUntil(this.close$)).subscribe();
+  deleteTitan(): void {
   }
   withdraw() {
     this.subscription.add(

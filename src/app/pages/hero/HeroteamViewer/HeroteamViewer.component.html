@@ -17,15 +17,11 @@
     </div>
 
     <button *ngIf="auth$ | async"
-        tuiButton
         type="button"
-        class="tui-space_right-3 tui-space_top-3 mr10"
         (click)="edit()">Bearbeiten</button>
 
     <button
-        tuiButton
         type="button"
-        class="tui-space_right-3 tui-space_top-3"
         [routerLink]="['/hero/heroteams']">Zurück</button>
 
 </div>

@@ -9,54 +9,34 @@
       class="b-form"
       [formGroup]="form">
       <p>
-          <tui-input
-              formControlName="email"
-              tuiTextfieldSize="s">
               Deine Email
-              <input
-                  autocomplete="email"
-                  tuiTextfield
-                  type="email">
-          </tui-input>
+              <input type="email">
       </p>
       <p>
-        <tui-input
-            formControlName="pass"
-            tuiTextfieldSize="s">
             Dein Passwort
-            <input
-                autocomplete="pass"
-                tuiTextfield
-                type="password">
-        </tui-input>
+            <input type="password">
       </p>
       <button
-        tuiButton
         type="button"
-        class="tui-space_right-3 tui-space_bottom-3"
         (click)="sendlogin()">Anmelden</button>
       </form>
       <button
-        tuiButton
         type="button"
-        class="tui-space_right-3 tui-space_bottom-3"
         [routerLink]="['/passwordrecover']">Passwort vergessen?</button>
 
-      <tui-notification *ngIf="loginErr()"
+      <div *ngIf="loginErr()"
           size="l"
           status="warning"
           (close)="(0)">
           Fehler bei der Anmeldung!
-      </tui-notification>
+      </div>
       
     </div>
 
     <div *ngIf="auth$ | async">
       <p>Sie sind angemeldet.</p>
       <button
-      tuiButton
       type="button"
-      class="tui-space_right-3 tui-space_bottom-3"
       (click)="logout()">Abmelden</button>
     </div>
 

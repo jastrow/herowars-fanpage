@@ -6,19 +6,13 @@
             <img class="titanimg" src="{{getSkinUrl()}}">
             <div class="scrolltitan" *ngIf="titan.skins.length">
                 <button
-                    tuiIconButton
                     type="button"
-                    icon="tuiIconChevronsLeft"
                     (click)="prevSkin()"
-                    size="s"
                 ></button>
                 <span>{{getSkinName()}}</span>
                 <button
-                    tuiIconButton
                     type="button"
-                    icon="tuiIconChevronsRight"
                     (click)="nextSkin()"
-                    size="s"
                 ></button>
             </div>
         </div>
@@ -35,19 +29,12 @@
 
         <p style="margin-top:2em" *ngIf="auth$ | async">
             <button
-                appearance="primary"
-                tuiButton
                 type="button"
-                size="m"
                 (click)="navEdit()"
-                style="margin-right: 1em;"
             >Bearbeiten</button>
             <button
-                appearance="primary"
-                tuiButton
                 type="button"
-                size="m"
-                (click)="deleteTitan(deleteModal)"
+                (click)="deleteTitan()"
             >Löschen</button>
         </p>
 
@@ -59,15 +46,10 @@
 <ng-template #deleteModal let-observer>
     <p>Wirklich löschen?</p>
     <button
-        size="m"
-        tuiButton
         type="button"
-        class="tui-space_right-3"
         (click)="withdraw()"
     >Löschen</button>
     <button
-        size="m"
-        tuiButton
         type="button"
         (click)="observer.complete()"
     >Abbrechen</button>

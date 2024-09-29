@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges
 import { CommonModule } from '@angular/common';
 import { ISubMenuItem, SubnavService } from './Subnav.service';
 import { Router, RouterModule } from '@angular/router';
-import { TuiSvgModule } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-subnav',
@@ -11,7 +10,6 @@ import { TuiSvgModule } from '@taiga-ui/core';
   imports: [
     CommonModule,
     RouterModule,
-    TuiSvgModule,
   ],
   templateUrl: './Subnav.component.html',
   styleUrl: './Subnav.component.scss',

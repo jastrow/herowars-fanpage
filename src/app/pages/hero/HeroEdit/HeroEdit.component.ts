@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HeroService } from '../hero.service';
 import { Observable, Subscription, catchError, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core';
 import { Select } from '@ngxs/store';
 
 export interface ISkin {
@@ -82,9 +81,6 @@ export class HeroEditComponent implements OnInit {
     artefact3: new FormControl<string>(''),
   });
 
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {}
-
-  //artefact
 
   ngOnInit(): void {
     this.subscription.add(

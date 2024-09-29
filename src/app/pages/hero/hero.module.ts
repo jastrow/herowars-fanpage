@@ -15,15 +15,6 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { RouterModule } from '@angular/router';
 import { SubnavComponent } from "@lib/wireframe/Subnav/Subnav.component";
-import { TuiButtonModule } from '@taiga-ui/core';
-import { TuiCheckboxBlockModule, TuiInputModule, TuiTextareaModule } from '@taiga-ui/kit';
-import { TuiDataListModule } from '@taiga-ui/core';
-import { TuiDataListWrapperModule, TuiSelectModule } from '@taiga-ui/kit';
-import { TuiLetModule } from "@taiga-ui/cdk";
-import { TuiNotificationModule } from '@taiga-ui/core';
-import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
-import { TuiSvgModule } from '@taiga-ui/core';
-import { TuiTableModule } from "@taiga-ui/addon-table";
 
  
 @NgModule({
@@ -47,20 +38,7 @@ import { TuiTableModule } from "@taiga-ui/addon-table";
         ReactiveFormsModule,
         RouterModule,
         SubnavComponent,
-        TuiAlertModule,
-        TuiButtonModule,
-        TuiCheckboxBlockModule,
-        TuiDataListModule,
-        TuiDataListWrapperModule,
-        TuiDialogModule,
-        TuiInputModule,
-        TuiLetModule,
-        TuiNotificationModule,
-        TuiRootModule,
-        TuiSelectModule,
-        TuiSvgModule,
-        TuiTableModule,
-        TuiTextareaModule,
+
     ]
 })
 export class HeroModule { }

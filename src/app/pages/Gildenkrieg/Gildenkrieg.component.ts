@@ -46,11 +46,11 @@ export class GildenkriegComponent {
   }
 
   getIcon(day: string, member: any | undefined) {
-    let icon = 'tuiIconSunsetLarge';
+    let icon = 'a';
     switch(member[day]) {
-      case 'a': icon = 'tuiIconSunLarge'; break;
-      case 'w': icon = 'tuiIconSunriseLarge'; break;
-      case 'i': icon = 'tuiIconSunsetLarge'; break;
+      case 'a': icon = 'a'; break;
+      case 'w': icon = 'w'; break;
+      case 'i': icon = 'i'; break;
     };
     console.log(icon);
     return icon;

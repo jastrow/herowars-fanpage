@@ -6,19 +6,13 @@
             <img class="heroimg" src="{{getSkinUrl()}}">
             <div class="scrollhero" *ngIf="hero.skins.length">
                 <button
-                    tuiIconButton
                     type="button"
-                    icon="tuiIconChevronsLeft"
                     (click)="prevSkin()"
-                    size="s"
                 ></button>
                 <span>{{getSkinName()}}</span>
                 <button
-                    tuiIconButton
                     type="button"
-                    icon="tuiIconChevronsRight"
                     (click)="nextSkin()"
-                    size="s"
                 ></button>
             </div>
         </div>
@@ -46,40 +40,25 @@
 
         <p style="margin-top:2em" *ngIf="auth$ | async">
             <button
-                appearance="primary"
-                tuiButton
                 type="button"
-                size="m"
                 [routerLink]="['/hero/hero/edithero/'+hero.name]"
                 style="margin-right: 1em;"
             >Bearbeiten</button>
             <button
-                appearance="primary"
-                tuiButton
                 type="button"
-                size="m"
-                (click)="deleteHero(deleteModal)"
+                (click)="deleteHero()"
             >Löschen</button>
         </p>
 
     </ng-container>
 </div>
 
-
-
-<ng-template #deleteModal let-observer>
+<ng-template>
     <p>Wirklich löschen?</p>
     <button
-        size="m"
-        tuiButton
         type="button"
-        class="tui-space_right-3"
-        (click)="withdraw()"
     >Löschen</button>
     <button
-        size="m"
-        tuiButton
         type="button"
-        (click)="observer.complete()"
     >Abbrechen</button>
 </ng-template>

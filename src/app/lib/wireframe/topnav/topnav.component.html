@@ -3,13 +3,10 @@
     <div class="flexFirst">
 
         <button
-            tuiIconButton
             type="button"
-            icon="tuiIconHome"
             [routerLink]="['/welcome']"
-            size="s"
             title="Startseite"
-            ></button>
+            >Home</button>
 
         <div class="topNavLogo" style="display: inline-block;font-size: 2em;">GLUECKSRITTER</div>
 
@@ -18,43 +15,28 @@
     <div class="flexLast">
 
         <button
-            appearance="primary"
-            tuiButton
             type="button"
-            size="s"
             [routerLink]="['/titan/titans']"
         >Titanen</button>
 
         <button
-            appearance="primary"
-            tuiButton
             type="button"
-            size="s"
             [routerLink]="['/hero/heroes']"
         >Helden</button>
 
         <button
-            appearance="primary"
-            tuiButton
             type="button"
-            size="s"
             [routerLink]="['/page/Mitglieder']"
         >Gilde</button>
 
         <button *ngIf="!(auth$ | async)" 
-            tuiIconButton
             type="button"
-            icon="tuiIconLock"
             [routerLink]="['/login']"
-            size="s"
             ></button>
 
         <button *ngIf="auth$ | async" 
-            tuiIconButton
             type="button"
-            icon="tuiIconUnlock"
             (click)="logout()"
-            size="s"
             title="Abmelden"
             ></button>
 

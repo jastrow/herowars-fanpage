@@ -26,16 +26,6 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
 import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-
-import {
-    TuiButtonModule, 
-    TuiNotificationModule,
-    TuiRootModule, 
-    TuiSvgModule,
-} from '@taiga-ui/core';
-
- 
-
  
 @NgModule({
     declarations: [
@@ -84,11 +74,7 @@ import {
         RouterLinkActive,
         RouterModule,
         SubnavComponent,
-        
-        TuiButtonModule,
-        TuiNotificationModule,
-        TuiRootModule,
-        TuiSvgModule,
+
     ]
 })
 export class AppModule { }

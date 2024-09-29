@@ -6,9 +6,7 @@
 
         <button 
             *ngIf="auth$ | async"
-            tuiButton type="button" 
-            class="tui-space_right-3 tui-space_top-3"
-            (click)="editMode$.next(true)">Bearbeiten</button>
+            >Bearbeiten</button>
     </ng-container>
 
     <ng-template #showeditor>
@@ -20,9 +18,9 @@
             }"
             [(ngModel)]="html.value"></editor>
             
-        <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
+        <button type="button" 
             (click)="save()">Speichern</button>
-        <button tuiButton type="button" class="tui-space_right-3 tui-space_top-3"
+        <button type="button" 
             (click)="editMode$.next(false)">Abbrechen</button>
     </ng-template>
 </div>

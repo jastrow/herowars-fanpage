@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TitanService } from '../titan.service';
 import { Observable, Subscription, catchError, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core';
 import { Select } from '@ngxs/store';
 
 export interface ISkin {
@@ -67,10 +66,6 @@ export class TitanEditComponent implements OnInit {
     artefact2: new FormControl<string>(''),
     artefact3: new FormControl<string>(''),
   });
-
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {}
-
-  //artefact
 
   ngOnInit(): void {
     this.subscription.add(

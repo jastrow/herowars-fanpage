@@ -1,6 +1,6 @@
 <div class="subnav yellow-protest" *ngIf="(menuItems | async) as mi">
     <div *ngFor="let item of mi" class="subNavItem">
         <span (click)="nav(item.path)">{{item.title}}</span>
-        <tui-svg src="tuiIconChevronsRight"></tui-svg>
+
     </div>
 </div>

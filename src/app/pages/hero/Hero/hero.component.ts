@@ -4,8 +4,6 @@ import { BehaviorSubject, Observable, Subject, Subscription, catchError, finaliz
 import { GlobalsettingsService } from '../../../globalsettings.service';
 import { HeroService, IHero } from '../hero.service';
 import { Select, Store } from '@ngxs/store';
-import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 @Component({
   selector: 'app-hero',
@@ -28,7 +26,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
 
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {}
+  constructor() {}
  
   ngOnInit(): void {
     this.subscription.add(
@@ -59,19 +57,8 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  deleteHero(content: PolymorpheusContent<TuiDialogContext>): void {
-    this.dialogs.open(content).pipe(takeUntil(this.close$)).subscribe();
-  }
-  withdraw() {
-    this.subscription.add(
-      this.heroService.deleteHero(this.heroName).pipe(
-        catchError(e => of(e)),
-        finalize(() => this.close$.next(false)),
-      ).subscribe(d => {
-        this.router.navigate(['/hero/heroes']);
-      })
-    );
-  }
+  deleteHero() {}
+
 
   nextSkin() {
     let key = this.selectedSkin + 1;

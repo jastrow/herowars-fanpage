@@ -3,8 +3,6 @@ import { HeroService, IHeroTeam } from '../hero.service';
 import { Observable, Subject, catchError, finalize, of, startWith, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Select } from '@ngxs/store';
 import { Router } from '@angular/router';
-import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 @Component({
   selector: 'app-heroteams',
@@ -22,7 +20,7 @@ export class HeroteamsComponent implements OnInit {
   private deleteId: number|null = null;
   readonly columns = ['name', 'held0', 'held1', 'held2', 'held3', 'held4', 'actions'];
 
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.teams$ = this.reloadSubject.pipe(
@@ -35,17 +33,15 @@ export class HeroteamsComponent implements OnInit {
     return this.service.getHeroTeams().pipe(take(1));
   }
 
-  viewTeam(team: IHeroTeam) {
-    this.router.navigate(['/hero/heroteamviewer/'+team.id]);
+  viewTeam() {
+    //this.router.navigate(['/hero/heroteamviewer/'+team.id]);
   }
 
-  editTeam(team: IHeroTeam) {
-    this.router.navigate(['/hero/heroteamsedit/'+team.id]);
+  editTeam() {
+    //this.router.navigate(['/hero/heroteamsedit/'+team.id]);
   }
 
-  deleteTeam(itemId: number|null, content: PolymorpheusContent<TuiDialogContext>): void {
-    this.deleteId = itemId;
-    this.dialogs.open(content).pipe(takeUntil(this.close$)).subscribe();
+  deleteTeam(): void {
   }
 
   withdraw() {
