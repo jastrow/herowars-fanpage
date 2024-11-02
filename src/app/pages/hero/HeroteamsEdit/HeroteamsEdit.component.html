@@ -2,26 +2,49 @@
 
     <h1>Team bearbeiten</h1>
 
-    <form class="b-form" [formGroup]="form">
-            Name des Teams
-            <input formControlName="name" type="text">
-        <textarea 
-            formControlName="description">
-            Beschreibung
-        </textarea>
+    <form class="b-form" [formGroup]="form" *ngIf="(heroes$ | async) as heroes">
+        <div class="mb20">
+            <input pInputText formControlName="name" type="text" placeholder="Teamname" style="width:100%">
+        </div>
 
-        <div *ngIf="(heroes$ | async) as heroes">
-            <div
-                (click)="heroClick(hero)"
-                [ngClass]="getHeroClass(hero)"
-                *ngFor="let hero of heroes">
-                {{hero}}
+        <div *ngIf="heroes$ | async as ho" class="herorow">
+            <div *ngFor="let n of [1,2,3,4,5]" class="hero">
+                <div [class]="['hero'+n]" [style.background-image]="getUrlHero(n)">
+                    <select [formControlName]="'hero'+n">
+                        <option *ngFor="let h of ho" value="{{h}}">{{h}}</option>
+                    </select>
+                </div>
+                <div [class]="['pet'+n]" [style.background-image]="getUrlPet(n)">
+                    <select [formControlName]="'pet'+n">
+                        <option value="">-</option>
+                        <option *ngFor="let p of pets" value="{{p}}">{{p}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="hero">
+                <div [class]="['pet']" [style.background-image]="getUrlPet(6)">
+                    <select [formControlName]="'pet6'">
+                        <option *ngFor="let p of pets" value="{{p}}">{{p}}</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <button
-            type="button"
-            (click)="save()">Speichern</button>
+        <div class="mt20">
+            <textarea 
+                style="width:100%"
+                rows="5"
+                cols="30" 
+                pInputTextarea
+                formControlName="description"
+                placeholder="Beschreibung">
+            </textarea>
+        </div>
+
+        <div class="flex gap10 mt20">
+            <p-button label="Speichern" (click)="save()" [disabled]="!(auth$ | async)"/>
+            <p-button label="Abbrechen" [routerLink]="['/hero/heroteams']" />    
+        </div>
 
     </form>
 

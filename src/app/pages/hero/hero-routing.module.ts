@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'hero/edithero',
     component: HeroEditComponent,
-    data: { title: 'Held bearbeiten'},
+    data: { title: 'Held erstellen'},
   },
   {
     path: 'hero/:id',

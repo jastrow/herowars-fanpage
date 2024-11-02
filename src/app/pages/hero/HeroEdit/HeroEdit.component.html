@@ -1,166 +1,179 @@
 <div class="content" *ngIf="auth$ | async">
-    <h1>Neuen Held anlegen</h1>
+        <h1 *ngIf="(title | async) as t">{{t}}</h1>
 
 
-    <form class="b-form" [formGroup]="form">
-        <div class="row">
-            <div class="col">
-                <div class="col">
-                        Name des Helden
-                        <input formControlName="name"  type="text">
+        <form class="b-form" [formGroup]="form">
+                <div class="row">
+                        <div class="col">
+                                <div class="flex flex-column gap-2">
+                                        <label for="name">Name des Helden</label>
+                                        <input pInputText id="name" formControlName="name" />
+                                </div>
+                        </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
-                    Kampfposition
-                    <select formControlName="position"
-                        placeholder="Wähle die Position"
-                    >
-                    <option></option>
-                    </select>
-            </div>
-            <div class="col">
-                    Tier List
-                    <select formControlName="tierlist" placeholder="Rang in der Tierlist">
-                        <option *ngFor="let t of service.tierlist"></option>
-                    </select>
-            </div>
-        </div>
+                <div class="row">
+                        <div class="col">
+                                <div class="flex flex-column gap-2">
+                                        Kampfposition
+                                        <p-dropdown formControlName="position" [options]="positions" optionLabel="name"
+                                                placeholder="Wähle die Position" />
+                                </div>
+                        </div>
+                        <div class="col">
+                                <div class="flex flex-column gap-2">
+                                        Tier List
+                                        <p-dropdown formControlName="tierlist" [options]="tierlist" optionLabel="name"
+                                                placeholder="Rang in der Tierlist" />
+                                </div>
+                        </div>
+                </div>
 
-        <div class="row">
-            <div class="col">
-                    Klasse
-                    <input placeholder="Klasse des Helden" >
-                    <option value="service.classes"></option>
-                
-            </div>
-            <div class="col">
-                    Sekundäre Klasse
-                    <input placeholder="Sekundäre Klasse des Helden" >
-                    <option value="service.classes"></option>
-                
-            </div>
-        </div>
+                <div class="row">
+                        <div class="col">
+                                <div class="flex flex-column gap-2">
+                                        Klasse
+                                        <p-dropdown formControlName="funktion" [options]="classes" optionLabel="name"
+                                                placeholder="Klasse des Helden" />
+                                </div>
+                        </div>
+                        <div class="col">
+                                <div class="flex flex-column gap-2">
+                                        Sekundäre Klasse
+                                        <p-dropdown formControlName="funktion2" [options]="classes" optionLabel="name"
+                                                placeholder="Sekundäre Klasse des Helden" />
+                                </div>
+                        </div>
+                </div>
 
-        <p>
-            <textarea formControlName="description">
-                Hinweise & Tips
-            </textarea>
-        </p>
+                <div class="row">
+                        <div class="col">
+                                Hinweise & Tips<br>
+                                <textarea formControlName="description" pInputTextarea style="width:100%"></textarea>
+                        </div>
+                </div>
 
-        <p>Skin & Priorität</p>
+                <h3 class="yellow-protest">Skin & Priorität</h3>
 
-        <div class="row">
-            <div class="col mb10">
-                    Skin Priorität 1
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Skin Priorität 2
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Skin Priorität 3
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-        </div>
-        <div class="row">
-            <div class="col mb10">
-                    Skin Priorität 4
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Skin Priorität 5
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Skin Priorität 6
-                    <input placeholder="Standard" >
-                    <option value="skinNames"></option>
-                
-            </div>
-        </div>
+                <div class="row">
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 1
+                                        <p-dropdown formControlName="skin1" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 1" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 2
+                                        <p-dropdown formControlName="skin2" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 2" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 3
+                                        <p-dropdown formControlName="skin3" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 3" />
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 4
+                                        <p-dropdown formControlName="skin4" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 4" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 5
+                                        <p-dropdown formControlName="skin5" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 5" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Skin Priorität 6
+                                        <p-dropdown formControlName="skin6" [options]="skinlist" optionLabel="name"
+                                                placeholder="Skin Priorität 6" />
+                                </div>
+                        </div>
+                </div>
 
-        <p>Glyphen & Priorität</p>
+                <p>Glyphen & Priorität</p>
 
-        <div class="row">
-            <div class="col mb10">
-                    Glyphe Priorität 1
-                    <input placeholder="Standard" >
-                    <option value="glyphNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Glyphe Priorität 2
-                    <input placeholder="Standard" >
-                    <option value="glyphNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Glyphe Priorität 3
-                    <input placeholder="Standard" >
-                    <option value="glyphNames"></option>
-                
-            </div>
-        </div>
-        <div class="row">
-            <div class="col mb10">
-                    Glyphe Priorität 4
-                    <input placeholder="Standard" >
-                    <option value="glyphNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Glyphe Priorität 5
-                    <input placeholder="Standard" >
-                    <option value="glyphNames"></option>
-                
-            </div>
-        </div>
+                <div class="row">
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Glyphe Priorität 1
+                                        <p-dropdown formControlName="glyph1" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Glyphe Priorität 1" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Glyphe Priorität 2
+                                        <p-dropdown formControlName="glyph2" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Glyphe Priorität 2" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Glyphe Priorität 3
+                                        <p-dropdown formControlName="glyph3" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Glyphe Priorität 3" />
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Glyphe Priorität 4
+                                        <p-dropdown formControlName="glyph4" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Glyphe Priorität 4" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Glyphe Priorität 5
+                                        <p-dropdown formControlName="glyph5" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Glyphe Priorität 5" />
+                                </div>
+                        </div>
+                </div>
 
-        
-        <p>Artefakt Priorität</p>
 
-        <div class="row">
-            <div class="col mb10">
-                    Artefakt Priorität 1
-                    <input placeholder="Standard" >
-                    <option value="artefactNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Artefakt Priorität 2
-                    <input placeholder="Standard" >
-                    <option value="artefactNames"></option>
-                
-            </div>
-            <div class="col mb10">
-                    Artefakt Priorität 3
-                    <input placeholder="Standard" >
-                    <option value="artefactNames"></option>
-                
-            </div>
-        </div>
+                <p>Artefakt Priorität</p>
 
-        <p>
-            <button class="mr10"
-                type="button"
-                (click)="sendData()">Abschicken</button>
-            <button
-                type="button"
-                (click)="abbrechen()">Abbrechen</button>
-        </p>
-    </form>
+                <div class="row">
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Artefact Priorität 1
+                                        <p-dropdown formControlName="artefact1" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Artefact Priorität 1" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Artefact Priorität 2
+                                        <p-dropdown formControlName="artefact2" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Artefact Priorität 2" />
+                                </div>
+                        </div>
+                        <div class="col mb10">
+                                <div class="flex flex-column gap-2">
+                                        Artefact Priorität 3
+                                        <p-dropdown formControlName="artefact3" [options]="glyphlist" optionLabel="name"
+                                                placeholder="Artefact Priorität 3" />
+                                </div>
+                        </div>
+                </div>
+
+                <p>
+                        <p-button label="Speichern" class="mr10" type="button" (click)="sendData()" />
+                        <p-button label="Abbrechen" type="button" (click)="abbrechen()" />
+                </p>
+        </form>
 </div>

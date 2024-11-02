@@ -26,12 +26,11 @@ export enum ItitanFilterTyp {
   TIER = 'tier',
 }
 
-export interface ItitanTeam {
-  id: number | null;
-  name: string;
-  description: string;
-  titans: string[];
+export interface IPrimeNGSelectOption {
+  name: string | null;
+  code: string | null;
 }
+export interface ITierlist extends IPrimeNGSelectOption {};
 
 
 @Injectable({
@@ -65,6 +64,9 @@ export class TitanService {
     this.titanlistFilter.next(filter);
   }
 
+  public getPrimeTierlist() { return this.tierlist.map(d => { return {name: d, code: d}}); }
+  public getPrimeClasses() { return this.classes.map(d => { return {name: d, code: d}}); }
+
   public getTitanFilter(): BehaviorSubject<ITitanlistFilter> {
     return this.titanlistFilter;
   }
@@ -93,22 +95,6 @@ export class TitanService {
       '/titans.php?filtertier=' + encodeURIComponent(tier) + 
       '&filterklasse=' + encodeURIComponent(klasse);
     return this.http.get<string[]>(url);
-  }
-
-  public getTitanTeams() {
-    return this.http.get<ItitanTeam[]>(this.env.apiUrl + '/titans.php?teams=1');
-  }
-
-  public getTitanTeam(teamId: number) {
-    return this.http.get<ItitanTeam>(this.env.apiUrl + '/titans.php?team='+teamId);
-  }
-
-  public saveTitanTeam(team: ItitanTeam) {
-    return this.http.post(this.env.apiUrl + '/titans.php?saveteam=1', team);
-  }
-
-  public deleteTeam(teamId: number|null) {
-    return this.http.get(this.env.apiUrl+'/titans.php?deleteteam='+teamId);
   }
 
 }

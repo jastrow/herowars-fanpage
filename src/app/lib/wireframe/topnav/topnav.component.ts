@@ -20,27 +20,62 @@ export class TopnavComponent {
   private router = inject(Router);
   private service = inject(LoginService);
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
-
-
   protected expanded = false;
   protected open = false;
   protected switch = false;
 
-  protected readonly drawer = {
-      Components: [
-          {name: 'Button', icon: ICON},
-          {name: 'Input', icon: ICON},
-          {name: 'Tooltip', icon: ICON},
-      ],
-      Essentials: [
-          {name: 'Getting started', icon: ICON},
-          {name: 'Showcase', icon: ICON},
-          {name: 'Typography', icon: ICON},
-      ],
-  };
 
+  public items = [
+    {
+      label: 'Helden',
+      icon: 'pi pi-sparkles',
+      items: [
+        {
+          label: 'Übersicht',
+          route: '/hero/heroes'
+        },
+        {
+          label: 'Teams',
+          route: '/hero/heroteams'
+        },
+        {
+          label: 'Titanen',
+          route: '/titan/titans'
+        }
+      ]
+    },
+    {
+      label: 'Gilde',
+      icon: 'pi pi-home',
+      items: [
+        {
+          label: 'Gildenkrieg',
+          route: '/gildenkrieg'
+        },
+        {
+          label: 'Regeln',
+          route: '/page/Regeln'
+        },
+        {
+          label: 'Mitglieder',
+          route: '/page/Mitglieder'
+        },
+        {
+          label: 'Gildenaktivität',
+          route: '/page/Gildenaktivität'
+        },
+        {
+          label: 'Tipps',
+          route: '/page/Tipps'
+        }
+      ]
+    },
+    {
+      label: 'Abenteuer',
+      route: '/page/Abenteuer'
+    },
+  ];
 
-  constructor() {}
 
   public logout() {
     this.service.logout().pipe(

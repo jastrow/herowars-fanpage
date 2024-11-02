@@ -18,7 +18,7 @@ export class HeroteamViewerComponent implements OnInit, OnDestroy {
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
   
   private subscriptions = new Subscription();
-  public team$ = new BehaviorSubject<IHeroTeam>({id:0,name:'',description:'',heroes:[]});
+  public team$ = new BehaviorSubject<IHeroTeam>({id:0,name:'',description:'',heroes:[],pet:'',pets:[]});
   private teamId = 0;
 
   ngOnInit(): void {

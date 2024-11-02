@@ -24,8 +24,19 @@ import { TextPageComponent } from '@lib/core/TextPage/TextPage.component';
 import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
-import { GildenkriegComponent } from '@pages/Gildenkrieg/Gildenkrieg.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
+import { MenubarModule } from 'primeng/menubar';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { PasswordModule } from 'primeng/password';
+import { DropdownModule } from 'primeng/dropdown';
+
  
 @NgModule({
     declarations: [
@@ -36,7 +47,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
         LoginComponent,
         TextPageComponent,
         PasswordRecoverComponent,
-        GildenkriegComponent,
     ],
     providers: [
         provideAnimationsAsync(),
@@ -62,7 +72,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
         CommonModule,
         EditorModule,
         FormsModule,
-        FormsModule,
         HttpClientModule,
         KeyValuePipe,
         NewlineToBrPipe,
@@ -74,7 +83,17 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
         RouterLinkActive,
         RouterModule,
         SubnavComponent,
-
+        // PrimeNG
+        ButtonModule,
+        ChipModule,
+        TagModule,
+        MenubarModule,
+        IconFieldModule,
+        InputIconModule,
+        InputTextModule,
+        FloatLabelModule,
+        PasswordModule,
+        DropdownModule,
     ]
 })
 export class AppModule { }

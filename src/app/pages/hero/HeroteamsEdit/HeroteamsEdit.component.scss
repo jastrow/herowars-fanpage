@@ -1,17 +1,26 @@
 :host {
   display: block;
 }
-.heroSelector {
-  margin-top: 1em;
-  margin-right: 1em;
-  border-radius: 0.5em;
-  background-color: white;
-  padding: 0.3em 0.5em;
-  display: inline-block;
-  color: black;
-  cursor: pointer;
+.herorow {
+  display: inline-flex;
+  gap: 0.5em;
 }
-.heroSelectorSelected {
-  background-color: greenyellow;
-  border-color: red;
+.hero > div {
+  width: 100px;
+  height: 100px;
+  display: inline-flex;
+  justify-content: end;
+  flex-direction: column;
+  border: 3px solid black;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero select {
+  max-width: 100%;
+  color: white;
+  background-color: rgba(0,0,0,0.7);
+  border: 0px solid black;
 }

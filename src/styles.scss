@@ -1,6 +1,30 @@
 @charset "utf-8"; 
 @import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
-@import "../node_modules/bootstrap/scss/bootstrap";
+
+// ========================================================
+// BOOTSTRAP CSS ==========================================
+// Configuration
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/variables-dark";
+@import "node_modules/bootstrap/scss/maps";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/utilities";    
+//// Layout & components
+//@import "node_modules/bootstrap/scss/root";
+//@import "node_modules/bootstrap/scss/reboot";
+//// Layout & components
+//@import "node_modules/bootstrap/scss/containers";
+@import "node_modules/bootstrap/scss/grid";
+//@import "node_modules/bootstrap/scss/tables";
+//@import "node_modules/bootstrap/scss/forms";
+//// Helpers
+//@import "node_modules/bootstrap/scss/helpers";
+// Utilities
+//@import "node_modules/bootstrap/scss/utilities/api";
+// ========================================================
+// ========================================================
+
 
 .row { margin-bottom: 1em; }
 
@@ -41,10 +65,15 @@ body {
     background-color: rgba(0,0,0,0.7);
     min-height: 100vh;
     color: white;
+    backdrop-filter: blur(0.4em);
 }
 .contentTitle {
     font-size: 3em;
-
+}
+.content a {
+    @include protest;
+    @include yellow;
+    text-decoration: double;
 }
 
 .topNavLogo {
@@ -99,3 +128,18 @@ body {
 .ml70 { margin-left: 7em; }
 
 html, body { height: 100%; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* PrimeNG Fixes */
+app-topnav .p-element .p-menubar { padding:0; }
+.p-menuitem-link { gap: 0.3em; }
+
+.flex { display: inline-flex; gap: 0.3em; }
+.gap05 { gap: 0.5em; }
+.gap10 { gap: 1em; }
+.gap15 { gap: 1.5em; }
+.gap20 { gap: 2em; }
+.gap25 { gap: 2.5em; }
+.gap30 { gap: 3.0em; }

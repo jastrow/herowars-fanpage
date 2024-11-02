@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject, Subscription, catchError, finaliz
 import { GlobalsettingsService } from '../../../globalsettings.service';
 import { HeroService, IHero } from '../hero.service';
 import { Select, Store } from '@ngxs/store';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-hero',
@@ -26,7 +27,9 @@ export class HeroComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
 
-  constructor() {}
+  constructor(
+    private confirmationService: ConfirmationService, 
+  ) {}
  
   ngOnInit(): void {
     this.subscription.add(
@@ -57,9 +60,6 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  deleteHero() {}
-
-
   nextSkin() {
     let key = this.selectedSkin + 1;
     this.selectedSkin = key >= this.skins.length ? 0 : key;
@@ -79,7 +79,7 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.selectedSkin = this.skins.indexOf(skin);
   }
 
-  deleteHero2() {
+  deleteHero() {
     this.heroService.deleteHero(this.heroName).pipe(
       catchError(e => of(e)),
     ).subscribe(d => {
@@ -87,4 +87,20 @@ export class HeroComponent implements OnInit, OnDestroy {
     });
   }
 
- }
+  confirm1(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Soll der Held wirklich gelöscht werden?',
+        header: 'Bestätigung',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Ja',
+        rejectLabel: 'Nein',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => { this.deleteHero(); },
+        reject: () => {}
+    });
+  }
+
+}

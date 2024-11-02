@@ -28,13 +28,15 @@ DROP TABLE IF EXISTS hero_team;
 CREATE TABLE hero_team (
     hero_team_id SERIAL,
     name TEXT,
-    description TEXT
+    description TEXT,
+    pet_name TEXT
 );
 
 DROP TABLE IF EXISTS hero_team_hero;
 CREATE TABLE hero_team_hero (
     hero_team_id INT,
-    hero_id INT
+    hero_id INT,
+    pet_name TEXT
 );
 
 

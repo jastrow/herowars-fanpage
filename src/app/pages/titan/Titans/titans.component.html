@@ -2,22 +2,25 @@
     <div class="content">
         <app-subnav [definedRoute]="'titan'"></app-subnav>
         <h1>Titanen Liste</h1>
-        
+
         <form class="b-form" [formGroup]="form">
             <div class="row">
                 <div class="col">
-                        Filter Tier
-                        <select formControlName="filterTier">
-                        <option
-                            *ngFor="let t of service.tierlist"
-                        ></option></select>
+                        <p-dropdown 
+                            formControlName="filterTier" 
+                            [options]="service.getPrimeTierlist()"
+                            optionLabel="name"
+                            placeholder="Filter Tier" />
                 </div>
                 <div class="col">
-                        Filter Klasse
-                        <select formControlName="filterKlasse">
-                        <option
-                            *ngFor="let k of service.classes"
-                        ></option></select>
+                    <p-dropdown 
+                        formControlName="filterKlasse" 
+                        [options]="service.getPrimeClasses()"
+                        optionLabel="name"
+                        placeholder="Filter Klasse" />
+                </div>
+                <div class="col" *ngIf="auth$ | async">
+                    <p-button label="Titan hinzufügen" [routerLink]="['/titan/titanedit/']" />
                 </div>
             </div>
         </form>
@@ -30,12 +33,6 @@
                 style="background-image: url(/assets/titans/{{titan}}.png);">
                 <div class="hname">{{titan}}</div>
             </div>
-        </div>
-
-        <div *ngIf="auth$ | async">
-            <button
-            type="button"
-            [routerLink]="['/titan/titanedit/']">Titan hinzufügen</button>
         </div>
 
     </div>

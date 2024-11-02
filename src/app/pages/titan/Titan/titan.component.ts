@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject, Subscription, catchError, finaliz
 import { GlobalsettingsService } from '../../../globalsettings.service';
 import { Select, Store } from '@ngxs/store';
 import { TitanService } from '../titan.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-titan',
@@ -16,6 +17,7 @@ export class TitanComponent implements OnInit, OnDestroy {
   private subscription = new Subscription;
   private service = inject(GlobalsettingsService);
   public titanService = inject(TitanService);
+  private confirmationService = inject(ConfirmationService); 
   public titan$!: Observable<any>;
   public selectedSkin: number = 0;
   public skins: string[] = [];
@@ -95,8 +97,20 @@ export class TitanComponent implements OnInit, OnDestroy {
     });
   }
 
-  navEdit() {
-    this.router.navigate(['/titan/edittitan/'+this.titanName]);
+  confirm1(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Soll der Held wirklich gelöscht werden?',
+        header: 'Bestätigung',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Ja',
+        rejectLabel: 'Nein',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => { this.deleteTitan2(); },
+        reject: () => {}
+    });
   }
 
  }

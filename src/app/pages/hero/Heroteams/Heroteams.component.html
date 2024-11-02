@@ -1,45 +1,61 @@
 <div class="content">
-    <app-subnav [definedRoute]="'hero'"></app-subnav>
     <h1>Helden Teams</h1>
-    <p>Hier einige Kompositionen von Helden von unserer Gilde empfohlen.</p>
-    <p>Für Neueinsteiger als Tipp: Sich hier ein Team raussuchen, und nur diese Helden leveln.</p>
+    <p>
+        Hier einige Kompositionen von Helden von unserer Gilde empfohlen.
+        Für Neueinsteiger als Tipp: Sich hier ein Team raussuchen, und nur diese Helden leveln.
+    </p>
 
-    <div *ngIf="(teams$ |async) as teams; else loading">
+    <div *ngIf="(teams$ | async) as teams; else loading">
 
         <table>
-            <thead>
-                <tr >
-                    <th>Name</th>
-                    <th>Held 1</th>
-                    <th>Held 2</th>
-                    <th>Held 3</th>
-                    <th>Held 4</th>
-                    <th>Held 5</th>
-                    <th></th>
-                </tr>
-            </thead>
             <tbody>
-                <tr *ngFor="let item of teams; let index = index">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.heroes[0] }}</td>
-                    <td>{{ item.heroes[1] }}</td>
-                    <td>{{ item.heroes[2] }}</td>
-                    <td>{{ item.heroes[3] }}</td>
-                    <td>{{ item.heroes[4] }}</td>
-                    <td>
-                        <button
-                            type="button"
-                            (click)="viewTeam()">Details</button>
-                        <button
-                            *ngIf="auth$ | async"
-                            type="button"
-                            (click)="deleteTeam()">Löschen</button>
-                        <button
-                            *ngIf="auth$ | async"
-                            type="button"
-                            (click)="editTeam()">Bearbeiten</button>
-                    </td>
-                </tr>
+                <ng-container *ngFor="let item of teams; let index = index">
+                    <tr><td class="yellow-protest size15">{{ item.name }}</td></tr>
+                    <tr *ngIf="item.id !== showId">
+                        <td class="flex">
+                            <div class="heroname" *ngFor="let h of item.heroes">{{ h }}</div>
+                            <div class="heroname">{{item.pet}}</div>
+                            <div class="heroname openteam" (click)="showTeam(item.id)"><span class="pi pi-chevron-down"></span></div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="item.id === showId">
+                        <td class="flex">
+                            <div *ngFor="let h of item.heroes; let i = index"
+                                [routerLink]="['/hero/hero/', h]" 
+                                class="hero" 
+                                [ngStyle]="{'background-image': getHeroUrl(h)}">
+                                <div class="hname">{{ h }}</div>
+                            </div>
+                            <div class="hero" 
+                                [ngStyle]="{'background-image': getPetUrl(item.pet)}">
+                                <div class="hname">{{item.pet}}</div>
+                            </div>
+                            <div class="hero" style="flex-direction: column; justify-content: space-between;">
+                                <div class="hname closeteam" (click)="closeTeam()">
+                                    <span class="pi pi-chevron-up"></span>
+                                </div>
+                                <div class="hname closeteam" (click)="editTeam(item)" *ngIf="auth$ | async">
+                                    <span class="pi pi-wrench"></span>
+                                </div>
+                                <div class="hname closeteam" (click)="deleteTeam($event, item)" *ngIf="auth$ | async">
+                                    <span class="pi pi-trash"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="item.id === showId && petsExist(item.pets)">
+                        <td class="flex">
+                            <div *ngFor="let h of item.pets; let i = index"
+                                class="hero" 
+                                [ngStyle]="{'background-image': getPetUrl(h)}">
+                                <div class="hname">{{h}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="item.id === showId">
+                        <td class="description" [innerHTML]="item.description | appNewlineToBr"></td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
 
@@ -50,24 +66,12 @@
     </ng-template>
 
     <div *ngIf="auth$ | async" class="mt10">
-        <button
+        <p-button 
             type="button"
-            [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</button>
+            [routerLink]="['/hero/heroteamsedit']">Team hinzufügen</p-button>
     </div>
 
 </div>
 
-<ng-template
-    #deleteModal
-    let-observer
->
-    <p>Wirklich löschen?</p>
-    <button
-        type="button"
-        (click)="withdraw()"
-    >Löschen</button>
-    <button
-        type="button"
-        (click)="observer.complete()"
-    >Abbrechen</button>
-</ng-template>
+<p-toast />
+<p-confirmDialog />

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LoginService } from '../Auth/login.service';
 import { ENVIRONMENT } from '@lib/util/tokens';
 
@@ -33,9 +33,16 @@ export interface IHeroTeam {
   id: number | null;
   name: string;
   description: string;
+  pet: string;
   heroes: string[];
+  pets: string[];
 }
 
+export interface IPrimeNGSelectOption {
+  name: string | null;
+  code: string | null;
+}
+export interface ITierlist extends IPrimeNGSelectOption {};
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +55,12 @@ export class HeroService {
   public readonly classes = [
     '-', 'Heiler','Kontrolle','Magier','Schütze','Unterstützer','Panzer','Krieger'
   ];
+  public readonly pets = ['Vex','Albus','Axel','Biscuit','Cain','Fenris','Khorus','Mara','Merlin','Oliver'];
 
   private herolistFilter = new BehaviorSubject<IHerolistFilter>({filtertier: null, filterklasse: null});
+
+  public getPrimeTierlist(): ITierlist[] { return this.tierlist.map(d => { return {name: d, code: d}}); }
+  public getPrimeClasses() { return this.classes.map(d => { return {name: d, code: d}}); }
 
   public setHeroFilter(typ: IHeroFilterTyp, value: string) {
     if (typ === IHeroFilterTyp.KLASSE && this.classes.includes(value)) {

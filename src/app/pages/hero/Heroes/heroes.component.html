@@ -1,27 +1,30 @@
 <div>
     <div class="content">
-        <app-subnav [definedRoute]="'hero'"></app-subnav>
         <h1>Helden Liste</h1>
         
         <form class="b-form" [formGroup]="form">
             <div class="row">
                 <div class="col">
-                        Filter Tier
-                        <select formControlName="filterTier">
-                        <option *ngFor="let t of service.tierlist"
-                        ></option></select>
+                        <p-dropdown 
+                            formControlName="filterTier" 
+                            [options]="service.getPrimeTierlist()"
+                            optionLabel="name"
+                            placeholder="Filter Tier" />
                 </div>
                 <div class="col">
-                        Filter Klasse
-                        <select formControlName="filterKlasse">
-                        <option *ngFor="let c of service.classes"
-                        ></option></select>
+                    <p-dropdown 
+                        formControlName="filterKlasse" 
+                        [options]="service.getPrimeClasses()"
+                        optionLabel="name"
+                        placeholder="Filter Klasse" />
+                </div>
+                <div class="col" *ngIf="auth$ | async">
+                    <p-button label="Held hinzufügen" [routerLink]="['/hero/hero/edithero/']" />
                 </div>
             </div>
         </form>
 
         <div *ngIf="filtered$ | async as heros">
-            
             <div 
                 *ngFor="let hero of heros" 
                 [routerLink]="['/hero/hero/', hero]" 
@@ -29,15 +32,8 @@
                 style="background-image: url(/assets/hero/{{hero}}.png);">
                 <div class="hname">{{hero}}</div>
             </div>
-        </div>
-
-        <div *ngIf="auth$ | async">
-            <button
-            type="button"
-            [routerLink]="['/hero/hero/edithero/']">Held hinzufügen</button>
-        </div>
+        </div>            
 
     </div>
-
 </div>
 

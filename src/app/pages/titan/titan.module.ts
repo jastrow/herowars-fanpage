@@ -12,6 +12,13 @@ import { TitansComponent } from './Titans/titans.component';
 import { TitanRoutingModule } from './titan-routing.module';
 import { TitanEditComponent } from './TitanEdit/TitanEdit.component';
 import { TitanComponent } from './Titan/titan.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -31,6 +38,16 @@ import { TitanComponent } from './Titan/titan.component';
         ReactiveFormsModule,
         RouterModule,
         SubnavComponent,
-    ]
+        DropdownModule,
+        ButtonModule,
+        InputTextareaModule,
+        InputTextModule,
+        ConfirmDialogModule,
+        ToastModule,
+    ],
+    providers: [
+        ConfirmationService,
+        MessageService,
+    ],
 })
 export class TitanModule { }

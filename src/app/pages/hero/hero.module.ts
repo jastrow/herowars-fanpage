@@ -15,8 +15,14 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { RouterModule } from '@angular/router';
 import { SubnavComponent } from "@lib/wireframe/Subnav/Subnav.component";
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
- 
 @NgModule({
     declarations: [
         HeroComponent,
@@ -38,7 +44,16 @@ import { SubnavComponent } from "@lib/wireframe/Subnav/Subnav.component";
         ReactiveFormsModule,
         RouterModule,
         SubnavComponent,
-
-    ]
+        DropdownModule,
+        ButtonModule,
+        InputTextModule,
+        InputTextareaModule,
+        ConfirmDialogModule,
+        ToastModule,
+    ],
+    providers: [
+        ConfirmationService,
+        MessageService,
+    ],
 })
 export class HeroModule { }

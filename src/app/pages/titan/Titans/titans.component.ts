@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Select } from '@ngxs/store';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ITitanlistFilter, KLASSEN, TIERLIST, TitanService } from '../titan.service';
+import { ITierlist } from '@pages/hero/hero.service';
 
 
 @Component({
@@ -15,23 +16,20 @@ export class TitansComponent implements OnInit, OnDestroy {
   @Select((state: { auth: any; }) => state.auth.sessionId) auth$!: Observable<string|null>;
   public service = inject(TitanService);
   public filtered$ = new BehaviorSubject<string[]>([]);
-  public filter$ = new BehaviorSubject<ITitanlistFilter>({filtertier: null, filterklasse: null});
+  public filter$ = new BehaviorSubject<ITitanlistFilter>({filtertier: '-', filterklasse: '-'});
   public form = new FormGroup({
-    filterTier: new FormControl<string>('-'),
-    filterKlasse: new FormControl<string>('-'),
+    filterTier: new FormControl<ITierlist>({name: null, code: null}),
+    filterKlasse: new FormControl<ITierlist>({name: null, code: null}),
   });
   private subscriptions = new Subscription();
 
   ngOnInit(): void {
     this.filter$ = this.service.getTitanFilter();
-    const filterSubject = this.filter$.value;
-    this.form.get('filterTier')?.setValue(filterSubject.filtertier);
-    this.form.get('filterKlasse')?.setValue(filterSubject.filterklasse); 
 
     this.subscriptions.add(
       this.form.valueChanges.subscribe(d => {
-        const filterTier = d.filterTier ? d.filterTier : '-';
-        const filterKlasse = d.filterKlasse ? d.filterKlasse : '-';
+        const filterTier = d.filterTier?.code ? d.filterTier.code : '-';
+        const filterKlasse = d.filterKlasse?.code ? d.filterKlasse.code : '-';
         this.service.setTitanFilters({
           filtertier: filterTier as TIERLIST,
           filterklasse: filterKlasse as KLASSEN,

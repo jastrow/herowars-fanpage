@@ -5,56 +5,58 @@
     <form class="b-form" [formGroup]="form">
         <div class="row">
             <div class="col">
-                <div class="col">
-                        Name des Titan
-                        <input formControlName="name" type="text">
+                <div class="flex flex-column gap-2">
+                    <label for="name">Name des Titanen</label>
+                    <input pInputText id="name" formControlName="name" />
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                    Kampfposition
-                    <select formControlName="position">
-                    <option *ngFor="let p of positions"></option>
-                </select>
+                    <div class="flex flex-column gap-2">
+                            Kampfposition
+                            <p-dropdown formControlName="position" [options]="positions" optionLabel="name"
+                                    placeholder="Wähle die Position" />
+                    </div>
             </div>
             <div class="col">
-                    Tier List
-                    <select placeholder="Rang in der Tierlist" formControlName="tierlist">
-                    <option *ngFor="let a of service.tierlist"></option>
-                </select>
+                    <div class="flex flex-column gap-2">
+                            Tier List
+                            <p-dropdown formControlName="tierlist" [options]="service.getPrimeTierlist()" optionLabel="name"
+                                    placeholder="Rang in der Tierlist" />
+                    </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                    Klasse
-                    <select placeholder="Klasse des Titan" formControlName="funktion">
-                    <option *ngFor="let a of service.classes"></option>
-                </select>
+                    <div class="flex flex-column gap-2">
+                            Klasse
+                            <p-dropdown formControlName="funktion" [options]="service.getPrimeClasses()" optionLabel="name"
+                                    placeholder="Klasse des Titan" />
+                    </div>
             </div>
             <div class="col">
-                    Sekundäre Klasse
-                    <select placeholder="Sekundäre Klasse des Titan" formControlName="funktion2">
-                    <option *ngFor="let a of service.classes"></option>
-                </select>
+                    <div class="flex flex-column gap-2">
+                            Sekundäre Klasse
+                            <p-dropdown formControlName="funktion2" [options]="service.getPrimeClasses()" optionLabel="name"
+                                    placeholder="Sekundäre Klasse des Titan" />
+                    </div>
             </div>
-        </div>
+        </div>        
 
-        <p>
-            <textarea formControlName="description">
-                Hinweise & Tips
-            </textarea>
-        </p>
+
+        <div class="row">
+            <div class="col">
+                    Hinweise & Tips<br>
+                    <textarea formControlName="description" pInputTextarea style="width:100%"></textarea>
+            </div>
+    </div>
         
         <p>
-            <button class="mr10"
-                type="button"
-                (click)="sendData()">Abschicken</button>
-            <button
-                type="button"
-                (click)="abbrechen()">Abbrechen</button>
+            <p-button label="Speichern" class="mr10" type="button" (click)="sendData()" />
+            <p-button label="Abbrechen" type="button" (click)="abbrechen()" />
         </p>
     </form>
 </div>

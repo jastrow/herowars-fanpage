@@ -118,22 +118,27 @@ if(isset($_GET['heronames'])) {
             hero_team.hero_team_id,
             hero_team.name AS tname,
             hero_team.description,
-            hero.name
+            hero_team.pet_name as pet,
+            hero.name,
+            hero_team_hero.pet_name
         FROM hero_team
         JOIN hero_team_hero USING (hero_team_id)
-        JOIN hero USING (hero_id)
-        ORDER BY hero_team.hero_team_id ASC, hero.name ASC
+        LEFT JOIN hero USING (hero_id)
+        ORDER BY hero_team.name ASC
     ');
     $data = [];
     while($row = $rs->fetch_assoc()) {
         if(isset($data[$row['hero_team_id']])) {
             $data[$row['hero_team_id']]['heroes'][] = $row['name'];
+            $data[$row['hero_team_id']]['pets'][] = $row['pet_name'];
         } else {
             $data[$row['hero_team_id']] = [
                 'id' => $row['hero_team_id'],
                 'name' => $row['tname'] ? $row['tname'] : 'kein Name',
+                'pet' => $row['pet'],
                 'description' => $row['description'],
-                'heroes' => [$row['name']]
+                'heroes' => [$row['name']],
+                'pets' => [$row['pet_name']],
             ];
         }
     }
@@ -146,24 +151,28 @@ if(isset($_GET['heronames'])) {
     $rs = $db->query('
         SELECT
             hero_team.hero_team_id,
+            hero_team.pet_name as pet,
             hero_team.name,
             hero_team.description,
-            hero.name as hname
+            hero.name as hname,
+            hero_team_hero.pet_name
         FROM hero_team
         JOIN hero_team_hero USING (hero_team_id)
         JOIN hero USING (hero_id)
         WHERE hero_team.hero_team_id = '.(int)$_GET['team'].'
-        ORDER BY hero_team.hero_team_id ASC, hero.name ASC
     ');
     $data = [];
     while($row = $rs->fetch_assoc()) {
         if(!$data) {
             $data['heroes'] = [$row['hname']];
+            $data['pets'] = [$row['pet_name']];
             $data['id'] = $row['hero_team_id'];
             $data['name'] = $row['name'];
+            $data['pet'] = $row['pet'];
             $data['description'] = $row['description'];
         } else {
             $data['heroes'][] = $row['hname'];
+            $data['pets'][] = $row['pet_name'];
         }
     }
     echo json_encode($data);
@@ -182,7 +191,8 @@ if(isset($_GET['heronames'])) {
     if($data['id']) {
         $db->query('UPDATE hero_team SET
             name = "'.$data['name'].'",
-            description = "'.$data['description'].'"
+            description = "'.$data['description'].'",
+            pet_name = "'.$data['pet'].'"
             WHERE hero_team_id = '.$data['id'].'
         ');
         if (($db->getConnection())->error) {
@@ -191,22 +201,20 @@ if(isset($_GET['heronames'])) {
         $db->query('DELETE FROM hero_team_hero WHERE hero_team_id = '.$data['id']);
         $setId = $data['id'];
     } else {
-
-        $db->query('INSERT INTO hero_team (name,description) VALUES (
-            "'.$data['name'].'", "'.$data['description'].'"
+        $db->query('INSERT INTO hero_team (name,description,pet_name) VALUES (
+            "'.$data['name'].'", "'.$data['description'].'", "'.$data['pet'].'"
         )');
         $setId = $db->insertId();
     }
 
     if($setId) {
-        $names = implode(',', array_map(
-            function($h) { return '"'.$h.'"'; }, 
-            $data['heroes']
-        ));
+        $inserts = [];
+        foreach($data['heroes'] as $i => $h) {
+            $inserts[] = '('.$setId.', (SELECT hero_id FROM hero WHERE name = "'.$h.'"), "'.$data['pets'][$i].'")';
+        }
         $sql = '
-            INSERT INTO hero_team_hero (hero_team_id, hero_id)
-            SELECT '.$setId.', hero_id FROM hero WHERE name IN ('.$names.')
-        ';
+            INSERT INTO hero_team_hero (hero_team_id, hero_id, pet_name) VALUES
+            '.implode(',', $inserts);
         $db->query($sql);
     } else {
         throw new Exception('not saved');

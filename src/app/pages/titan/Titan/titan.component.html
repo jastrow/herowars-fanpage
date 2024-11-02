@@ -2,8 +2,18 @@
     <!--<app-subnav [definedRoute]="'titan'"></app-subnav>-->
     <ng-container *ngIf="titan$ | async as titan">
 
+        <div class="heroimage">
+            <img class="heroimg" src="{{getSkinUrl()}}">
+            <div class="scrollhero" *ngIf="titan.skins.length">
+                <p-button icon="pi pi-arrow-circle-left" [rounded]="true" [text]="true" (click)="prevSkin()"/>
+                <span>{{getSkinName()}}</span>
+                <p-button icon="pi pi-arrow-circle-right" [rounded]="true" [text]="true" (click)="nextSkin()"/>
+            </div>
+        </div>
+
+        <!--
         <div class="titanimage">
-            <img class="titanimg" src="{{getSkinUrl()}}">
+            <img class="titanimg" [src]="getSkinUrl()">
             <div class="scrolltitan" *ngIf="titan.skins.length">
                 <button
                     type="button"
@@ -15,7 +25,7 @@
                     (click)="nextSkin()"
                 ></button>
             </div>
-        </div>
+        </div>-->
 
         <h1>{{titan.name}}</h1>
 
@@ -27,15 +37,17 @@
 
         <p [innerHTML]="titan.description"></p>
 
-        <p style="margin-top:2em" *ngIf="auth$ | async">
-            <button
+        <p class="flex" style="margin-top:2em; gap:1em;" *ngIf="auth$ | async">
+            <p-button label="Bearbeiten"
                 type="button"
-                (click)="navEdit()"
-            >Bearbeiten</button>
-            <button
+                [routerLink]="['/titan/edittitan/'+titan.name]"
+            />
+            <p-button label="Löschen"
                 type="button"
-                (click)="deleteTitan()"
-            >Löschen</button>
+                (onClick)="confirm1($event)"
+            />
+            <p-toast />
+            <p-confirmDialog />        
         </p>
 
     </ng-container>
@@ -43,14 +55,12 @@
 
 
 
-<ng-template #deleteModal let-observer>
+<ng-template>
     <p>Wirklich löschen?</p>
     <button
         type="button"
-        (click)="withdraw()"
     >Löschen</button>
     <button
         type="button"
-        (click)="observer.complete()"
     >Abbrechen</button>
 </ng-template>

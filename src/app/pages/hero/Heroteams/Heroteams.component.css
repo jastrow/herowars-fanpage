@@ -2,6 +2,41 @@
   display: block;
 }
 
-td {
-  color: black;
+.hero {
+  display: flex;
+  gap: 0.3em;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-end;
+
+  border: 0px solid black;
+  color: gray;
+  width: 80px;
+  height: 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
 }
+.heroname {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  text-align: center;
+  padding: 0.2em 0 0 0;
+  width: 80px;
+}
+.hname {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 0.2em 0 0 0;
+}
+.description {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  padding: 1em;
+}
+.openteam, .closeteam { cursor: pointer; }
+.openteam:hover, .closeteam:hover { background-color: darkred; }
+.size15 { font-size: 1.5em; padding-top: 0.5em;}

@@ -1,44 +1,42 @@
 <div class="flex2">
 
-    <div class="flexFirst">
 
-        <button
-            type="button"
-            [routerLink]="['/welcome']"
-            title="Startseite"
-            >Home</button>
 
-        <div class="topNavLogo" style="display: inline-block;font-size: 2em;">GLUECKSRITTER</div>
 
+    <div class="flexFirst" style="padding-left: 2em;">
+        <div class="topNavLogo" 
+            style="display: inline-block;font-size: 2em;cursor: pointer;" 
+            [routerLink]="['/']">GLUECKSRITTER</div>
     </div>
 
     <div class="flexLast">
 
-        <button
-            type="button"
-            [routerLink]="['/titan/titans']"
-        >Titanen</button>
+        <p-menubar [model]="items">
+            <ng-template pTemplate="item" let-item>
+                <ng-container *ngIf="item.route; else urlRef">
+                    <a [routerLink]="item.route" class="p-menuitem-link">
+                        <span [class]="item.icon"></span>
+                        <span class="ml-2">{{ item.label }}</span>
+                    </a>
+                </ng-container>
+                <ng-template #urlRef>
+                    <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menuitem-link">
+                        <span [class]="item.icon"></span>
+                        <span class="ml-2">{{ item.label }}</span>
+                    </a>
+                </ng-template>
+                <ng-template #noLink>
+                    <div class="p-menuitem-link">
+                        <span [class]="item.icon"></span>
+                        <span class="ml-2">{{ item.label }}</span>
+                        <span class="pi pi-fw pi-angle-down ml-2"></span>
+                    </div>
+                </ng-template>
+            </ng-template>
+        </p-menubar>
 
-        <button
-            type="button"
-            [routerLink]="['/hero/heroes']"
-        >Helden</button>
-
-        <button
-            type="button"
-            [routerLink]="['/page/Mitglieder']"
-        >Gilde</button>
-
-        <button *ngIf="!(auth$ | async)" 
-            type="button"
-            [routerLink]="['/login']"
-            ></button>
-
-        <button *ngIf="auth$ | async" 
-            type="button"
-            (click)="logout()"
-            title="Abmelden"
-            ></button>
+        <p-button icon="pi pi-lock" severity="info" *ngIf="!(auth$ | async)" [routerLink]="['/login']" />
+        <p-button icon="pi pi-lock-open" severity="info" *ngIf="auth$ | async" (click)="logout()" />
 
     </div>
 

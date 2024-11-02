@@ -1,19 +1,12 @@
 <div class="content">
-    <app-subnav [definedRoute]="'hero'"></app-subnav>
     <ng-container *ngIf="hero$ | async as hero">
 
         <div class="heroimage">
             <img class="heroimg" src="{{getSkinUrl()}}">
             <div class="scrollhero" *ngIf="hero.skins.length">
-                <button
-                    type="button"
-                    (click)="prevSkin()"
-                ></button>
+                <p-button icon="pi pi-arrow-circle-left" [rounded]="true" [text]="true" (click)="prevSkin()"/>
                 <span>{{getSkinName()}}</span>
-                <button
-                    type="button"
-                    (click)="nextSkin()"
-                ></button>
+                <p-button icon="pi pi-arrow-circle-right" [rounded]="true" [text]="true" (click)="nextSkin()"/>
             </div>
         </div>
 
@@ -38,16 +31,17 @@
         <h2 style="margin-top: 1em;">Glyphen Priorität</h2>
         <div class="chip" *ngFor="let glyph of hero.glyphs">{{glyph}}</div>
 
-        <p style="margin-top:2em" *ngIf="auth$ | async">
-            <button
+        <p class="flex" style="margin-top:2em; gap:1em;" *ngIf="auth$ | async">
+            <p-button label="Bearbeiten"
                 type="button"
                 [routerLink]="['/hero/hero/edithero/'+hero.name]"
-                style="margin-right: 1em;"
-            >Bearbeiten</button>
-            <button
+            />
+            <p-button label="Löschen"
                 type="button"
-                (click)="deleteHero()"
-            >Löschen</button>
+                (onClick)="confirm1($event)"
+            />
+            <p-toast />
+            <p-confirmDialog />        
         </p>
 
     </ng-container>

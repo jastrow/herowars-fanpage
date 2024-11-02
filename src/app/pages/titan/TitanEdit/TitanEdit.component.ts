@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TitanService } from '../titan.service';
+import { IPrimeNGSelectOption, TitanService } from '../titan.service';
 import { Observable, Subscription, catchError, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
@@ -36,8 +36,11 @@ export class TitanEditComponent implements OnInit {
   private titanName: string | null = null;
   
   public positions = [
-    'Vorne', 'Hinten', 'Mitte'
+    {name: 'Vorne', code: 'Vorne'},
+    {name: 'Hinten', code: 'Hinten'},
+    {name: 'Mitte', code: 'Mitte'},
   ];
+
 
 
   public skins: ISkin[] = [];
@@ -46,25 +49,11 @@ export class TitanEditComponent implements OnInit {
   public form = new FormGroup({
     titan_id: new FormControl<string>(''),
     name: new FormControl<string>(''),
-    position: new FormControl<string>(''),
-    tierlist: new FormControl<string>(''),
-    funktion: new FormControl<string>(''),
-    funktion2: new FormControl<string>(''),
+    position: new FormControl<IPrimeNGSelectOption>({code:'',name:''}),
+    tierlist: new FormControl<IPrimeNGSelectOption>({code:'',name:''}),
+    funktion: new FormControl<IPrimeNGSelectOption>({code:'',name:''}),
+    funktion2: new FormControl<IPrimeNGSelectOption>({code:'',name:''}),
     description: new FormControl<string>(''),
-    skin1: new FormControl<string>(''),
-    skin2: new FormControl<string>(''),
-    skin3: new FormControl<string>(''),
-    skin4: new FormControl<string>(''),
-    skin5: new FormControl<string>(''),
-    skin6: new FormControl<string>(''),
-    glyph1: new FormControl<string>(''),
-    glyph2: new FormControl<string>(''),
-    glyph3: new FormControl<string>(''),
-    glyph4: new FormControl<string>(''),
-    glyph5: new FormControl<string>(''),
-    artefact1: new FormControl<string>(''),
-    artefact2: new FormControl<string>(''),
-    artefact3: new FormControl<string>(''),
   });
 
   ngOnInit(): void {
@@ -76,12 +65,12 @@ export class TitanEditComponent implements OnInit {
             this.service.getTitanByName(params['id'], true).subscribe(d => {
               this.titanId = d.titan_id ? d.titan_id : null;
               this.form.get('name')?.setValue(d.name);
-              this.form.get('position')?.setValue(d.position);
-              this.form.get('tierlist')?.setValue(d.tierlist);
+              this.form.get('position')?.setValue({code:d.position,name:d.position});
+              this.form.get('tierlist')?.setValue({code:d.tierlist,name:d.tierlist});
               this.form.get('description')?.setValue(d.description);
               const funk = d.funktion.split(',');
-              if(funk[0]) this.form.get('funktion')?.setValue(funk[0]);
-              if(funk[1]) this.form.get('funktion2')?.setValue(funk[1]);
+              if(funk[0]) this.form.get('funktion')?.setValue({code:funk[0],name:funk[0]});
+              if(funk[1]) this.form.get('funktion2')?.setValue({code:funk[1],name:funk[1]});
             });
           }
         }),
@@ -96,9 +85,9 @@ export class TitanEditComponent implements OnInit {
     let data = {
       titan_id: this.titanId,
       name: fdata.name,
-      position: fdata.position,
-      tierlist: fdata.tierlist,
-      funktion: fdata.funktion + (fdata.funktion2 ? ', '+fdata.funktion2 : ''),
+      position: fdata.position?.code,
+      tierlist: fdata.tierlist?.code,
+      funktion: fdata.funktion?.code + (fdata.funktion2?.code ? ', '+fdata.funktion2?.code : ''),
       description: fdata.description,
     };
 
@@ -110,7 +99,7 @@ export class TitanEditComponent implements OnInit {
   }
 
   public abbrechen() {
-    this.router.navigate(['/titan/titan/'+this.titanName]);
+    this.router.navigate(['/titan/'+this.titanName]);
   }
 
  }

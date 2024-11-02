@@ -2,42 +2,59 @@
   <div></div>
 
     <h1>Login</h1>
-    &nbsp;<br>
 
     <div *ngIf="!(auth$ | async)">
-      <form
-      class="b-form"
-      [formGroup]="form">
-      <p>
-              Deine Email
-              <input type="email">
-      </p>
-      <p>
-            Dein Passwort
-            <input type="password">
-      </p>
-      <button
-        type="button"
-        (click)="sendlogin()">Anmelden</button>
-      </form>
-      <button
-        type="button"
-        [routerLink]="['/passwordrecover']">Passwort vergessen?</button>
+      <form class="d-flex flex-column mb10" style="gap:2em;" [formGroup]="form">
 
-      <div *ngIf="loginErr()"
-          size="l"
-          status="warning"
-          (close)="(0)">
-          Fehler bei der Anmeldung!
-      </div>
+        <div class="row">
+          <div class="col">
+
+            <p-floatLabel>
+              <input pInputText id="email" formControlName="email" />
+              <label for="email">E-Mail</label>
+            </p-floatLabel>
       
+          </div>
+          <div class="col">
+
+            <p-floatLabel>
+              <p-password formControlName="pass" [feedback]="false" />
+              <label for="pass">Password</label>
+            </p-floatLabel>
+            
+          </div>
+        </div>
+
+        <div class="row" *ngIf="loginErr()">
+          <div class="col">
+            <div size="l"
+                status="warning"
+                (close)="(0)">
+                Fehler bei der Anmeldung!
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col">
+            <p-button 
+              label="Anmelden" 
+              icon="pi pi-check" 
+              [loading]="loading" 
+              (onClick)="sendlogin()" />
+          </div>
+          <div class="col">
+            <p-button label="Passwort vergessen?" [routerLink]="['/passwordrecover']" />
+          </div>
+        </div>
+
+      </form>
     </div>
 
     <div *ngIf="auth$ | async">
       <p>Sie sind angemeldet.</p>
-      <button
-      type="button"
-      (click)="logout()">Abmelden</button>
+      <p-button label="Abmelden" (click)="logout()" />
     </div>
 
 </div>

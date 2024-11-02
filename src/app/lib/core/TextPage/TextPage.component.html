@@ -1,12 +1,8 @@
 <div class="content" *ngIf="page$ | async as page">
-    <app-subnav [definedRoute]="(subnav$ | async) ?? ''"></app-subnav>
     <h1>{{page.name}}</h1>
     <ng-container *ngIf="!(editMode$ | async); else showeditor">
         <div [innerHTML]="page.html"></div>
-
-        <button 
-            *ngIf="auth$ | async"
-            >Bearbeiten</button>
+        <p-button *ngIf="auth$ | async" label="Bearbeiten" type="button" (click)="editMode$.next(true)" />
     </ng-container>
 
     <ng-template #showeditor>
@@ -17,10 +13,9 @@
                 toolbar: 'undo redo bold blocks forecolor hr aligncenter alignleft alignright numlist bullist image link unlink table'
             }"
             [(ngModel)]="html.value"></editor>
-            
-        <button type="button" 
-            (click)="save()">Speichern</button>
-        <button type="button" 
-            (click)="editMode$.next(false)">Abbrechen</button>
+        <div class="mt20 flex">
+            <p-button type="button" label="Speichern" (click)="save()" />
+            <p-button type="button" label="Abbrechen" (click)="editMode$.next(false)" />
+        </div>    
     </ng-template>
 </div>
