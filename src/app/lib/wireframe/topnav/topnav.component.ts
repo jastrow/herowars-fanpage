@@ -49,10 +49,6 @@ export class TopnavComponent {
       icon: 'pi pi-home',
       items: [
         {
-          label: 'Gildenkrieg',
-          route: '/gildenkrieg'
-        },
-        {
           label: 'Regeln',
           route: '/page/Regeln'
         },
