@@ -21,7 +21,7 @@ Das Projekt wurde mit Version 16 aufgesetzt und später geupdated auf 17.
 # Packete
 
 Es kommen folgende Pakete zum Einsatz:
-NgRx, NgXs, RxJs, Taiga-UI, Bootstrap
+NgRx, NgXs, RxJs, PrimeNg, Material, Bootstrap (erste Version mit Taiga-UI, aber hat noch einige Bugs)
 
 # Disclaimer
 
