@@ -1,8 +1,5 @@
 <div class="flex2">
 
-
-
-
     <div class="flexFirst" style="padding-left: 2em;">
         <div class="topNavLogo" 
             style="display: inline-block;font-size: 2em;cursor: pointer;" 
@@ -35,8 +32,8 @@
             </ng-template>
         </p-menubar>
 
-        <p-button icon="pi pi-lock" severity="info" *ngIf="!(auth$ | async)" [routerLink]="['/login']" />
-        <p-button icon="pi pi-lock-open" severity="info" *ngIf="auth$ | async" (click)="logout()" />
+        <p-button icon="pi pi-lock" severity="info" *ngIf="!(auth$ | async)" [routerLink]="['/login']" size="small" />
+        <p-button icon="pi pi-lock-open" severity="info" *ngIf="auth$ | async" (click)="logout()" size="small" />
 
     </div>
 

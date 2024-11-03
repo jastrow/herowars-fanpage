@@ -137,9 +137,25 @@ app-topnav .p-element .p-menubar { padding:0; }
 .p-menuitem-link { gap: 0.3em; }
 
 .flex { display: inline-flex; gap: 0.3em; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-space-between { justify-content: space-between; }
 .gap05 { gap: 0.5em; }
 .gap10 { gap: 1em; }
 .gap15 { gap: 1.5em; }
 .gap20 { gap: 2em; }
 .gap25 { gap: 2.5em; }
 .gap30 { gap: 3.0em; }
+
+/* PrimeNG Bug, Menü Element in Flex */
+.p-menubar.p-menubar-mobile-active .p-menubar-root-list {
+    width: auto !important;
+}
+
+/* Changes Handy */
+@media screen and (max-width:650px) {
+    .content {
+        width: 100%;
+        padding: 1em;
+        padding-top: 5em;
+    }
+}

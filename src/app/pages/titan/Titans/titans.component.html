@@ -25,7 +25,7 @@
             </div>
         </form>
 
-        <div *ngIf="filtered$ | async as titans">
+        <div *ngIf="filtered$ | async as titans" class="flex flex-wrap flex-space-between">
             <div 
                 *ngFor="let titan of titans" 
                 [routerLink]="['/titan/titan/', titan]" 

@@ -38,3 +38,15 @@
 .flexLast {
   justify-content: flex-end;
 }
+
+
+/* Changes Handy 
+   PrimeNG Burger-Menü leider nur links möglich */
+@media screen and (max-width:650px) {
+  .flexFirst {
+    order: 2;
+  }
+  .flexLast {
+    order: 1;
+  }
+}

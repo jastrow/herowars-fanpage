@@ -12,14 +12,14 @@
                 <ng-container *ngFor="let item of teams; let index = index">
                     <tr><td class="yellow-protest size15">{{ item.name }}</td></tr>
                     <tr *ngIf="item.id !== showId">
-                        <td class="flex">
+                        <td class="flex flex-wrap">
                             <div class="heroname" *ngFor="let h of item.heroes">{{ h }}</div>
                             <div class="heroname">{{item.pet}}</div>
                             <div class="heroname openteam" (click)="showTeam(item.id)"><span class="pi pi-chevron-down"></span></div>
                         </td>
                     </tr>
                     <tr *ngIf="item.id === showId">
-                        <td class="flex">
+                        <td class="flex flex-wrap">
                             <div *ngFor="let h of item.heroes; let i = index"
                                 [routerLink]="['/hero/hero/', h]" 
                                 class="hero" 
@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="item.id === showId && petsExist(item.pets)">
-                        <td class="flex">
+                        <td class="flex flex-wrap">
                             <div *ngFor="let h of item.pets; let i = index"
                                 class="hero" 
                                 [ngStyle]="{'background-image': getPetUrl(h)}">
