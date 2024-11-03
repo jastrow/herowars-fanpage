@@ -13,19 +13,19 @@
             <div class="grid gridlink">
                <div [routerLink]="['/hero/heroes']">
                   <h2>Helden</h2>
-                  Tipps zu den Helden im Spiel und Rankings.
+                  Tipps zu den Helden im Spiel und Rankings, diverse Teams und Titanen.
                </div>
                <div [routerLink]="['/page/Mitglieder']">
                   <h2>Gilde</h2>
-                  Über Uns, Regeln und Vorteile der Gildenaktivität.
+                  Über Uns, Regeln und Vorteile der Gildenaktivität wie auch Tipps und Tricks.
                </div>
                <div [routerLink]="['/page/Abenteuer']">
                   <h2>Abenteuer</h2>
-                  Karten und Wege die jeder nehmen sollte.
+                  Karten und Wege die jeder nehmen sollte, damit alle Truhen erreicht werden.
                </div>
-               <div [routerLink]="['/page/Tipps']">
-                  <h2>Weiteres</h2>
-                  Weitere Informationen rund ums Spiel.
+               <div *ngIf="giftLinks | async as gl" class="nohover">
+                  <h2>Gifts</h2>
+                  <div *ngFor="let g of gl" [innerHTML]="g"></div>
                </div>
             </div>
          </div>

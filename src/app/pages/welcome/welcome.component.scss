@@ -78,6 +78,12 @@
 .mb10 { margin-bottom: 1.0em; }
 .mt10 { margin-top: 1.0em; }
 
+.giftlinks {
+  color: #D6AB08 !important;
+  text-decoration: none;
+}
+.giftlinks:hover { color: red !important; }
+
 /* ########################################################################### 
 GRID
 #########################################################################*/
@@ -111,8 +117,14 @@ GRID
 .gridlink {
   cursor: pointer;
 }
+.gridlink > div.nohover {
+  cursor: auto;
+}
 .gridlink > div:hover {
-  background: linear-gradient(180deg, rgba(200,0,0,1) 0%, rgba(200,0,0,0) 100%);
+    background: linear-gradient(180deg, rgba(200,0,0,1) 0%, rgba(200,0,0,0) 100%);
+}
+.gridlink > div.nohover:hover {
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
 @media screen and (max-width:650px) {
