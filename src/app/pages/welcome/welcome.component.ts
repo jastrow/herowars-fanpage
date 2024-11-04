@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { WelcomeService } from './welcome.service';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -14,6 +14,7 @@ export class WelcomeComponent implements OnInit {
   private service = inject(WelcomeService);
   private sanitizer = inject(DomSanitizer);
   public giftLinks = new BehaviorSubject<SafeHtml[]>([]);
+  public giftsLoaded = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {
     this.service.getLinks().subscribe(links => {
@@ -22,6 +23,7 @@ export class WelcomeComponent implements OnInit {
           newHtml.push(this.sanitizer.bypassSecurityTrustHtml(t));
         });
         this.giftLinks.next(newHtml);
+        this.giftsLoaded.next(true);
       }
     );
   }

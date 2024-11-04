@@ -23,10 +23,21 @@
                   <h2>Abenteuer</h2>
                   Karten und Wege die jeder nehmen sollte, damit alle Truhen erreicht werden.
                </div>
+               @if(giftsLoaded | async) {
                <div *ngIf="giftLinks | async as gl" class="nohover">
                   <h2>Gifts</h2>
                   <div *ngFor="let g of gl" [innerHTML]="g"></div>
                </div>
+               }
+               @else {
+                  <div class="nohover">
+                     <h2>Gifts Load</h2>
+                     <div style="text-align: center;">
+                        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i><br>
+                        Lade offizielle Hero Wars Gifts
+                     </div>
+                  </div>
+                  }
             </div>
          </div>
       </div>

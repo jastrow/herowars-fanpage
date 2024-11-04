@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-password-recover',
   templateUrl: './PasswordRecover.component.html',
-  styleUrl: './PasswordRecover.component.css',
+  styleUrl: './PasswordRecover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordRecoverComponent {

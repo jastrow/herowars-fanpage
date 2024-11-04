@@ -10,7 +10,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-text-page',
   templateUrl: './TextPage.component.html',
-  styleUrl: './TextPage.component.css',
+  styleUrl: './TextPage.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextPageComponent {

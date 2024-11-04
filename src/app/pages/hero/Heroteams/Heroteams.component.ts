@@ -8,7 +8,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-heroteams',
   templateUrl: './Heroteams.component.html',
-  styleUrl: './Heroteams.component.css',
+  styleUrl: './Heroteams.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroteamsComponent implements OnInit {
