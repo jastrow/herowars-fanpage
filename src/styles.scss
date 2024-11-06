@@ -1,5 +1,10 @@
 @charset "utf-8"; 
-@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+@font-face {
+    font-family: 'Protest Strike';
+    src: url('/assets/Protest_Strike/ProtestStrike-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 // ========================================================
 // BOOTSTRAP CSS ==========================================
@@ -10,15 +15,15 @@
 @import "node_modules/bootstrap/scss/maps";
 @import "node_modules/bootstrap/scss/mixins";
 @import "node_modules/bootstrap/scss/utilities";    
-//// Layout & components
+// Layout & components
 //@import "node_modules/bootstrap/scss/root";
 //@import "node_modules/bootstrap/scss/reboot";
-//// Layout & components
+// Layout & components
 //@import "node_modules/bootstrap/scss/containers";
 @import "node_modules/bootstrap/scss/grid";
 //@import "node_modules/bootstrap/scss/tables";
 //@import "node_modules/bootstrap/scss/forms";
-//// Helpers
+// Helpers
 //@import "node_modules/bootstrap/scss/helpers";
 // Utilities
 //@import "node_modules/bootstrap/scss/utilities/api";
@@ -40,6 +45,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    background-color: black;
 }
 
 @mixin protest {

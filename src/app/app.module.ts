@@ -36,6 +36,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
+import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component';
 
  
 @NgModule({
@@ -45,6 +46,7 @@ import { DropdownModule } from 'primeng/dropdown';
         TopnavComponent,
         FooterComponent,
         LoginComponent,
+        ChangeUserComponent,
         TextPageComponent,
         PasswordRecoverComponent,
     ],

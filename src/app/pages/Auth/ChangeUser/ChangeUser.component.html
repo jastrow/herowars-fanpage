@@ -1,0 +1,54 @@
+
+<div class="content">
+
+  <h1>Meine Daten ändern</h1>
+      
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col">
+        <p-floatLabel>
+          <input pInputText id="name" formControlName="name" />
+          <label for="name">Benutzername</label>
+        </p-floatLabel>
+      </div>
+      <div class="col">
+        <p-floatLabel>
+          <input pInputText id="email" formControlName="email" />
+          <label for="email">E-Mail</label>
+        </p-floatLabel>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Wenn Sie Ihre E-Mail ändern, dann werden die Änderungen erst nach Überprüfung geändert.<br>
+        Das Passwort wird nur geändert, wenn Sie hier ein neues eingeben.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p-floatLabel>
+          <p-password id="pass" formControlName="pass" />
+          <label for="pass">Passwort</label>
+        </p-floatLabel>
+      </div>
+      <div class="col">
+        <p-floatLabel>
+          <p-password id="pass2" formControlName="pass2" />
+          <label for="pass2">Wiederholung</label>
+        </p-floatLabel>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p-button label="Ändern" (click)="send()" />
+      </div>
+      <div class="col">
+        <p-button label="Abbrechen" [routerLink]="['/login']" />
+      </div>
+    </div>
+  </form>
+
+</div>

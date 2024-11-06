@@ -43,4 +43,10 @@ export class LoginService {
     );
   }
 
+  public getMyData() {
+    return this.http.get<any>(this.env.apiUrl+'/login.php?mydata=1');
+  }
+  public setMyData(data: any) {
+    return this.http.post<any>(this.env.apiUrl+'/login.php?setmydata=1', data);
+  }
 }

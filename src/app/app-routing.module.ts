@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 import { TextPageComponent } from '@lib/core/TextPage/TextPage.component';
+import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'passwordrecover',
     component: PasswordRecoverComponent,
+  },
+  {
+    path: 'changeuser',
+    component: ChangeUserComponent,
   },
   {
     path: 'page/:id',

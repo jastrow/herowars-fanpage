@@ -94,4 +94,16 @@ function passGen($signs = 8) {
     return $pass;
 }
 
+function checkPass($pass) {
+    $signs = str_split($pass);
+    if(count($signs) < 8) { return FALSE; }
+    $num = $up = $down = 0;
+    foreach($signs as $s) {
+       if(ctype_digit($s)) { $num++; }
+       if(ctype_upper($s)) { $up++; }
+       if(ctype_lower($s)) { $down++; }
+    }
+    return $num && $up && $down;
+ }
+
 ?>

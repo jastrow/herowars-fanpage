@@ -93,10 +93,62 @@ if(isset($_GET['changepassword']) && isset($_GET['token'])) {
     echo json_encode(['status' => 'ok']); exit;
 }
 
+if(isset($_GET['mydata'])) {
+    checkSession();
+    $db = DB::getDB();
+    $data = ['name' => null, 'email' => null];
+
+    $rs = $db->query('SELECT name, email FROM user WHERE php_session = "'.addslashes(getBearerToken()).'"');
+    if($rs->num_rows) {
+        $row = $rs->fetch_assoc();
+        $data = ['name' => $row['name'], 'email' => $row['email']];
+    }
+    echo json_encode($data);
+}
+
+if(isset($_GET['setmydata'])) {
+    checkSession();
+    $data = getJsonPayload();
+    $db = DB::getDB();
+    $error = [];
+
+    if(!isset($data['email'])) { $error['email'] = 'Sie haben keine Email angegeben'; }
+    if(!isset($data['name'])) { $error['name'] = 'Sie haben keinen Namen angegeben'; }
+    if(isset($data['pass']) && $data['pass']) { 
+        if($data['pass'] !== $data['pass2']) {
+            $error['pass'] = 'Passwörter stimmen nicht überein'; 
+        } else if (!checkPass($data['pass'])) {
+            $error['pass'] = 'Ungültiges Passwort'; 
+        }
+    }
+    $rs = $db->query('SELECT name, email FROM user WHERE php_session = "'.addslashes(getBearerToken()).'"');
+    if($rs->num_rows) {
+        $row = $rs->fetch_assoc();
+    } else {
+        $error['user'] = 'Keine gültige Anmeldung gefunden';
+    }
+    if($error) { echo json_encode($error); exit; }
+
+    // Auf Zwischenspeichern und Verfizierungsemail senden, wird in diesem Projekt verzichtet.
+
+    $set = [];
+    if($data['email'] !== $row['email']) { $set[] = 'email = "'.addslashes($data['email']).'"'; }
+    if($data['name'] !== $row['name']) { $set[] = 'name = "'.addslashes($data['name']).'"'; }
+    if(isset($data['pass']) && $data['pass']) { $set[] = 'pass = MD5("'.addslashes($data['pass']).'")'; }
+    if($set) {
+        $sql = 'UPDATE user SET '.implode(',', $set).' WHERE php_session = "'.addslashes(getBearerToken()).'"';
+        $rs = $db->query($sql);
+        $con = $db->getConnection();
+        if (!$con->affected_rows || $con->error) {
+            throw new Exception('not changed');
+        }    
+    }
+    echo json_encode(['status' => 'ok']); exit;
+}
 
 //var_dump($_POST);
 //var_dump($_GET);
-echo 'test OK';
+//echo 'test OK';
 //header("HTTP/1.1 400 Bad Request");
 
 ?>

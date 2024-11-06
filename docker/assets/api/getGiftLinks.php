@@ -13,20 +13,27 @@ foreach($json->data as $keyNr => $new) {
 	$dataJ = json_decode($data);
 	foreach($dataJ->data->attributes->body as $body) {
 		$html = $body->data->text;
-		preg_match('/<a.*gift_id.*<\/a>/', $html, $hits);
+		preg_match('/<a.*href="(.*gift_id.*)".*>(.*)<\/a>/', $html, $hits);
+		//echo '<pre>'.print_r($hits, true).'</pre>';
 		if($hits && count($giftLinks) < 3) {
-			$giftLinks = array_merge($giftLinks, $hits);
+			$giftLinks[] = '<a target="_blank" class="giftlinks" href="'.$hits[1].'">'.filter($hits[2]).'</a>';
 		}
 	}
 	if($keyNr > 3) { break; }
 }
 
-function delText($t) {
-    $n = trim(str_replace(['CLICK HERE to get ', 'the'], '', $t));
-    $n = str_replace('<a', '<a target="_blank" class="giftlinks"', $n);
-	return $n;
+function filter($txt) {
+	$filter = ['click', 'here', 'to', 'get', 'and', '!', '.'];
+    $words = explode(' ', $txt);
+    $newWords = [];
+    foreach($words as $w) {
+    	$w = str_replace('!','',$w);
+    	if (in_array(mb_strtolower($w), $filter)) { continue; }
+    	$newWords[] = $w;
+    }
+    return implode(' ', $newWords);
 }
 
-echo json_encode(array_map('delText',$giftLinks));
+echo json_encode($giftLinks);
 
 ?>

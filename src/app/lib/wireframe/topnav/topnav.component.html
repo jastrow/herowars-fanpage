@@ -33,7 +33,7 @@
         </p-menubar>
 
         <p-button icon="pi pi-lock" severity="info" *ngIf="!(auth$ | async)" [routerLink]="['/login']" size="small" />
-        <p-button icon="pi pi-lock-open" severity="info" *ngIf="auth$ | async" (click)="logout()" size="small" />
+        <p-button icon="pi pi-lock-open" severity="info" *ngIf="auth$ | async" [routerLink]="['/login']" size="small" />
 
     </div>
 

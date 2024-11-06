@@ -1,5 +1,4 @@
 <div class="content">
-  <div></div>
 
     <h1>Login</h1>
 
@@ -54,7 +53,14 @@
 
     <div *ngIf="auth$ | async">
       <p>Sie sind angemeldet.</p>
-      <p-button label="Abmelden" (click)="logout()" />
+      <div class="row">
+        <div class="col">
+          <p-button label="Abmelden" (click)="logout()" />
+        </div>
+        <div class="col">
+          <p-button label="Daten ändern" [routerLink]="['/changeuser']" />
+        </div>
+      </div>
     </div>
 
 </div>
