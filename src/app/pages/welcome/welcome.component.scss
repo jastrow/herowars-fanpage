@@ -12,6 +12,13 @@
   background-position: top;
 }
 
+.contentWelcome {
+  padding-top: 1em; 
+  height: auto; 
+  min-height: 0em; 
+  max-width: 800px;
+}
+
 .landingpage {
   display: flex;
   flex-direction: column;
