@@ -11,7 +11,7 @@ export class GlobalsettingsService {
   private backgroundImage$ = new BehaviorSubject<string>(this.STANDARD_IMAGE);
 
   constructor() {
-    let rand = Math.floor(Math.random() * this.posters.length) + 1;
+    let rand = Math.floor(Math.random() * this.posters.length);
     this.backgroundImage = '/assets/poster/' + this.posters[rand];
   }
 

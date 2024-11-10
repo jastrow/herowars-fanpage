@@ -37,8 +37,10 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component';
+import { ImprintComponent } from '@pages/imprint/imprint.component';
+import { KontaktComponent } from '@pages/Kontakt/Kontakt.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
- 
 @NgModule({
     declarations: [
         AppComponent,
@@ -49,6 +51,8 @@ import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component
         ChangeUserComponent,
         TextPageComponent,
         PasswordRecoverComponent,
+        ImprintComponent,
+        KontaktComponent,
     ],
     providers: [
         provideAnimationsAsync(),
@@ -96,6 +100,7 @@ import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component
         FloatLabelModule,
         PasswordModule,
         DropdownModule,
+        InputTextareaModule,
     ]
 })
 export class AppModule { }

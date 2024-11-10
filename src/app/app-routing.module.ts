@@ -7,6 +7,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { PasswordRecoverComponent } from '@pages/Auth/PasswordRecover/PasswordRecover.component';
 import { TextPageComponent } from '@lib/core/TextPage/TextPage.component';
 import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component';
+import { KontaktComponent } from '@pages/Kontakt/Kontakt.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'imprint',
     component: ImprintComponent,
+  },
+  {
+    path: 'kontakt',
+    component: KontaktComponent,
   },
   {
     path: 'hero',

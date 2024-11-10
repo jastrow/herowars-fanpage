@@ -1,0 +1,36 @@
+<div class="content">
+    <h1>Kontaktformular</h1>
+
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col" style="padding-top: 1em">
+                <p-floatLabel>
+                    <input id="email" type="text" pInputText formControlName="email" />
+                    <label for="email">Ihre E-Mail</label>
+                </p-floatLabel>
+                <div class="error" *ngIf="form.dirty && !form.controls.email.valid">
+                    Bitte geben Sie eine gültige E-Mail an.
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <span class="ml10">Ihre Nachricht:</span><br>
+                <textarea class="width100"
+                    rows="5"
+                    pInputTextarea 
+                    formControlName="content">
+                </textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p-button label="Abschicken" (click)="send()" [disabled]="!form.valid" />
+                <div class="error mt10" *ngIf="serverError$ | async">Der Server konnte die Email nicht senden. Probieren Sie es später noch einmal.</div>
+            </div>
+        </div>
+    </form>
+
+</div>

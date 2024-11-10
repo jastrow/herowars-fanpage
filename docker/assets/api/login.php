@@ -129,7 +129,7 @@ if(isset($_GET['setmydata'])) {
     }
     if($error) { echo json_encode($error); exit; }
 
-    // Auf Zwischenspeichern und Verfizierungsemail senden, wird in diesem Projekt verzichtet.
+    // Auf Zwischenspeichern und Verfizierungsemail senden, wurde in diesem FRONTEND Projekt verzichtet.
 
     $set = [];
     if($data['email'] !== $row['email']) { $set[] = 'email = "'.addslashes($data['email']).'"'; }
@@ -146,9 +146,23 @@ if(isset($_GET['setmydata'])) {
     echo json_encode(['status' => 'ok']); exit;
 }
 
-//var_dump($_POST);
-//var_dump($_GET);
-//echo 'test OK';
-//header("HTTP/1.1 400 Bad Request");
+if(isset($_GET['kontakt'])) {
+    $data = getJsonPayload();
+    var_dump($data);
+    $answer = ['status' => true, 'error' => []];
+    if(!isset($data['email']) || filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
+        $answer['error'][] = 'Keine gültige Email';
+    }
+    if(!isset($data['content']) || !trim($data['content'])) {
+        $answer['error'][] = 'Keine Text vorhanden';
+    }
+    $answer['status'] = !count($answer['error']);
+    if($answer['status']) {
+        if(!mail(FORMULAR_EMAIL, 'HW Formular', $data['email'] . "\r\n" . $data['content'])) {
+            throw new Exception('cant send email'); exit;
+        }
+    }
+    echo json_encode($answer);
+}
 
 ?>
