@@ -1,6 +1,7 @@
 <div class="content">
     <h1>Kontaktformular</h1>
 
+    @if(!(mailSend | async)) {
     <form [formGroup]="form">
         <div class="row">
             <div class="col" style="padding-top: 1em">
@@ -13,7 +14,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col">
                 <span class="ml10">Ihre Nachricht:</span><br>
@@ -28,9 +29,16 @@
         <div class="row">
             <div class="col">
                 <p-button label="Abschicken" (click)="send()" [disabled]="!form.valid" />
-                <div class="error mt10" *ngIf="serverError$ | async">Der Server konnte die Email nicht senden. Probieren Sie es später noch einmal.</div>
+                <div class="error mt10" *ngIf="serverError$ | async">
+                    Der Server konnte die Email nicht senden. Probieren Sie es später noch einmal.
+                </div>
+                <div class="error mt10" *ngIf="serverCheck$ | async as txt" [innerHTML]="txt"></div>
             </div>
         </div>
     </form>
+    }
+    @else {
+        <div>Vielen Dank für Ihre Email.</div>
+    }
 
 </div>

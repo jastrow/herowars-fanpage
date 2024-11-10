@@ -148,13 +148,12 @@ if(isset($_GET['setmydata'])) {
 
 if(isset($_GET['kontakt'])) {
     $data = getJsonPayload();
-    var_dump($data);
     $answer = ['status' => true, 'error' => []];
     if(!isset($data['email']) || filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
-        $answer['error'][] = 'Keine gültige Email';
+        $answer['error'][] = 'Keine gültige Email.';
     }
     if(!isset($data['content']) || !trim($data['content'])) {
-        $answer['error'][] = 'Keine Text vorhanden';
+        $answer['error'][] = 'Kein Text vorhanden.';
     }
     $answer['status'] = !count($answer['error']);
     if($answer['status']) {

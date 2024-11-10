@@ -17,13 +17,23 @@ export class KontaktComponent {
     content: new FormControl<string>('', [Validators.required]),
   })
   public serverError$ = new BehaviorSubject<boolean>(false);
+  public mailSend = new BehaviorSubject<boolean>(false);
+  public serverCheck$ = new BehaviorSubject<string>('');
 
   send() {
+    this.serverError$.next(false);
+    this.serverCheck$.next('');
     this.service.send(this.form.getRawValue()).pipe(
       catchError(err => {
         this.serverError$.next(true);
         return of(err.message);
       })
-    ).subscribe();
+    ).subscribe(d => {
+      if(d.status) {
+        this.mailSend.next(true);
+      } else {
+        this.serverCheck$.next(d.error.join(' '));
+      }
+    });
   }
 }
