@@ -13,6 +13,7 @@ export class ImprintComponent implements OnInit {
   public langService = inject(TranslateService);
 
   ngOnInit(): void {
+    this.langNow.next(this.langService.currentLang);
     this.langService.onLangChange.subscribe(d => {
       this.langNow.next(d.lang);
     })
