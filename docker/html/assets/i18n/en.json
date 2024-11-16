@@ -1,0 +1,49 @@
+{
+    "WELCOME_GILDE_H1": "The Guild",
+    "WELCOME_GILDE": "Our very young guild was founded on 02/03/2024 by Sasida. Just 8 days later, a great supporter of the guild, KueckenONE, joined. The core team was completed with Bull and Stellatro. It didn't take long for a few more nice members to join.",
+    "WELCOME_TOP10_H1": "Top 10 Members",
+    "WELCOME_TOP10": "We would like to mention the following active members here for their special contributions within the guild:<br><br>Bull, Sasida, Wolf, Ich_Binsch, LeOzzy, Oigenpuffel, Panello, Sigurd",
+    "WELCOME_REGELN_H1": "Rules",
+    "WELCOME_REGELN": "As in every guild, there are some desirable rules of conduct. We ask each member to read the following page and accept the guidelines of our guild.",
+    "WELCOME_DISCLAIMER_H1": "Disclaimer",
+    "WELCOME_DISCLAIMER": "Fan page for HERO WARS: DOMINION ERA<br>This content is not affiliated with NEXTERS, is not endorsed, sponsored, or approved by NEXTERS, and NEXTERS assumes no responsibility for it.",
+    "WELCOME_HELDEN_H1": "Heroes",
+    "WELCOME_HELDEN": "Tips on the heroes in the game, rankings, various teams, and titans.",
+    "WELCOME_GILD_H1": "Guild",
+    "WELCOME_GILD": "About Us, rules, and benefits of guild activity, as well as tips and tricks.",
+    "WELCOME_ADVENTURE_H1": "Adventure",
+    "WELCOME_ADVENTURE": "Maps and paths everyone should take to reach all chests.",
+    "WELCOME_GIFT_H1": "Load Gifts",
+    "WELCOME_GIFT": "Load official Hero Wars gifts.",
+
+    "FOOTER_IMPRESSUM": "Imprint",
+    "FOOTER_KONTAKT": "Contact",
+    "FOOTER_HW": "Non commercial Fansite of Hero Wars",
+
+    "HEROES_H1": "Heroes Overview",
+    "HEROES_FILTER_KLASSE": "Filter Class",
+    "HEROES_HINZUFUEGEN": "Add Hero",
+
+
+    "HERO_EDIT_1": "Hero's Name",
+    "HERO_EDIT_2": "Battle Position",
+    "HERO_EDIT_3": "Choose Position",
+    "HERO_EDIT_4": "Tier List",
+    "HERO_EDIT_5": "Rank in Tier List",
+    "HERO_EDIT_6": "Class",
+    "HERO_EDIT_7": "Hero's Class",
+    "HERO_EDIT_8": "Secondary Class",
+    "HERO_EDIT_9": "Hero's Secondary Class",
+    "HERO_EDIT_10": "Notes & Tips",
+    "HERO_EDIT_11": "Skin & Priority",
+    "HERO_EDIT_12": "Glyphs & Priority",
+    "HERO_EDIT_13": "Artifact Priority",
+    "HERO_H1_EDIT": "Edit Hero",
+    "HERO_H1_ADD": "Create Hero",
+
+    
+    "BEARBEITEN": "Edit",
+    "SPEICHERN": "Save",
+    "ABBRECHEN": "Cancel"
+
+}

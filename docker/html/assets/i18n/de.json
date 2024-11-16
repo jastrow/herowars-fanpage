@@ -1,0 +1,48 @@
+{
+    "WELCOME_GILDE_H1": "Die Gilde",
+    "WELCOME_GILDE": "Unsere sehr junge Gilde ist am 03.02.2024 von Sasida gegründet worden. Schon 8 Tage später kam eine große Stütze der Gilde dazu KueckenONE. Abgerundet wurde der innere Kern mit Bull und Stellatro. Es dauerte nicht lange, bis einige weitere nette Mitglieder dazu kamen.",
+    "WELCOME_TOP10_H1": "Top10 Mitglieder",
+    "WELCOME_TOP10": "Folgende aktive Mitglieder möchten wir hier durch besondere Aktivitäten innerhalb der Gilde erwähnen:<br><br>Bull, Sasida, Wolf, Ich_Binsch, LeOzzy, Oigenpuffel, Panello, Sigurd",
+    "WELCOME_REGELN_H1": "Regeln",
+    "WELCOME_REGELN": "Wie in jeder Gilde gibt es einige wünschenswerte Verhaltensregeln. Wir bitten jedes Mitglied sich auf der folgenden Seite zu informieren und die Wünsche unserer Gilde zu akzeptieren.",
+    "WELCOME_DISCLAIMER_H1": "Disclaimer",
+    "WELCOME_DISCLAIMER": "Fan-Seite zu HERO WARS: DOMINION ERA<br>Dieser Inhalt ist nicht mit NEXTERS verbunden, wird nicht unterstützt, gesponsert oder genehmigt von NEXTERS und NEXTERS übernimmt keine Verantwortung dafür.",
+    "WELCOME_HELDEN_H1": "Helden",
+    "WELCOME_HELDEN": "Tipps zu den Helden im Spiel und Rankings, diverse Teams und Titanen.",
+    "WELCOME_GILD_H1": "Gilde",
+    "WELCOME_GILD": "Über Uns, Regeln und Vorteile der Gildenaktivität wie auch Tipps und Tricks.",
+    "WELCOME_ADVENTURE_H1": "Abenteuer",
+    "WELCOME_ADVENTURE": "Karten und Wege die jeder nehmen sollte, damit alle Truhen erreicht werden.",
+    "WELCOME_GIFT_H1": "Gifts laden",
+    "WELCOME_GIFT": "Lade offizielle Hero Wars Gifts.",
+
+    "FOOTER_IMPRESSUM": "Impressum",
+    "FOOTER_KONTAKT": "Kontakt",
+    "FOOTER_HW": "Eine nicht kommerzielle Fanseite von Hero Wars",
+
+    "HEROES_H1": "Helden Übersicht",
+    "HEROES_FILTER_KLASSE": "Filter Klasse",
+    "HEROES_HINZUFUEGEN": "Held hinzufügen",
+
+    "HERO_EDIT_1": "Name des Helden",
+    "HERO_EDIT_2": "Kampfposition",
+    "HERO_EDIT_3": "Wähle die Position",
+    "HERO_EDIT_4": "Tier List",
+    "HERO_EDIT_5": "Rang in der Tierlist",
+    "HERO_EDIT_6": "Klasse",
+    "HERO_EDIT_7": "Klasse des Helden",
+    "HERO_EDIT_8": "Sekundäre Klasse",
+    "HERO_EDIT_9": "Sekundäre Klasse des Helden",
+    "HERO_EDIT_10": "Hinweise & Tips",
+    "HERO_EDIT_11": "Skin & Priorität",
+    "HERO_EDIT_12": "Glyphen & Priorität",
+    "HERO_EDIT_13": "Artefakt Priorität",
+    "HERO_H1_EDIT": "Held bearbeiten",
+    "HERO_H1_ADD": "Held erstellen",
+
+
+    "BEARBEITEN": "Bearbeiten",
+    "SPEICHERN": "Speichern",
+    "ABBRECHEN": "Abbrechen"
+
+}
