@@ -17,12 +17,12 @@ const routes: Routes = [
   {
     path: 'hero/edithero/:id',
     component: HeroEditComponent,
-    data: { title: 'Held bearbeiten'},
+    data: { title: 'HERO_H1_EDIT'},
   },
   {
     path: 'hero/edithero',
     component: HeroEditComponent,
-    data: { title: 'Held erstellen'},
+    data: { title: 'HERO_H1_ADD'},
   },
   {
     path: 'hero/:id',

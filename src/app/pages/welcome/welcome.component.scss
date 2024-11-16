@@ -111,6 +111,9 @@ GRID
   border-radius: 0.5em;
   color: white; 
 }
+.grid > div p {
+  margin: 0;
+}
 .grid > div .g2 {
   grid-column: auto / 3; grid-row: 1 / 2;
 }

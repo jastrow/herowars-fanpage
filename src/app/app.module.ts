@@ -10,7 +10,7 @@ import { ENVIRONMENT } from "@lib/util/tokens";
 import { FooterComponent } from './lib/wireframe/footer/footer.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LoginComponent } from './pages/Auth/Login/Login.component';
 import { NewlineToBrPipe } from "./lib/pipes/newlineToBr.pipe";
 import { NgModule, ChangeDetectionStrategy, Component } from '@angular/core';
@@ -25,6 +25,8 @@ import { TopnavComponent } from './lib/wireframe/topnav/topnav.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import environment from "../environment";
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
@@ -40,6 +42,10 @@ import { ChangeUserComponent } from '@pages/Auth/ChangeUser/ChangeUser.component
 import { ImprintComponent } from '@pages/imprint/imprint.component';
 import { KontaktComponent } from '@pages/Kontakt/Kontakt.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -101,6 +107,13 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         PasswordModule,
         DropdownModule,
         InputTextareaModule,
+        TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+            }
+        })
     ]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 <div>
     <div class="content">
-        <h1>Helden Liste</h1>
+        <h1 [innerHTML]="'HEROES_H1' | translate"></h1>
         
         <form class="b-form" [formGroup]="form">
             <div class="row">
@@ -16,10 +16,10 @@
                         formControlName="filterKlasse" 
                         [options]="service.getPrimeClasses()"
                         optionLabel="name"
-                        placeholder="Filter Klasse" />
+                        [placeholder]="'HEROES_FILTER_KLASSE' | translate" />
                 </div>
                 <div class="col" *ngIf="auth$ | async">
-                    <p-button label="Held hinzufügen" [routerLink]="['/hero/hero/edithero/']" />
+                    <p-button [label]="'HEROES_HINZUFUEGEN' | translate" [routerLink]="['/hero/hero/edithero/']" />
                 </div>
             </div>
         </form>

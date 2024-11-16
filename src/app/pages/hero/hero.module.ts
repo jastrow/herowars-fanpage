@@ -22,6 +22,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
         InputTextareaModule,
         ConfirmDialogModule,
         ToastModule,
+        TranslateModule,
     ],
     providers: [
         ConfirmationService,

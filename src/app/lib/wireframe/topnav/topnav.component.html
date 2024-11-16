@@ -6,9 +6,9 @@
             [routerLink]="['/']">GLUECKSRITTER</div>
     </div>
 
-    <div class="flexLast">
+    <div class="flexLast" *ngIf="items | async as menu">
 
-        <p-menubar [model]="items">
+        <p-menubar [model]="menu">
             <ng-template pTemplate="item" let-item>
                 <ng-container *ngIf="item.route; else urlRef">
                     <a [routerLink]="item.route" class="p-menuitem-link">

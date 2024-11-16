@@ -10,8 +10,11 @@ $giftLinks = [];
 
 foreach($json->data as $keyNr => $new) {
 	$data = file_get_contents(NEWS_ARTICLE_DATA . $new->id);
-	$dataJ = json_decode($data);
+	try {
+		$dataJ = json_decode($data);
+	} catch(Exception $e) { break; }
 	foreach($dataJ->data->attributes->body as $body) {
+		if(!isset($body->data->text)) {break;}
 		$html = $body->data->text;
 		preg_match('/<a.*href="(.*gift_id.*)".*>(.*)<\/a>/', $html, $hits);
 		//echo '<pre>'.print_r($hits, true).'</pre>';

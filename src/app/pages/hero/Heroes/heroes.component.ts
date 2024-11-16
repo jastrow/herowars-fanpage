@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { HeroService, ITierlist } from '../hero.service';
 import { Select } from '@ngxs/store';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({

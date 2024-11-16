@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^17.3.3",
     "@angular/router": "^17.3.3",
     "@ngrx/store": "^17.2.0",
+    "@ngx-translate/core": "^16.0.3",
+    "@ngx-translate/http-loader": "^16.0.0",
     "@ngxs/devtools-plugin": "^3.8.2",
     "@ngxs/logger-plugin": "^3.8.2",
     "@ngxs/storage-plugin": "^3.8.2",

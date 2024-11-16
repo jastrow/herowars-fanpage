@@ -12,16 +12,16 @@
          <div style="max-width: 800px; width:90%;">
             <div class="grid gridlink">
                <div [routerLink]="['/hero/heroes']">
-                  <h2>Helden</h2>
-                  Tipps zu den Helden im Spiel und Rankings, diverse Teams und Titanen.
+                  <h2 [innerHTML]="'WELCOME_HELDEN_H1' | translate"></h2>
+                  <p class="mt10" [innerHTML]="'WELCOME_HELDEN' | translate"></p>
                </div>
                <div [routerLink]="['/page/Mitglieder']">
-                  <h2>Gilde</h2>
-                  Über Uns, Regeln und Vorteile der Gildenaktivität wie auch Tipps und Tricks.
+                  <h2 [innerHTML]="'WELCOME_GILD_H1' | translate"></h2>
+                  <p class="mt10" [innerHTML]="'WELCOME_GILD' | translate"></p>
                </div>
                <div [routerLink]="['/page/Abenteuer']">
-                  <h2>Abenteuer</h2>
-                  Karten und Wege die jeder nehmen sollte, damit alle Truhen erreicht werden.
+                  <h2 [innerHTML]="'WELCOME_ADVENTURE_H1' | translate"></h2>
+                  <p class="mt10" [innerHTML]="'WELCOME_ADVENTURE' | translate"></p>
                </div>
                @if(giftsLoaded | async) {
                <div *ngIf="giftLinks | async as gl" class="nohover">
@@ -31,13 +31,13 @@
                }
                @else {
                   <div class="nohover">
-                     <h2>Gifts Load</h2>
+                     <h2 [innerHTML]="'WELCOME_GIFT_H1' | translate"></h2>
                      <div style="text-align: center;">
-                        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i><br>
-                        Lade offizielle Hero Wars Gifts
+                        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+                        <p class="mt10" [innerHTML]="'WELCOME_GIFT' | translate"></p>
                      </div>
                   </div>
-                  }
+               }
             </div>
          </div>
       </div>
@@ -49,42 +49,23 @@
     <div class="contentWelcome">
        <div class="grid g2">
           <div>
-             <h1>Die Gilde</h1>
-             <p class="mt10">
-               Unsere sehr junge Gilde ist am 03.02.2024 von Sasida gegründet worden.
-               Schon 8 Tage später kam eine große Stütze der Gilde dazu KueckenONE.
-               Abgerundet wurde der innere Kern mit Bull und Stellatro.
-               Es dauerte nicht lange, bis einige weitere nette Mitglieder dazu kamen.
-             </p>
+             <h1 [innerHTML]="'WELCOME_GILDE_H1' | translate"></h1>
+             <p class="mt10" [innerHTML]="'WELCOME_GILDE' | translate"></p>
           </div>
           <div>
-             <h1>Besondere Leistungen</h1>
-             <p class="mt10">
-               Folgende aktive Mitglieder möchten wir hier durch besondere Aktivitäten innerhalb der Gilde erwähnen:
-            </p>
-             <p class="mt10">
-               Bull, Sasida, Wolf, Ich_Binsch, LeOzzy, Oigenpuffel, Panello, Sigurd
-            </p>
+             <h1 [innerHTML]="'WELCOME_TOP10_H1' | translate"></h1>
+             <p class="mt10" [innerHTML]="'WELCOME_TOP10' | translate"></p>
           </div>
         </div>
         <div class="grid g2 mt10">
             <div>
-                <h1>Regeln</h1>
-                <p class="mt10">
-                  Wie in jeder Gilde gibt es einige wünschenswerte Verhaltensregeln.
-                  Wir bitten jedes Mitglied sich auf der folgenden Seite zu 
-                  informieren und die Wünsche unserer Gilde zu akzeptieren.<br>
-                  <p-button label="Regeln" icon="pi pi-check" size="small" routerLink="/page/Regeln" styleClass="mt10" />
-                </p>
+               <h1 [innerHTML]="'WELCOME_REGELN_H1' | translate"></h1>
+               <p class="mt10" [innerHTML]="'WELCOME_REGELN' | translate"></p>
+               <p-button label="Regeln" icon="pi pi-check" size="small" routerLink="/page/Regeln" styleClass="mt10" />
             </div>
             <div>
-                <h1>Disclaimer</h1>
-                <p class="mt10">
-                  Fan-Seite zu HERO WARS: DOMINION ERA<br>
-                  Dieser Inhalt ist nicht mit NEXTERS verbunden, 
-                  wird nicht unterstützt, gesponsert oder genehmigt von 
-                  NEXTERS und NEXTERS übernimmt keine Verantwortung dafür.
-                </p>
+               <h1 [innerHTML]="'WELCOME_DISCLAIMER_H1' | translate"></h1>
+               <p class="mt10" [innerHTML]="'WELCOME_DISCLAIMER' | translate"></p>
             </div>
         </div>
     </div>

@@ -88,7 +88,7 @@ export class HeroEditComponent implements OnInit {
     artefact3: new FormControl<string>(''),
   });
 
-  public title = new BehaviorSubject<string>('Held bearbeiten');
+  public title = new BehaviorSubject<string>('HERO_H1_EDIT');
 
   ngOnInit(): void {
     this.tierlist = this.service.tierlist.map(t => { return {name: t, code: t}; });
@@ -97,7 +97,9 @@ export class HeroEditComponent implements OnInit {
     this.glyphlist = this.glyphNames.map(t => { return {name: t, code: t}; });
     this.artlist = this.artefactNames.map(t => { return {name: t, code: t}; });
 
-    this.activeRoute.data.pipe(tap(d => {this.title.next(d['title'])})).subscribe();
+    this.activeRoute.data.pipe(tap(d => {
+      this.title.next(d['title'])
+    })).subscribe();
 
     this.subscription.add(
       this.activeRoute.params.pipe(

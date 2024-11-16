@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BehaviorSubject, Subscription, filter } from 'rxjs';
 import { GlobalsettingsService } from './globalsettings.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,11 @@ export class AppComponent implements OnInit {
   private subscription = new Subscription();
   private globalSettings = inject(GlobalsettingsService);
 
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('de');
+    this.translate.use('de');
+  }
+  
   ngOnInit(): void {
     this.service.showTopnav.subscribe(d => {
       this.shownav.next(d);

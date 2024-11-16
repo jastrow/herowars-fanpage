@@ -1,9 +1,15 @@
 <div class="footer">
     <div class="footercontent">
-        <p-tag value="Impressum" [routerLink]="['/imprint']" 
+        <p-tag [value]="'FOOTER_IMPRESSUM' | translate" [routerLink]="['/imprint']" 
             [style]="{cursor: 'pointer'}" />
-        <p-tag value="Kontakt" [routerLink]="['/kontakt']" class="ml10"
+        <p-tag [value]="'FOOTER_KONTAKT' | translate" [routerLink]="['/kontakt']" 
             [style]="{cursor: 'pointer'}" />
-        <span class="ml10">Non commercial Fansite of Hero Wars</span>
+        <div *ngIf="transService.store.onLangChange | async as lang">
+            <p-tag icon="pi pi-flag" 
+                [value]="transService.currentLang == 'de' ? 'EN' : 'DE'" 
+                (click)="switchLanguage()"
+                [style]="{cursor: 'pointer'}" />
+        </div>
+        <span [innerHTML]="'FOOTER_HW' | translate"></span>
     </div>
 </div>

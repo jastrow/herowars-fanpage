@@ -67,28 +67,9 @@ DROP TABLE IF EXISTS page;
 CREATE TABLE page (
     name TINYTEXT,
     html LONGTEXT,
+    lang ENUM('de', 'en') NOT NULL DEFAULT 'de',
     UNIQUE KEY (name(255))
 );
-
-DROP TABLE IF EXISTS mitglied;
-CREATE TABLE mitglied (
-    mitglied_id SERIAL,
-    name TINYTEXT,
-    info LONGTEXT
-);
-
-
-DROP TABLE IF EXISTS gk;
-CREATE TABLE gk (
-    gk_id SERIAL,
-    mitglied_id INT,
-    year INT,
-    week INT,
-    montag ENUM('a','w','i'),
-    dienstag ENUM('a','w','i'),
-    mittwoch ENUM('a','w','i'),
-    donnerstag ENUM('a','w','i'),
-    freitag ENUM('a','w','i'),
-    samstag ENUM('a','w','i'),
-    sonntag ENUM('a','w','i')
-);
+--ALTER TABLE page ADD COLUMN lang ENUM('de', 'en') NOT NULL DEFAULT 'de';
+--ALTER TABLE page DROP INDEX name;
+--ALTER TABLE page ADD UNIQUE KEY new_unique_name (name(255), lang);
