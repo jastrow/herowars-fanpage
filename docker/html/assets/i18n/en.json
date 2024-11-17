@@ -24,7 +24,6 @@
     "HEROES_FILTER_KLASSE": "Filter Class",
     "HEROES_HINZUFUEGEN": "Add Hero",
 
-
     "HERO_EDIT_1": "Hero's Name",
     "HERO_EDIT_2": "Battle Position",
     "HERO_EDIT_3": "Choose Position",
@@ -41,6 +40,11 @@
     "HERO_H1_EDIT": "Edit Hero",
     "HERO_H1_ADD": "Create Hero",
 
+    "Regeln": "Rules",
+    "Mitglieder": "Members",
+    "Gildenaktivität": "Guild Activities",
+    "Tipps": "Tips",
+    "Abenteuer": "Adventures",
     
     "BEARBEITEN": "Edit",
     "SPEICHERN": "Save",

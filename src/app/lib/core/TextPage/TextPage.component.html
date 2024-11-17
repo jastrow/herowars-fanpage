@@ -1,5 +1,5 @@
 <div class="content" *ngIf="page$ | async as page">
-    <h1>{{page.name}}</h1>
+    <h1>{{page.name | translate}}</h1>
     <ng-container *ngIf="!(editMode$ | async); else showeditor">
         <div [innerHTML]="page.html"></div>
         <p-button *ngIf="auth$ | async" label="Bearbeiten" type="button" (click)="editMode$.next(true)" />

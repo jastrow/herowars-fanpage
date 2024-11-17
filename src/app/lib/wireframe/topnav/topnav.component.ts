@@ -121,7 +121,7 @@ export class TopnavComponent {
   ];
 
   constructor() {
-    this.items.next(this.items_DE);
+    this.items.next(this.lang.currentLang  === 'de' ? this.items_DE : this.items_EN);
     this.lang.onLangChange.subscribe(d => {
       this.items.next(d.lang === 'de' ? this.items_DE : this.items_EN);
     });
